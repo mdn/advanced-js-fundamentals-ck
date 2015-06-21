@@ -1,0 +1,15 @@
+body {
+    margin: 10px;
+    font-family: "Open Sans",sans-serif;
+    line-height: 1.5;
+    color: #4D4E53;
+}
+
+h1 {
+    background-image: url('/img/mdn_logo.png');
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: 50px 50px;
+    padding: 10px 0 0 0;
+    height: 50px;
+}
