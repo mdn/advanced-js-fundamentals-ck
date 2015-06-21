@@ -1,4 +1,13 @@
-# content-kit-template
+
+# Advanced JavaScript fundamentals content kit
+Very much in draft right now.
+
+To start using this content kit, [visit the index page](http://mdn.github.io/advanced-js-fundamentals-ck/).
+
+
+
+
+# RAW content-kit-template INSTRUCTIONS
 To create a new MDN Content Kit, fork or clone this template. 
 
 ## Instructions
