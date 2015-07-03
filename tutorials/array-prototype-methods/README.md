@@ -62,6 +62,38 @@ In the example above, we set up an iterator, `i`. As long as `i` is less than th
 
 ## Array.prototype.map
 
+`forEach` will iterate through each element in an array and pass that element to an anonymous function. It's not uncommon that we find ourselves in a position where we need to transform the contents of an array.
+
+In theory, we could use `forEach` in this case:
+
+```js
+const letters = ['a', 'b', 'c'];
+const uppercaseLetters = [];
+
+letters.forEach(function (letter) {
+  const uppercaseLetter = letter.toUpperCase();
+  uppercaseLetters.push(uppercaseLetter);
+});
+
+console.log(uppercaseLetters);
+```
+
+This will work. The `console.log` at end will log `['A', 'B', 'C']`, but JavaScript's `Array` provides us with a better way to do this using `Array.prototype.map`.
+
+```js
+const letters = ['a', 'b', 'c'];
+
+const uppercaseLetters = letters.map(function (letter) {
+  return letter.toUpperCase();
+});
+
+console.log(uppercaseLetters);
+```
+
+The example above will give us the same result as the one before it: `['A', 'B', 'C']`. That said, it's about half the length and doesn't involve mutating an existing array.
+
+Like `forEach`, `map` accepts an anonymous function that it calls on each element of the array it's call on. `forEach` returns `undefined` when its finished. `map`, on the other hand, returns a new array made up of the values returned by the callback function on each iteration.
+
 ## Array.prototype.filter
 
 ## Array.prototype.reduce
