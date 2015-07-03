@@ -60,6 +60,8 @@ In the example above, we set up an iterator, `i`. As long as `i` is less than th
 
 `forEach` has a few advantages over using a for-loop. First, it's easier to read. Secondly, JavaScript has function scope, but not block scope. This means that `number` in our first example is scoped only to our callback function, whereas `i` is accessible outside of the loop body, which is the global scope in this case. The latter could have some unintended consequences.
 
+`forEach` is the foundation for many of the other methods we'll explore today and you can accomplish much of the same functionality with `forEach` that other methods specialize in. That said, just because you _can_ use it, it doesn't mean it's the best choice and that you _should_ use it.
+
 ## Array.prototype.map
 
 `forEach` will iterate through each element in an array and pass that element to an anonymous function. It's not uncommon that we find ourselves in a position where we need to transform the contents of an array.
@@ -95,6 +97,57 @@ The example above will give us the same result as the one before it: `['A', 'B',
 Like `forEach`, `map` accepts an anonymous function that it calls on each element of the array it's call on. `forEach` returns `undefined` when its finished. `map`, on the other hand, returns a new array made up of the values returned by the callback function on each iteration.
 
 ## Array.prototype.filter
+
+`Array.prototype.filter`, like `map`, returns a new array based on the return value of the callback function you pass it. The mechanics, however, differ slightly.
+
+`filter` will include an element in the new array if return value is truthy and omit it if the return value is falsy.
+
+What makes a value truthy or falsy? Let's start with the easy ones: `true` is truthy and `false` is falsy. `0`, `null`, `undefined`, 'NaN', and an empty string are all falsy as well. Everything else is truthy.
+
+Let's start with a simple example:
+
+```js
+const booleans = [true, true, false, true];
+
+const truths = booleans.filter(function (value) {
+  return value;
+});
+
+console.log(truths); // Logs [true, true, true]
+```
+
+As you can see in the example above, `false` is omitted from the resulting array. This works, but it's not very useful.
+
+```js
+const numbers = [1, 2, 3, 4, 5, 6, 7];
+
+const oddNumbers = numbers.filter(function (number) {
+  return number % 2;
+});
+
+console.log(oddNumbers); // Logs [1, 3, 5, 7]
+```
+
+For all of the even numbers, `number % 2` returns `0`, which—as we saw earlier—is falsy. As a result, all of the even numbers are omitted from the new array. For all of the odd numbers, `number % 2` returns `1`, which is truthy. As a result, the odd numbers are placed in the new array and ultimately returned by the filter method.
+
+We can also get a little bit more nuanced in how we filter elements in our array. Let's take a look at the following example:
+
+```js
+const beatles = [
+  { name: 'John', living: false, instruments: ['guitar', 'bass', 'piano'] },
+  { name: 'Paul', living: true, instruments: ['bass', 'guitar', 'piano'] },
+  { name: 'George', living: false, instruments: ['guitar', 'sitar'] },
+  { name: 'Ringo', living: false, instruments: ['drums', 'bongos'] },
+];
+
+const livingBeatles = beatles.filter(function (beatle) {
+  return beatle.living;
+});
+
+const guitarPlayingBeatles = beatles.filter(function (beatle) {
+  return beatle.instruments.indexOf('guitar') !== -1;
+});
+```
 
 ## Array.prototype.reduce
 
