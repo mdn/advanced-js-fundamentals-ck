@@ -151,7 +151,83 @@ const guitarPlayingBeatles = beatles.filter(function (beatle) {
 
 ## Array.prototype.reduce
 
+`Array.prototype.reduce` is a lot like `map` with one important distinction: it returns one single value as opposed to an array of new values.
+
+```js
+const numbers = [1, 2, 3];
+
+const sum = numbers.reduce(function (total, number) {
+  return total + number;
+}, 0);
+
+console.log(sum); // Logs 6
+```
+
 ## Array.prototype.sort
+
+`Array.prototype.sort` will sort all of the elements in the array. We can invoke it without a callback function.
+
+```js
+const numbers = [2, 1, 4, 3];
+const letters = ['a', 'd', 'c', 'b'];
+
+const sortedNumbers = numbers.sort();
+const sortedLetters = letters.sort();
+
+console.log(sortedNumbers); // Logs [1, 2, 3, 4]
+console.log(sortedLetters); // Logs ['a', 'b', 'c', 'd']
+```
+
+Without a callback function, `sort` uses a default sorting algorithm. In the examples above, everything works the way we would expect, but there are some surprising peculiarities of the default sorting algorithm. Consider the following example:
+
+```js
+const numbers = [1, 7, 3, 10];
+
+const sortedNumbers = numbers.sort();
+
+console.log(sortedNumbers); // Logs [1, 10, 3, 7]
+```
+
+Unless you've encountered a similar example in the past, `[1, 10, 3, 7]` is probably not what you were expecting the sort method to return. By default, JavaScript uses lexicographical sorting. You can think of it as alphabetical sorting. 7 may come before 10 numerically, but 10 comes first lexicographically.
+
+So, how do we sort numbers then? `Array.prototype.sort` also accepts a callback function that it will use to evalute the order of the elements in the new array it returns.
+
+The callback function compares two elements at a time and the `sort` method rearranges the elements based on a value returned by the callback function.
+
+* If the value returned is `0` then sort leaves both elements in the same place.
+* If the value returned is negative, then the first element is placed before the second element.
+* If the value returned is positive, then the second element is placed before the first element.
+
+Armed with this new knowledge, let's see if we can sort an array of numbers—umm—numerically.
+
+```js
+const numbers = [1, 7, 3, 10];
+
+const sortedNumbers = numbers.sort(function (a, b) {
+  return a - b;
+});
+
+console.log(sortedNumbers); // Logs [1, 3, 7, 10]
+```
+
+`1 - 7` results in a negative number, `-6`. As a result the first element, `1` is placed before `7`. However, `7 - 3` is a positive number. So, the first element, `7` is placed _after_ `3`.
+
+We can also use custom sorting functions for more complicated data structures. Let's say we wanted to sort the Beatles by the number of instruments played in descending order. As a bonus, we'll map the sorted array to just collect the names of each Beatle.
+
+```js
+const beatles = [
+  { name: 'John', instruments: ['guitar', 'bass', 'piano' ] },
+  { name: 'Paul', instruments: ['bass', 'guitar', 'piano', 'cowbell'] },
+  { name: 'Ringo', instruments: ['drums'] },
+  { name: 'George', instruments: ['guitar', 'sitar'] }
+];
+
+beatles.sort(function (a, b) {
+  return b.instruments.length - a.instruments.length;
+}).map(function (beatle) {
+  return beatle.name;
+});
+```
 
 ## Array.prototype.concat
 
