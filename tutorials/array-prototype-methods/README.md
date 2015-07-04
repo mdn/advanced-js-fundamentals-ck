@@ -222,17 +222,127 @@ const beatles = [
   { name: 'George', instruments: ['guitar', 'sitar'] }
 ];
 
-beatles.sort(function (a, b) {
+const sortedBeatles = beatles.sort(function (a, b) {
   return b.instruments.length - a.instruments.length;
 }).map(function (beatle) {
   return beatle.name;
 });
+
+console.log(sortedBeatles); // Logs ['Paul', 'John', 'George', 'Ringo']
 ```
+
+## Array.prototype.some and Array.prototype.every
+
+`Array.prototype.some` and `Array.prototype.every` are used to determine if some or all—respectively—of the elements meet a given criteria. Like `filter`, `some` and `every` take a callback function that returns either a truthy or falsy value. While `filter` returns a new array, `some` and `every` return a boolean.
+
+```js
+function isOdd(number) {
+  return !!(number % 2);
+}
+
+[1, 2, 3].some(isOdd);  // true
+[2, 4, 6].some(isOdd);  // false
+[1, 2, 3].every(isOdd); // false
+[1, 3, 5].every(isOdd); // true
+```
+
+`some` and `every` are supported by most modern browsers. Notably, Internet Explorer 8 and earlier do no support `some` and `every`. That said, you can add support for these methods using a polyfill for [`some`][somefill] and [`every`][everyfill].
+
+[somefill]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some#Polyfill
+[everyfill]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every#Polyfill
 
 ## Array.prototype.concat
 
+`Array.prototype.concat` additional values and arrays and concatenates them onto the array on which it is called.
+
+```js
+const stringedInstruments = ['guitar', 'bass', 'harp'];
+const percussionInstruments = ['bongos', 'snare drum', 'bass drum'];
+
+const instruments = stringedInstruments.concat(percussionInstruments);
+
+console.log(instruments);
+// Logs ["guitar", "bass", "harp", "bongos", "snare drum", "bass drum"]
+```
+
 ## Array.prototype.indexOf
+
+Many times we want to know if a certain element is in an array. In these cases, we can use `Array.prototype.indexOf` find the index of a given element.
+
+```js
+const letters = ['a', 'b', 'c'];
+
+letters.indexOf('a'); // returns 0;
+letters.indexOf('b'); // returns 1;
+```
+
+In the event that an element is not in the array, `indexOf` will return `-1`. It can't return `0`—a falsy value—because that's a valid index. To assert that an element is in the array, we can check to make sure its index is _not_ `-1`.
+
+```js
+['a', 'b', 'c'].indexOf('a') !== -1;
+```
+
+Conversely, if we want to check that an element is not in an array, we can assert that it has an index of `-1`;
+
+```js
+['a', 'b', 'c'].indexOf('not in here') === -1;
+```
 
 ## Array.prototype.slice
 
-## Array.prototype.some and Array.prototype.every
+`Array.prototype.slice` returns a copy of a given array. It takes two optional arguments: a starting index and an ending index. If we give `slice` a starting index it will return a copy of the array from that starting index forward. If we provide it a starting and ending index, it will return an array of the elements between those two indexes. If we give `slice` a negative starting index, it will start from the end of the array and work backwards.
+
+```js
+const numbers = [1, 2, 3, 4, 5, 6];
+
+numbers.slice(0);    // [1, 2, 3, 4, 5, 6]
+numbers.slice(1);    // [2, 3, 4, 5, 6]
+numbers.slice(2);    // [3, 4, 5, 6]
+numbers.slice(-2);    // [5, 6]
+numbers.slice(2, 4); // [3, 4];
+```
+
+In JavaScript there are some collections that are not instances of `Array` and—as a result—do not inherit any of the methods from `Array.prototype` that we've discussed so far. One solution is to borrow the `slice` method from `Array.prototype` to return an actual array.
+
+The most common use of this technique is with the `arguments` object that is available to every function in JavaScript.
+
+```js
+function exampleFunction() {
+  console.log(arguments);
+}
+
+exampleFunction(1, 2, 3); // Logs [1, 2, 3]
+```
+
+At first glance, `arguments` looks suspiciously like an array, but it isn't and—more importantly—it does not inherit from `Array.prototype`.
+
+```js
+console.log(arguments.forEach); // undefined
+console.log(arguments.map); // undefined
+console.log(arguments.reduce); // undefined
+```
+
+If we tried to use `forEach` try to iterate over each of the arguments passed to the array, it would raise an error.
+
+```js
+function exampleFunction() {
+  arguments.forEach(function (argument) {
+    console.log(argument)
+  });
+}
+
+exampleFunction(1, 2, 3); // TypeError: arguments.forEach is not a function.
+```
+
+The common solution is to simply convert `arguments` into an array—which, in turn, would inherit from `Array.prototype`.
+
+```js
+function exampleFunction() {
+  const args = Array.prototype.slice.call(arguments);
+  args.forEach(function (argument) {
+    console.log(argument)
+  });
+}
+```
+
+We discussed earlier, that calling slice with no arguments returns a copy of the array. In the example above, we are "borrowing" the `slice` method from `Array.prototype` and using `call` to set the context to our `arguments` object. The end result is a copy of `arguments` that happens to inherit from `Array.prototype`.
