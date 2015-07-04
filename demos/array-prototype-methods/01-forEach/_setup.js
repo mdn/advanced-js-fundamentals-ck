@@ -1,4 +1,4 @@
-{
+var instagramData = {
   "pagination": {
     "next_max_tag_id": "1012424812293379866",
     "deprecation_warning": "next_max_id and min_id are deprecated for this endpoint; use min_tag_id and max_tag_id instead",
@@ -1771,4 +1771,23 @@
       }
     }
   ]
+}
+
+var photographs = instagramData.data.filter(function (asset) {
+  return asset.type === 'image';
+}).slice(0, 16);
+
+var photographsDiv = document.getElementById('photographs');
+
+function createImageElementFromPhotograph(photograph) {
+  var image = document.createElement('img');
+  image.alt = photograph.caption.text;
+  image.src = photograph.images.low_resolution.url;
+  image.className = "instagram-image";
+  return image;
+}
+
+function addInstagramImageToThePage(photograph) {
+  var newImage = createImageElementFromPhotograph(photograph);
+  photographsDiv.appendChild(newImage);
 }
