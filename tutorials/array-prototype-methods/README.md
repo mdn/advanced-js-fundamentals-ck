@@ -307,7 +307,30 @@ const sum = numbers.reduce(function (total, number) {
 console.log(sum); // Logs 6
 ```
 
+You might notice that we have a second argument after our anonymous function. In the example above, we passed `0`. The second argument is the starting value of the accumulator (`total` in this case). It doesn't have to be a number. You could pass in an empty array or even an object that you want to work with.
+
+If we wanted to—and we're not sure that we ever would—we could implement `map` using `reduce`:
+
+```js
+const letters = ['a', 'b', 'c'];
+
+const capitalLetters = letters.reduce(function (newArray, letter) {
+  newArray.push(letter.toUpperCase());
+  return newArray;
+}, []);
+
+console.log(capitalLetter); // Logs ["A", "B", "C"]
+```
+
+The second argument that we pass to the `reduce` method is an empty array, which is then set as the initial value for `newArray`. Next, we push in a capital version of the current letter. `push` returns the current length of the array after the new element has been pushed in, so we have to explicitly return `newArray` to pass it along to the next iteration in our `reduce`.
+
 ### Your Turn
+
+#### Part One
+
+We saw before that each photo/video has a count for the number of likes stored in `likes.count`. What is the total number of likes for all of the photos/videos fetch from the API?
+
+#### Part Two
 
 It's time to up the ante a bit. Many of the photographs have tags. It would be cool if we could count up how many times each tag appeared in the API response. Ideally, it would look something like this:
 
@@ -417,7 +440,7 @@ console.log(sortedBeatles); // Logs ['Paul', 'John', 'George', 'Ringo']
 
 ### Your Turn
 
-Not only were the fine folks at Instagram nice enough to give us a tidy array of all of the tags for a given photograph or video, they also tallied up all of "likes" it received.
+As we saw earlier: not only were the fine folks at Instagram nice enough to give us a tidy array of all of the tags for a given photograph or video, they also tallied up all of "likes" it received.
 
 ```js
 console.log(instagramAPI.data[2].likes.count); // Logs 7
