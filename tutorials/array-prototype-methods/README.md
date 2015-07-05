@@ -62,6 +62,35 @@ In the example above, we set up an iterator, `i`. As long as `i` is less than th
 
 `forEach` is the foundation for many of the other methods we'll explore today and you can accomplish much of the same functionality with `forEach` that other methods specialize in. That said, just because you _can_ use it, it doesn't mean it's the best choice and that you _should_ use it.
 
+### Your Turn
+
+Let's put on our imagination caps and make believe we're building a photo gallery that pulls from the Instagram API. We did the hard work and mocked it out for you.
+
+If you head on over to `demos/01-forEach`, we cached 16 photographs from the Instagram API and stored them in the `photographs` variable. We also created a pair of simple functions for appending them to the DOM. If you're curious, here is what they look like:
+
+```js
+var photographsDiv = document.getElementById('photographs');
+
+function createImageElementFromPhotograph(photograph) {
+  var image = document.createElement('img');
+  image.alt = photograph.caption.text;
+  image.src = photograph.images.low_resolution.url;
+  image.className = "instagram-image";
+  return image;
+}
+
+function addInstagramImageToThePage(photograph) {
+  var newImage = createImageElementFromPhotograph(photograph);
+  photographsDiv.appendChild(newImage);
+}
+```
+
+Your job is to iterate over the array of photographs and call `addInstagramImageToThePage` on each one.
+
+If you finish early, try the following:
+
+* Can you write your own function to render the photograph element as a DOM element and render it to the DOM?
+
 ## Array.prototype.map
 
 `forEach` will iterate through each element in an array and pass that element to an anonymous function. It's not uncommon that we find ourselves in a position where we need to transform the contents of an array.
@@ -95,6 +124,91 @@ console.log(uppercaseLetters);
 The example above will give us the same result as the one before it: `['A', 'B', 'C']`. That said, it's about half the length and doesn't involve mutating an existing array.
 
 Like `forEach`, `map` accepts an anonymous function that it calls on each element of the array it's call on. `forEach` returns `undefined` when its finished. `map`, on the other hand, returns a new array made up of the values returned by the callback function on each iteration.
+
+### Your Turn
+
+The Instagram API returns a lot of information about each photograph. Here is the information for a single photograph:
+
+```js
+{
+  "attribution": null,
+  "tags": [
+    "cute",
+    // additional tags omitted for brevity…
+  ],
+  "type": "image",
+  "location": null,
+  "comments": {
+    "count": 0,
+    "data": []
+  },
+  "filter": "Crema",
+  "created_time": "1434910534",
+  "link": "https://instagram.com/p/4M24o2IPW1/",
+  "likes": {
+    "count": 1,
+    "data": [
+      {
+        "username": "thiago_artwork",
+        "profile_picture": "https://igcdn-photos-b-a.akamaihd.net/hphotos-ak-xaf1/t51.2885-19/11410486_492673490883809_1952978378_a.jpg",
+        "id": "387386769",
+        "full_name": "Thiago Villas Boas"
+      }
+    ]
+  },
+  "images": {
+    "low_resolution": {
+      "url": "https://scontent.cdninstagram.com/hphotos-xfa1/t51.2885-15/s320x320/e15/11417453_831691666899875_2026130128_n.jpg",
+      "width": 320,
+      "height": 320
+    },
+    "thumbnail": {
+      "url": "https://scontent.cdninstagram.com/hphotos-xfa1/t51.2885-15/s150x150/e15/11417453_831691666899875_2026130128_n.jpg",
+      "width": 150,
+      "height": 150
+    },
+    "standard_resolution": {
+      "url": "https://scontent.cdninstagram.com/hphotos-xfa1/t51.2885-15/e15/11417453_831691666899875_2026130128_n.jpg",
+      "width": 640,
+      "height": 640
+    }
+  },
+  "users_in_photo": [],
+  "caption": {
+    "created_time": "1434910534",
+    "text": "Dressed up for the BBQ! #Frodo #Dog #Lab #Labrador #LabradorPuppy #Puppy #Puppies #Cute #BowTie #FathersDay #Barbecue @davejn87",
+    "from": {
+      "username": "holly_afc",
+      "profile_picture": "https://igcdn-photos-h-a.akamaihd.net/hphotos-ak-xaf1/t51.2885-19/11357379_508399145976207_186974738_a.jpg",
+      "id": "470167108",
+      "full_name": "Holly Nunn"
+    },
+    "id": "1012425404278961457"
+  },
+  "user_has_liked": false,
+  "id": "1012425402911618485_470167108",
+  "user": {
+    "username": "holly_afc",
+    "profile_picture": "https://igcdn-photos-h-a.akamaihd.net/hphotos-ak-xaf1/t51.2885-19/11357379_508399145976207_186974738_a.jpg",
+    "id": "470167108",
+    "full_name": "Holly Nunn"
+  }
+}
+```
+
+That's a lot of data and we're not using the large majority of it. In the previous example, we only needed the caption text and the URL for the low resolution version of the image.
+
+As we've seen, `map` is really good at transforming data.
+
+* Create an array called `simplifiedPhotographs` that takes `photographs` and transforms each one into an object with only two properties: `caption` and `url`.
+* Create an array called `photographElements` that takes `photographs` and transforms each one into a DOM element.
+
+Tests have been provided in `demos/02-map` to help guide your progress and let you know if you've gotten it right.
+
+As a bonus, you can try the following in `01-forEach`:
+
+* Map each photo into a DOM element and then chain `forEach` that adds an click event listener using `document.addEventListener`.
+* Add each image element to the DOM manually.
 
 ## Array.prototype.filter
 
@@ -149,6 +263,14 @@ const guitarPlayingBeatles = beatles.filter(function (beatle) {
 });
 ```
 
+### Your Turn
+
+You're welcome. For what? Well, it turns out that the Instagram API supports videos as well as images. Up until now, we've been filtering those videos out for you. But, you know how to use filter now, so you don't need us doing it for you anymore.
+
+Assuming that `instagramAPI.data` is a collection of both photographs and videos, can you filter out just the photographs and add them to the page, just like you did in the earlier exercises.
+
+As long as we're taking off the training wheels, you're on your own for adding them to the DOM as well. Take a look at the code we provided you earlier if you need some inspiration for how to create a DOM element and add it to the page.
+
 ## Array.prototype.reduce
 
 `Array.prototype.reduce` is a lot like `map` with one important distinction: it returns one single value as opposed to an array of new values.
@@ -162,6 +284,46 @@ const sum = numbers.reduce(function (total, number) {
 
 console.log(sum); // Logs 6
 ```
+
+### Your Turn
+
+It's time to up the ante a bit. Many of the photographs have tags. It would be cool if we could count up how many times each tag appeared in the API response. Ideally, it would look something like this:
+
+```js
+{
+  firstTag: 4,
+  secondTag: 3,
+  thirdTag: 2
+}
+```
+
+If you recall from the `map` exercise, each photo/video has a property called `tags`, which—coincidentally—is an array of all of the tags in the caption.
+
+```js
+{
+  "attribution": null,
+  "tags": [
+    "love",
+    "family",
+    "bulldog",
+    "fathersday",
+    "bulldogsofig",
+    "bulldogs",
+    "puppies",
+    "daddy",
+    "loveyou"
+  ],
+  "type": "image",
+  // more properties here…
+  "images": {
+      // all the different resolutions live here…
+    }
+  },
+  // even more properties live here…
+}
+```
+
+Given an API response stored in `instagramAPI.data`, can you count up the number of times each tag appears? We have provided you with some tests in `04-reduce` to help guide you in your implementation.
 
 ## Array.prototype.sort
 
@@ -230,6 +392,16 @@ const sortedBeatles = beatles.sort(function (a, b) {
 
 console.log(sortedBeatles); // Logs ['Paul', 'John', 'George', 'Ringo']
 ```
+
+### Your Turn
+
+Not only were the fine folks at Instagram nice enough to give us a tidy array of all of the tags for a given photograph or video, they also tallied up all of "likes" it received.
+
+```js
+console.log(instagramAPI.data[2].likes.count); // Logs 7
+```
+
+We want to know what the cool kids are into. Can you sort the photos and videos by the number of times it was liked? The most liked photo or video should be first and the least liked photo or video should be last.
 
 ## Array.prototype.some and Array.prototype.every
 

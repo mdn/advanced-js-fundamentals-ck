@@ -1,4 +1,4 @@
-var instagramData = {
+var instagramAPI = {
   "pagination": {
     "next_max_tag_id": "1012424812293379866",
     "deprecation_warning": "next_max_id and min_id are deprecated for this endpoint; use min_tag_id and max_tag_id instead",
@@ -126,7 +126,7 @@ var instagramData = {
             "username": "mickeyminnieworld",
             "profile_picture": "https://igcdn-photos-a-a.akamaihd.net/hphotos-ak-xaf1/t51.2885-19/11333664_807371946045848_2142571805_a.jpg",
             "id": "2097748985",
-            "full_name": "ðŸ¾ðŸ¶Mickey and MinnieðŸ¶ðŸ¾"
+            "full_name": "Mickey and Minnie"
           }
         ]
       },
@@ -241,7 +241,7 @@ var instagramData = {
           "username": "babyanimalspix",
           "profile_picture": "https://igcdn-photos-h-a.akamaihd.net/hphotos-ak-xap1/t51.2885-19/10787949_769319103104439_860813470_a.jpg",
           "id": "1588324903",
-          "full_name": "Baby AnimalsðŸ¶"
+          "full_name": "Baby Animals"
         },
         "id": "1012425665696014518"
       },
@@ -251,7 +251,7 @@ var instagramData = {
         "username": "babyanimalspix",
         "profile_picture": "https://igcdn-photos-h-a.akamaihd.net/hphotos-ak-xap1/t51.2885-19/10787949_769319103104439_860813470_a.jpg",
         "id": "1588324903",
-        "full_name": "Baby AnimalsðŸ¶"
+        "full_name": "Baby Animals"
       }
     },
     {
@@ -637,7 +637,7 @@ var instagramData = {
             "username": "1wolf3",
             "profile_picture": "https://instagramimages-a.akamaihd.net/profiles/profile_23656344_75sq_1353704072.jpg",
             "id": "23656344",
-            "full_name": "Mare & My Baby Girl Noelle ðŸ¶"
+            "full_name": "Mare & My Baby Girl Noelle "
           },
           {
             "username": "landsan",
@@ -649,13 +649,13 @@ var instagramData = {
             "username": "7amode____",
             "profile_picture": "https://igcdn-photos-h-a.akamaihd.net/hphotos-ak-xfa1/t51.2885-19/11417357_560376227434119_533589097_a.jpg",
             "id": "522391467",
-            "full_name": "Ø­Ù…ÙˆØ¯Ø©"
+            "full_name": "random person"
           },
           {
             "username": "magichavanese",
             "profile_picture": "https://igcdn-photos-d-a.akamaihd.net/hphotos-ak-xaf1/t51.2885-19/11376678_858342727575875_133686662_a.jpg",
             "id": "262540336",
-            "full_name": "ðŸ¾MagicðŸ¾"
+            "full_name": "Magic"
           }
         ]
       },
@@ -813,7 +813,7 @@ var instagramData = {
       "users_in_photo": [],
       "caption": {
         "created_time": "1434910533",
-        "text": "ðŸ¶ðŸ¶ #puppies #bestfriends #beaniebabies",
+        "text": " #puppies #bestfriends #beaniebabies",
         "from": {
           "username": "lucyjordan13",
           "profile_picture": "https://instagramimages-a.akamaihd.net/profiles/profile_16907217_75sq_1395039422.jpg",
@@ -1023,7 +1023,7 @@ var instagramData = {
       ],
       "caption": {
         "created_time": "1434910526",
-        "text": "ðŸˆðŸ˜ºMuÃ±equita Â¿DÃ³nde vas?ðŸ’•â¤\n#cat #cats #gatitos #gatito #gata #gatas #gatita #gatitas #kitten #kitty #kitties #mininos #mascota #mascotas #pet #pets #puppy #puppies #instacat #instacats #instagato #instagatos #instamascota #instamascotas #instapet #instapets #instapuppy #instapuppies #pic",
+        "text": "#cat #cats #gatitos #gatito #gata #gatas #gatita #gatitas #kitten #kitty #kitties #mininos #mascota #mascotas #pet #pets #puppy #puppies #instacat #instacats #instagato #instagatos #instamascota #instamascotas #instapet #instapets #instapuppy #instapuppies #pic",
         "from": {
           "username": "duly1984",
           "profile_picture": "https://igcdn-photos-f-a.akamaihd.net/hphotos-ak-xaf1/t51.2885-19/11296680_1455568458070149_939603950_a.jpg",
@@ -1236,12 +1236,12 @@ var instagramData = {
       "users_in_photo": [],
       "caption": {
         "created_time": "1434910499",
-        "text": "SundayðŸ¶ #pets #dog #babydog #greatdane #greatdanephotograpy #bluedane #bluegreatdane #puppies #dogos #greatdanesunleashed",
+        "text": "Sunday #pets #dog #babydog #greatdane #greatdanephotograpy #bluedane #bluegreatdane #puppies #dogos #greatdanesunleashed",
         "from": {
           "username": "samba_greatdane",
           "profile_picture": "https://igcdn-photos-d-a.akamaihd.net/hphotos-ak-xaf1/t51.2885-19/11351505_720484084740139_1894754547_a.jpg",
           "id": "2008938219",
-          "full_name": "âœ–ï¸SAMBAâœ–ï¸"
+          "full_name": "SAMBA"
         },
         "id": "1012425111341519658"
       },
@@ -1251,7 +1251,7 @@ var instagramData = {
         "username": "samba_greatdane",
         "profile_picture": "https://igcdn-photos-d-a.akamaihd.net/hphotos-ak-xaf1/t51.2885-19/11351505_720484084740139_1894754547_a.jpg",
         "id": "2008938219",
-        "full_name": "âœ–ï¸SAMBAâœ–ï¸"
+        "full_name": "SAMBA"
       }
     },
     {
@@ -1392,13 +1392,13 @@ var instagramData = {
               "username": "leopoldthepug",
               "profile_picture": "https://igcdn-photos-g-a.akamaihd.net/hphotos-ak-xfa1/t51.2885-19/11325371_1651981471704670_1276739291_a.jpg",
               "id": "1816734849",
-              "full_name": "LeopoldðŸƒ"
+              "full_name": "Leopold"
             },
             "id": "1012425027650046849"
           },
           {
             "created_time": "1434910573",
-            "text": "Yeah! Best daddy ever! ðŸ˜ŠðŸ˜ŠðŸ‘ðŸ¼",
+            "text": "Yeah! Best daddy ever!",
             "from": {
               "username": "pugalicious_vinny",
               "profile_picture": "https://igcdn-photos-e-a.akamaihd.net/hphotos-ak-xaf1/t51.2885-19/11245885_833746093375404_1629680074_a.jpg",
@@ -1461,12 +1461,12 @@ var instagramData = {
       "users_in_photo": [],
       "caption": {
         "created_time": "1434910482",
-        "text": "I LUB MY DAD!!!! â¤ï¸ You've been fighting for our right to nap from the very beginning #fathersday",
+        "text": "I LUB MY DAD!!!! You've been fighting for our right to nap from the very beginning #fathersday",
         "from": {
           "username": "leopoldthepug",
           "profile_picture": "https://igcdn-photos-g-a.akamaihd.net/hphotos-ak-xfa1/t51.2885-19/11325371_1651981471704670_1276739291_a.jpg",
           "id": "1816734849",
-          "full_name": "LeopoldðŸƒ"
+          "full_name": "Leopold"
         },
         "id": "1012424964827761528"
       },
@@ -1476,7 +1476,7 @@ var instagramData = {
         "username": "leopoldthepug",
         "profile_picture": "https://igcdn-photos-g-a.akamaihd.net/hphotos-ak-xfa1/t51.2885-19/11325371_1651981471704670_1276739291_a.jpg",
         "id": "1816734849",
-        "full_name": "LeopoldðŸƒ"
+        "full_name": "Leopold"
       }
     },
     {
@@ -1553,12 +1553,12 @@ var instagramData = {
       "users_in_photo": [],
       "caption": {
         "created_time": "1434910478",
-        "text": "ðŸ˜â¤ï¸ðŸ˜â¤ï¸ðŸ˜â¤ï¸ðŸ˜â¤ï¸ðŸ˜ #talesofalab #worldoflabs #labs_of_insta #huskylovers #allthingshusky  #huskyheaven #dogsofinstagram #dogsofthelou #lovelablife \n#loveoflabradors #itsalabthing #thehuskylove #huskyphotography #dogsofficial #labrador #husky #love #dogs #puppies #Ollie #Ella",
+        "text": "#talesofalab #worldoflabs #labs_of_insta #huskylovers #allthingshusky  #huskyheaven #dogsofinstagram #dogsofthelou #lovelablife \n#loveoflabradors #itsalabthing #thehuskylove #huskyphotography #dogsofficial #labrador #husky #love #dogs #puppies #Ollie #Ella",
         "from": {
           "username": "ella_and_ollie",
           "profile_picture": "https://igcdn-photos-g-a.akamaihd.net/hphotos-ak-xpt1/t51.2885-19/11208134_1624718944432574_124747747_a.jpg",
           "id": "1901656098",
-          "full_name": "Ella & Ollie ðŸ¾ðŸ¾"
+          "full_name": "Ella & Ollie"
         },
         "id": "1012424929105226879"
       },
@@ -1568,7 +1568,7 @@ var instagramData = {
         "username": "ella_and_ollie",
         "profile_picture": "https://igcdn-photos-g-a.akamaihd.net/hphotos-ak-xpt1/t51.2885-19/11208134_1624718944432574_124747747_a.jpg",
         "id": "1901656098",
-        "full_name": "Ella & Ollie ðŸ¾ðŸ¾"
+        "full_name": "Ella & Ollie"
       }
     },
     {
@@ -1752,7 +1752,7 @@ var instagramData = {
       "users_in_photo": [],
       "caption": {
         "created_time": "1434910469",
-        "text": "Puppies ðŸ¶ #kitkat #puppies #kids #vsco #vscocairo #cairo #egypt #everydayegypt",
+        "text": "Puppies  #kitkat #puppies #kids #vsco #vscocairo #cairo #egypt #everydayegypt",
         "from": {
           "username": "tinnevl",
           "profile_picture": "https://igcdn-photos-h-a.akamaihd.net/hphotos-ak-xfp1/t51.2885-19/10475071_320109794849319_739259207_a.jpg",
@@ -1771,9 +1771,9 @@ var instagramData = {
       }
     }
   ]
-}
+};
 
-var photographs = instagramData.data.filter(function (asset) {
+var photographs = instagramAPI.data.filter(function (asset) {
   return asset.type === 'image';
 }).slice(0, 16);
 
