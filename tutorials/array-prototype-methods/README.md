@@ -8,6 +8,9 @@ In this segment, you'll learn the following:
 
 * How to use `Array.prototype`'s' `forEach`, `map`, `filter`, `reduce`, and `sort` methods.
 * How to create DOM nodes from API data and append them to the page
+* Read and write simple unit and DOM tests using [Mocha][].
+
+[Mocha]: http://mochajs.com/
 
 ## Array.prototype.forEach
 
@@ -274,9 +277,21 @@ const guitarPlayingBeatles = beatles.filter(function (beatle) {
 
 You're welcome. For what? Well, it turns out that the Instagram API supports videos as well as images. Up until now, we've been filtering those videos out for you. But, you know how to use filter now, so you don't need us doing it for you anymore.
 
-Assuming that `instagramAPI.data` is a collection of both photographs and videos, can you filter out just the photographs and add them to the page, just like you did in the earlier exercises.
+Assuming that `instagramAPI.data` is a collection of both photographs and videos:
+
+* Filter out just the photographs and store them in a variable called `photographs`.
+* Filter out just the videos and store them in a variable called `videos`.
+* Filter out all of the photographs that don't have any likes and store the remaining photographs into a variable called `popularPhotographs`.
+
+Here are some helpful hints:
+
+* All of the photogtaphs have a `type` property that is set to `"image"`.
+* All of the videos have a `type` property that is set to `"video"`.
+* All of the photographs have a property called `likes`, which has a property called `count`.
 
 As long as we're taking off the training wheels, you're on your own for adding them to the DOM as well. Take a look at the code we provided you earlier if you need some inspiration for how to create a DOM element and add it to the page.
+
+You may want to consider using one of the `Array.prototype` methods we covered earlier when adding the photogtaph to the DOM.
 
 ## Array.prototype.reduce
 
