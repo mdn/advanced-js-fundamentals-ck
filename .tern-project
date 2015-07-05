@@ -6,10 +6,7 @@
     "jquery"
   ],
   "loadEagerly": [
-    "js/**/*.js"
-  ],
-  "dontLoad": [
-    "**/*.md"
+    "**/*.js"
   ],
   "plugins": {
     "complete_strings": {},

@@ -2,6 +2,13 @@
 
 ## A Brief Introduction
 
+## Learning Objectives
+
+In this segment, you'll learn the following:
+
+* How to use `Array.prototype`'s' `forEach`, `map`, `filter`, `reduce`, and `sort` methods.
+* How to create DOM nodes from API data and append them to the page
+
 ## Array.prototype.forEach
 
 One of the first methods we'll explore together is `Array.prototype.forEach`, which iterates over the array and passes each element into a callback function that you provide.
@@ -201,7 +208,7 @@ That's a lot of data and we're not using the large majority of it. In the previo
 As we've seen, `map` is really good at transforming data.
 
 * Create an array called `simplifiedPhotographs` that takes `photographs` and transforms each one into an object with only two properties: `caption` and `url`.
-* Create an array called `photographElements` that takes `photographs` and transforms each one into a DOM element.
+* Create an array called `simplifiedPhotographs` that takes `photographs` and transforms each one into a DOM element.
 
 Tests have been provided in `demos/02-map` to help guide your progress and let you know if you've gotten it right.
 
