@@ -4,7 +4,7 @@ describe('simplifiedPhotographs', function () {
     assert(Array.isArray(simplifiedPhotographs));
   });
 
-  it.skip('constains objects with only caption and url properties', function () {
+  it.skip('contains objects with only caption and url properties', function () {
     simplifiedPhotographs.forEach(function (photograph) {
       assert.deepEqual(Object.keys(photograph), ['caption', 'url']);
     });

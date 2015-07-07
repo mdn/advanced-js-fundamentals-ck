@@ -261,7 +261,7 @@ const beatles = [
   { name: 'John', living: false, instruments: ['guitar', 'bass', 'piano'] },
   { name: 'Paul', living: true, instruments: ['bass', 'guitar', 'piano'] },
   { name: 'George', living: false, instruments: ['guitar', 'sitar'] },
-  { name: 'Ringo', living: false, instruments: ['drums', 'bongos'] },
+  { name: 'Ringo', living: true, instruments: ['drums', 'bongos'] },
 ];
 
 const livingBeatles = beatles.filter(function (beatle) {

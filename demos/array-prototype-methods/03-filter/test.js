@@ -18,7 +18,7 @@ describe('videos', function () {
     assert(Array.isArray(videos));
   });
 
-  it.skip('should only contain photographs', function () {
+  it.skip('should only contain videos', function () {
     videos.forEach(function (video) {
       assert.equal(video.type, 'video');
     });
