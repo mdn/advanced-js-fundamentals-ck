@@ -1,4 +1,4 @@
-# Method Chaining in JavaScript
+# Object-Oriented JavaScript
 
 ## Learning Objectives
 
@@ -7,7 +7,7 @@ In this section, we're going to explore a few different topics. You'll learn the
 * How to construct objects in JavaScript and create shared methods using object prototypes
 * How to build a chaining API for your JavaScript objects
 
-### An Introduction to Object-Oriented JavaScript
+## An Introduction to Object-Oriented JavaScript
 
 JavaScript is an object-oriented programming language. Functions can be used to construct new objects in JavaScript.
 
@@ -146,7 +146,7 @@ fido.sayHello(); // Hello, my name is Fido.
 spot.sayHello(); // Hello, my name is Spot.
 ```
 
-### Building a Calculator Object
+## Building a Calculator Object
 
 In this exercise, we'll build a `Calculator` constructor. We'll add some functionality to `Calculator.prototype`, which will be shared by all of the objects we create using the `Calculator` constructor.
 
@@ -190,13 +190,13 @@ secondCalculator.value; // 4
 secondCalculator.subtract(2); // 2
 ```
 
-#### Your Turn
+### Your Turn
 
 Your mission is to add two more methods to `Calculator.prototype`: `multiplyBy()` and `divideBy()`.
 
 A test suite has been set up for you, but you'll have to write the tests on your own this time.
 
-### Limitations of Our Calculator
+## Limitations of Our Calculator
 
 Our calculator works, but it's limited. We can only do one operation on the value.
 
@@ -223,7 +223,7 @@ calculator.add(2).multiplyBy(10).divideBy(5).subtract(11).add(2).value; // 3
 
 This approach is called _method chaining_. Each method is called on the result of the previous method.
 
-### Method Chaining the Wild
+## Method Chaining the Wild
 
 Let's take a look at an example of method chaining from jQuery:
 
@@ -288,4 +288,31 @@ var sortedNumbers = doubledNumbers.sort(function (a, b) {
 console.log(sortedNumbers); // Logs [14,10,6,2]
 ```
 
-# The Observer Pattern
+## Building a Method Chaining API for Your JavaScript Objects
+
+Now that we've seen some examples of method chaining in JavaScript, let's refactor our calculator. Earlier, we discussed that it would be much nicer if our calculator worked like this:
+
+```js
+var calculator = new Calculator(4);
+calculator.add(2).multiplyBy(10).divideBy(5).subtract(11).add(2).value; // 3
+```
+
+We can accomplish this by refactoring each of our methods to return our calculator object after the method is called.
+
+```js
+function Calculator(value) {
+  this.value = value;
+}
+
+Calculator.prototype.add = function (addend) {
+  this.value += addend;
+  return this;
+}
+
+var calculator = new Calculator(4);
+calculator.add(2).add(10).add(2).value; // 18
+```
+
+### Your Turn
+
+Refactor `subtract`, `multiply`, and `divide` to take advantage of method chaining.

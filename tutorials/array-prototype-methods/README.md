@@ -1,7 +1,5 @@
 # Array Prototype Methods
 
-## A Brief Introduction
-
 ## Learning Objectives
 
 In this segment, you'll learn the following:
