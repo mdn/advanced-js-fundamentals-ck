@@ -146,6 +146,10 @@ fido.sayHello(); // Hello, my name is Fido.
 spot.sayHello(); // Hello, my name is Spot.
 ```
 
+### Your Turn: Quick Exercise
+
+Can you add a second method called `sayGoodbye` that enables each dog to bid farewell?
+
 ## Building a Calculator Object
 
 In this exercise, we'll build a `Calculator` constructor. We'll add some functionality to `Calculator.prototype`, which will be shared by all of the objects we create using the `Calculator` constructor.
@@ -315,4 +319,4 @@ calculator.add(2).add(10).add(2).value; // 18
 
 ### Your Turn
 
-Refactor `subtract`, `multiply`, and `divide` to take advantage of method chaining.
+Refactor `subtract`, `multiply`, and `divide` to take advantage of method chaining. There are tests in `demos/basic-calculator` to help guide your implementation.
