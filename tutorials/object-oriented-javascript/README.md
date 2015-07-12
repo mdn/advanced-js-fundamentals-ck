@@ -6,6 +6,9 @@ In this section, we're going to explore a few different topics. You'll learn the
 
 * How to construct objects in JavaScript and create shared methods using object prototypes
 * How to build a chaining API for your JavaScript objects
+* How to refactor procedural code into object-oriented JavaScript
+* The basics of how to use canvas to draw two-dimensional graphics in the browser
+* The basics of how to bind listeners to DOM events
 
 ## Table of Contents
 

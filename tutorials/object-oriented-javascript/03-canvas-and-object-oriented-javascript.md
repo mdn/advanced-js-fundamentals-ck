@@ -44,3 +44,312 @@ setTimeout(function () {
 ```
 
 Schedules a the callback 1000 miliseconds (one second) in the future. Unfortunately, JavaScript can't—or won't, at least—make us any promises that this function will be called in one second. Instead, we're promised that it will be at least one second before the browser will try to call the function.
+
+#### requestAnimationFrame
+
+If `setTimeout` isn't the best solution, then what is? In modern browsers (most versions of Firefox and Chrome, Internet Explorer 10 and later, Safari 6.0 and later), we have `requestAnimationFrame`, which is specifically tuned for creating animations in the browser.
+
+According to [MDN][MDNrAF]:
+
+> The `window.requestAnimationFrame()` method tells the browser that you wish to perform an animation and requests that the browser call a specified function to update an animation before the next repaint. The method takes as an argument a callback to be invoked before the repaint.
+
+[MDNrAF]: https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame
+
+`requestAnimationFrame` takes an function, which it calls when the browser is ready to perform the next stage of the animation.
+
+```js
+requestAnimationFrame(function () {
+  console.log('This will be called when the browser is ready.');
+});
+```
+
+Ideally, we are probably going to want to animate more than one frame of our animation. We can solve this using recursion to repeatedly call our rendering function. We can accomplish this by giving our function a name, which will allow us to refer to it later.
+
+```js
+var counter = 0;
+
+requestAnimationFrame(function gameLoop() {
+  console.log('Count:', counter++);
+  requestAnimationFrame(gameLoop);
+});
+```
+
+The last act of the function above is to make another call to `requestAnimationFrame` and pass itself in to rise from the ashes and be called again when the browser is ready to render the next frame.
+
+Logging a counter is a whole lot of fun, but let's use `requestAnimationFrame` to—you know—animate something. You can paste the following code into `demos/canvas-blocks`:
+
+```js
+var canvas = document.getElementById('game');
+var context = canvas.getContext('2d');
+
+var x = 50;
+var y = 50;
+var width = 10;
+var height = 10;
+
+requestAnimationFrame(function gameLoop() {
+  context.fillRect(x++, y, width, height);
+  requestAnimationFrame(gameLoop);
+});
+```
+
+Hmm. That's not entirely what we were expecting. The previous box isn't cleared between iterations and—as a result—it looks like we are painting a thick black line across the screen. This makes sense, we just keep telling the browser that we'd like another black box please and it obediently obliges our request. Computers are dumb and it's on us to provide an instruction to clear the canvas between each rendering.
+
+We do this by drawing a giant clear rectangle over the entire canvas:
+
+```js
+var canvas = document.getElementById('game');
+var context = canvas.getContext('2d');
+
+var x = 50;
+var y = 50;
+var width = 10;
+var height = 10;
+
+requestAnimationFrame(function gameLoop() {
+  context.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas.
+  context.fillRect(x++, y, width, height);
+  requestAnimationFrame(gameLoop);
+});
+```
+
+Ah, much better. Run, little block, run.
+
+### Your Turn
+
+A basic canvas has been set up for you in `demos/canvas-blocks`. Let's try the following:
+
+* Draw a small rectangle to the canvas.
+* Use `requestAnimationFrame` to move the rectangle one pixel down each time `requestAnimationFrame` is called.
+  * _Extension_: Can you make the block stop when it reaches the end of the canvas? Can you make it turn around and go the other way when it reaches the end of the canvas?
+* Can you add four more blocks that behave the same way?
+
+## Object-Oriented Blocks
+
+Drawing one rectangle to the canvas was pretty straight-forward. But, things start to get hairy when we want to keep tract of multiple little blocks. Maybe you tried to instantiate four variables for each little block. Maybe you just set up separate variables for the `x`. There are probably some other approaches you could have taken involving passing the values through to each new game loop and then setting up five game loops—but we digress.
+
+What if we had 1,000 blocks? This is going to get out of hand and fast.
+
+What we need is a way to have each block keep track of its own state and provide some ways to modify that state. Then, we could just ask each block to draw itself and let it handle the all of the implementation details. Whether we have one block of 10,000, we'll just ask each block to draw itself and leave the rest of the work to the individual block.
+
+There might be a voice that says "What if we used object-oriented JavaScript?" Sure, it might have been inspired by the name of this section or even just the sub-heading a few lines up. Regardless, listen to that voice.
+
+What would a block object look like?
+
+Well, we know we'll need the basic properties we had in our last iteration.
+
+```js
+function Block(x, y, width, height) {
+  this.x = x;
+  this.y = y;
+  this.width = width;
+  this.height = height;
+}
+
+// Let's take our new object for a spin, shall we?
+var firstBlock = new Block(50, 50, 10, 10);
+var secondBlock = new Block(75, 75, 10, 10);
+
+firstBlock.x; // 50
+secondBlock.x; // 75
+```
+
+That's great; each block can now keep track of it's own state. What else does a block need to do?
+
+* Blocks need to be able to draw themselves to the canvas.
+* Blocks need to be adjust their coordinates to their next position.
+
+The `x`, `y`, `width`, `height` properties are unique and special to each individual block. But these other methods? They seem like something that every block should be able to do, but that no block needs to know about specifically.
+
+These two methods are great candidates for being added to `Block.prototype`, an object that all of our individual blocks inherit from and immediately look to when they don't know how to respond to a method or a request for a property.
+
+Let's add some placeholder methods to `Block.prototype`:
+
+```js
+function Block(x, y, width, height) {
+  this.x = x;
+  this.y = y;
+  this.width = width;
+  this.height = height;
+}
+
+Block.prototype.draw = function () {
+  console.log('One day, I will be able to draw myself.')
+};
+
+Block.prototype.move = function () {
+  console.log('One day, I will be able to move myself');
+};
+```
+
+These two methods don't do much, but they are available to every block object. Let's start by implementing `draw()` first. To do this, we'll take `context.fillRect` and use tell each object to use its own properties to fill in the details.
+
+```js
+Block.prototype.draw = function () {
+  context.fillRect(this.x, this.y, this.width, this.height);
+};
+```
+
+When we call `draw` on an individual block, it doesn't know what that it is—so, it looks to `Block.prototype` for an answer. `Block.prototype` hands the individual block its `draw` method, which the individual block happily goes ahead and calls using itself as `this`.
+
+Recall, that if we return `this`, we can chain additional methods after we call `draw()`.
+
+```js
+Block.prototype.draw = function () {
+  context.fillRect(this.x, this.y, this.width, this.height);
+  return this;
+};
+```
+
+### Your Turn
+
+Can you implement `Block.prototype.move`? The method should take the current `y` value and increment it by one. It should return `this`, so that we can chain it.
+
+## Bringing it All Together
+
+Now, that we've refactored our block implementation to use objects, let's update our drawing function as well.
+
+Let's list out what needs to get done:
+
+* We'll include our new `Block` constructor and methods on `Block.prototpe`.
+* We'll create an empty array called, `blocks` to hold all of our individual blocks.
+* During each animation frame, we'll iterate through all of the blocks
+  * We'll tell them to draw themselves.
+  * We'll tell them to update their positions in preparation for the next time we draw them.
+
+After we include our new object constructor and get rid of some of the code that breaks as a result, our code should look something along the lines of this:
+
+```js
+var canvas = document.getElementById('game');
+var context = canvas.getContext('2d');
+
+function Block(x, y, width, height) {
+  this.x = x;
+  this.y = y;
+  this.width = width;
+  this.height = height;
+}
+
+Block.prototype.draw = function () {
+  context.fillRect(this.x, this.y, this.width, this.height);
+  return this;
+};
+
+Block.prototype.move = function () {
+  this.y++;
+  return this;
+};
+
+requestAnimationFrame(function gameLoop() {
+  context.clearRect(0, 0, canvas.width, canvas.height);
+  requestAnimationFrame(gameLoop);
+});
+```
+
+We'll also go ahead and add our array that will eventually hold all of our blocks.
+
+```js
+var blocks = [];
+```
+
+In each animation frame, we'll iterate through each of the blocks in the `blocks` array and ask them to both `draw` themselves as well as update their positions.
+
+```js
+requestAnimationFrame(function gameLoop() {
+  context.clearRect(0, 0, canvas.width, canvas.height);
+  blocks.forEach(function (block) {
+    block.draw().move();
+  });
+  requestAnimationFrame(gameLoop);
+});
+```
+
+To make sure it works, we'll add two blocks to the `blocks` array and watch them drop.
+
+```js
+blocks.push(new Block(50, 50, 10, 10));
+blocks.push(new Block(100, 50, 10, 10));
+```
+
+Go ahead and open your page and watch the blocks fall to their demise. Here is a sample of what your code might look like, in case you're having any problems.
+
+```js
+var canvas = document.getElementById('game');
+var context = canvas.getContext('2d');
+
+function Block(x, y, width, height) {
+  this.x = x;
+  this.y = y;
+  this.width = width;
+  this.height = height;
+}
+
+Block.prototype.draw = function () {
+  context.fillRect(this.x, this.y, this.width, this.height);
+  return this;
+};
+
+Block.prototype.move = function () {
+  this.y++;
+  return this;
+};
+
+var blocks = [];
+
+blocks.push(new Block(50, 50, 10, 10));
+blocks.push(new Block(100, 50, 10, 10));
+
+requestAnimationFrame(function gameLoop() {
+  context.clearRect(0, 0, canvas.width, canvas.height);
+  blocks.forEach(function (block) {
+    block.draw().move();
+  });
+  requestAnimationFrame(gameLoop);
+});
+```
+
+### One Step Further: Responding to Click Events
+
+It would be nice to not have to hard code in each and every block. What if we could create a new block whenever the user clicked on the canvas? We'll be diving deeper into events later, but let's get a taste for how they work.
+
+If a DOM event happens and no one is listening, did it really happen? Yes. DOM events happen all of the time, but most of the time we haven't asked the browser to do anything when an event is fired. We can respond to events by adding a listener to a given element.
+
+```js
+canvas.addEventListener('click', function (event) {
+  console.log('You clicked me!');
+});
+```
+
+The first argument specifies what kind of events we're listening for. The second argument, the anonymous function in the example above, defined what we ould like to happen when we hear that event.
+
+There is a little bit of trickery in determining where a mouse click actually happened and we care about that information. So a little function has been provided for you in `helpers.js` called `getClickPosition()` that will give you the `x` and `y` coordinates of the mouse click on your canvas.
+
+```js
+canvas.addEventListener('click', function (event) {
+  console.log('You clicked me!', getClickPosition(event);
+});
+```
+
+Let's adjust the code above to add a new block at the coordinates of the mouse click whenever the user clicks the on the canvas. The code will look something like this.
+
+```js
+canvas.addEventListener('click', function (event) {
+  var click = getClickPosition(event);
+  blocks.push(new Block(click.x, click.y, 10, 10));
+});
+```
+
+### Your Turn
+
+Can you add some additional functionality to our little experiment (we hesitate to call it a game just yet)? Here is some inspiration:
+
+* Can you move blocks back up to the top of the canvas whenever they fall off the bottom of the canvas? (Hint: you can use negative coordinates to place them above the top of the canvas so that it looks more natural.)
+* Can you tell the blocks to rest on the bottom of the canvas instead of continuing to fall into oblivion?
+* Can you have the blocks stack on top of each other after they've fallen?
+* Can you listen for other events like [keydown][], [keyup][], [mouseover][], [mousemove][], or [dblclick][].
+
+[keydown]: https://developer.mozilla.org/en-US/docs/Web/Events/keydown
+[keyup]: https://developer.mozilla.org/en-US/docs/Web/Events/keyup
+[dblclick]: https://developer.mozilla.org/en-US/docs/Web/Events/dblclick
+[mousemove]: https://developer.mozilla.org/en-US/docs/Web/Events/mousemove
+[mousemove]: https://developer.mozilla.org/en-US/docs/Web/Events/mousemove
