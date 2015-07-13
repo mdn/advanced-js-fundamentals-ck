@@ -7,7 +7,7 @@ It's not a rule baked into the language, but — by convention — most JavaScri
 Object constructors can be called using the `new` keyword.
 
 ```js
-function Dog() {};
+function Dog() {}
 
 var fido = new Dog();
 ```
@@ -20,7 +20,7 @@ Let's add to our `Dog()` constructor.
 function Dog(name) {
   this.name = name;
   this.legs = 4;
-};
+}
 
 var fido = new Dog('Fido');
 var spot = new Dog('Spot');
@@ -46,7 +46,7 @@ function Dog(name) {
   this.name = name;
   this.legs = 4;
   // return this;
-};
+}
 ```
 
 What is `Dog.prototype` and where does it come from? Functions are objects and all functions in JavaScript have a `prototype` property. This property is set to an empty object — `{}` — by default.
@@ -71,7 +71,7 @@ By default, all objects inherit from `Object`, which has a few methods on it. On
 function Dog(name) {
   this.name = name;
   this.legs = 4;
-};
+}
 
 var fido = new Dog('Fido');
 
@@ -86,7 +86,7 @@ We could, however, set our own `toString()` method that would return something a
 ```js
 function Dog(name) {
   this.name = name;
-};
+}
 
 var fido = new Dog('Fido');
 
@@ -106,7 +106,7 @@ Consider the following:
 ```js
 function Dog(name) {
   this.name = name;
-};
+}
 
 Dog.prototype.toString = function () {
   return '[dog ' + this.name + ']';
@@ -124,7 +124,7 @@ Prototypes are a great way to share functionality between related objects. We ca
 ```js
 function Dog(name) {
   this.name = name;
-};
+}
 
 Dog.prototype.sayHello = function () {
   return 'Hello, my name is ' + this.name + '.'
