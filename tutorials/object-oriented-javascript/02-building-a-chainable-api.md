@@ -118,7 +118,7 @@ var numbers = [1,2,3,4,5,6,7].filter(function (n) {
 console.log(numbers); // Logs [14,10,6,2]
 ```
 
-Without the ability to chain methods, this code would look very different as we would have to create many more local variables to store our data in between each step.
+Without the ability to chain methods, this code would look very different — we would have to create many more local variables to store our data in between each step.
 
 ```js
 var numbers = [1,2,3,4,5,6,7];

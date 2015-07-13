@@ -21,9 +21,9 @@ var context = canvas.getContext('2d');
 
 The `canvas` variable holds some important information like the width and the height of the canvas element, but we'll doing all of our drawing with the `context` object.
 
-The `context` gives us a number of methods for drawing on our canvas. We'll start with `fillRect`, which creates a rectangle filled by a color — black by default.
+The `context` gives us a number of methods for drawing on our canvas. We'll start with [`fillRect()`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillRect), which creates a rectangle filled by a color — black by default.
 
-`context.fillRect` takes four arguments: `x`, `y`, `width`, and `height.`
+`context.fillRect()` takes four arguments: `x`, `y`, `width`, and `height.`
 
 Let's start by drawing a small, square alien to our canvas. A workspace has been set up for you in `demos/canvas-aliens`. Add the following line in at the bottom of the `script.js` file:
 
@@ -35,7 +35,7 @@ This will draw a 10 pixel by 10 pixel square located 50 pixels from the top-left
 
 ### Animating Canvas
 
-We might be tempted to try something like `setTimeout`. The issue with `setTimeout` is that it doesn't guarantee accuracy. Let's consider the following:
+We might be tempted to try something like `setTimeout()`. The issue with `setTimeout()` is that it doesn't guarantee accuracy. Let's consider the following:
 
 ```js
 setTimeout(function () {
@@ -47,7 +47,7 @@ This schedules the callback to be executed 1000 miliseconds (one second) in the 
 
 #### requestAnimationFrame
 
-If `setTimeout` isn't the best solution, then what is? In modern browsers (most versions of Firefox and Chrome, Internet Explorer 10 and later, Safari 6.0 and later), we have `requestAnimationFrame`, which is specifically tuned for creating animations in the browser.
+If [`setTimeout()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setTimeout) isn't the best solution, then what is? In modern browsers (most versions of Firefox and Chrome, Internet Explorer 10 and later, Safari 6.0 and later), we have [`requestAnimationFrame()`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame), which is specifically tuned for creating animations in the browser.
 
 According to [MDN][MDNrAF]:
 
@@ -55,7 +55,7 @@ According to [MDN][MDNrAF]:
 
 [MDNrAF]: https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame
 
-`requestAnimationFrame` takes as an argument a function, which it calls when the browser is ready to perform the next stage of the animation.
+`requestAnimationFrame()` takes as an argument a function, which it calls when the browser is ready to perform the next stage of the animation.
 
 ```js
 requestAnimationFrame(function () {
@@ -74,9 +74,9 @@ requestAnimationFrame(function gameLoop() {
 });
 ```
 
-So, recursion — the last line of the function above makes another call to `requestAnimationFrame`, passing itself in as the function to be called again when the browser is ready to render the next frame.
+So, recursion — the last line of the function above makes another call to `requestAnimationFrame()`, passing itself in as the function to be called again when the browser is ready to render the next frame.
 
-Logging a counter is a whole lot of fun, but let's use `requestAnimationFrame` to — you know — animate something. Paste the following code into `demos/canvas-blocks`, replacing your previous line:
+Logging a counter is a whole lot of fun, but let's use `requestAnimationFrame()` to — you know — animate something. Paste the following code into `demos/canvas-blocks`, replacing your previous line:
 
 ```js
 var canvas = document.getElementById('game');
@@ -95,7 +95,7 @@ requestAnimationFrame(function gameLoop() {
 
 Hmm. That's not entirely what we were expecting. The previous box isn't cleared between iterations and—as a result—it looks like we are painting a thick black line across the screen. This makes sense — we just keep telling the browser that we'd like another black box please and it obediently fulfills our request. Computers are stupid, so it's our responsibility to provide an instruction to clear the canvas between each rendering.
 
-We do this by drawing a giant clear rectangle over the entire canvas — add the `clearRect` line seen below into your code and reload it:
+We do this by drawing a giant clear rectangle over the entire canvas — add the [`clearRect()`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/clearRect) line seen below into your code and reload it:
 
 ```js
 var canvas = document.getElementById('game');
@@ -182,7 +182,7 @@ Block.prototype.move = function () {
 };
 ```
 
-These two methods don't do much, but they are available to every block object. Let's start by implementing `draw()` first. To do this, we'll take `context.fillRect` and tell each object to use its own properties to fill in the details.
+These two methods don't do much, but they are available to every block object. Let's start by implementing `draw()` first. To do this, we'll take `context.fillRect()` and tell each object to use its own properties to fill in the details.
 
 ```js
 Block.prototype.draw = function () {
@@ -252,7 +252,7 @@ We'll also go ahead and add our array that will eventually hold all of our block
 var blocks = [];
 ```
 
-In each animation frame, we'll iterate through each of the blocks in the `blocks` array and ask them to both `draw` themselves as well as update their positions.
+In each animation frame, we'll iterate through each of the blocks in the `blocks` array and ask them to both `draw()` themselves as well as update their positions.
 
 ```js
 requestAnimationFrame(function gameLoop() {
@@ -352,4 +352,4 @@ Can you add some additional functionality to our little experiment? (we'll hesit
 [keyup]: https://developer.mozilla.org/en-US/docs/Web/Events/keyup
 [dblclick]: https://developer.mozilla.org/en-US/docs/Web/Events/dblclick
 [mousemove]: https://developer.mozilla.org/en-US/docs/Web/Events/mousemove
-[mousemove]: https://developer.mozilla.org/en-US/docs/Web/Events/mousemove
+[mouseover]: https://developer.mozilla.org/en-US/docs/Web/Events/mouseover
