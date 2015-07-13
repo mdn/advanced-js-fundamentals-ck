@@ -82,10 +82,10 @@ requestAnimationFrame(function gameLoop() {
 });
 ```
 
-Refresh the web page while your Dev Tool's console is open.
+Refresh the web page while your Dev Tool's console is open.  See a few numbers?
 The last action of the function above is to make another call to `requestAnimationFrame` and pass itself to rise from the ashes and be called again when the browser is ready to render the next frame.
 
-Logging a counter is a whole lot of fun, but let's use `requestAnimationFrame` to—you know—animate something. No edit `canvas-blocks/script.js` to look like the following:
+Logging a counter is a whole lot of fun, but let's use `requestAnimationFrame` to—you know—animate something. Now edit `canvas-blocks/script.js` to look like the following:
 
 ```js
 var canvas = document.getElementById('game');
@@ -131,14 +131,14 @@ You have been using [demos/canvas-blocks][canvas-blocks] so far, let's keep movi
 
 [canvas-blocks]: https://github.com/stevekinney/advanced-js-fundamentals-ck/tree/gh-pages/demos/canvas-blocks
 
-* Draw a small rectangle to the canvas (if you don't already).
+* Draw a small rectangle to the canvas (if you don't have one already).
 * Use `requestAnimationFrame` to move the rectangle one pixel down each time `requestAnimationFrame` is called.
   * _Extension_: Can you make the block stop when it reaches the end of the canvas? Can you make it turn around and go the other way when it reaches the end of the canvas?
 * Can you add four more blocks that behave the same way?
 
 ## Object-Oriented Blocks
 
-Drawing one rectangle to the canvas was pretty straight-forward. But, things start to get hairy when we want to keep tract of multiple little blocks. Maybe you tried to instantiate four variables for each little block. Maybe you just set up separate variables for the `x`. There are probably some other approaches you could have taken involving passing the values through to each new game loop and then setting up five game loops—but we digress.
+Drawing one rectangle to the canvas was pretty straight-forward. But, things start to get hairy when we want to keep track of multiple little blocks. Maybe you tried to instantiate four variables for each little block. Maybe you just set up separate variables for the `x`. There are probably some other approaches you could have taken involving passing the values through to each new game loop and then setting up five game loops—but we digress.
 
 What if we had 1,000 blocks? This is going to get out of hand and fast.
 
