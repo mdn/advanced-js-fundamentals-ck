@@ -2,7 +2,7 @@
 
 JavaScript is an object-oriented programming language. Functions can be used to construct new objects in JavaScript.
 
-It's not a rule baked into the language, but—by convention—most JavaScript developers capitalize the names of functions that they intend on using as object constructors.
+It's not a rule baked into the language, but — by convention — most JavaScript developers capitalize the names of functions that they intend on using as object constructors.
 
 Object constructors can be called using the `new` keyword.
 
@@ -12,9 +12,9 @@ function Dog() {};
 var fido = new Dog();
 ```
 
-`fido` in the example above will be a new object—albeit, a very simple one.
+`fido` in the example above will be a new object — albeit, a very simple one.
 
-Let's add to our `Dog` constructor.
+Let's add to our `Dog()` constructor.
 
 ```js
 function Dog(name) {
@@ -37,7 +37,7 @@ When we use the `new` keyword to call our function as a constructor, a few thing
 3. the body of our function is run
 4. our new object, `this`, is returned from the constructor
 
-Let's take a look at this in context of our `Dog` constructor:
+Let's take a look at this in the context of our `Dog()` constructor:
 
 ```js
 function Dog(name) {
@@ -49,7 +49,7 @@ function Dog(name) {
 };
 ```
 
-What is `Dog.prototype` and where does it come from? Functions are objects and all functions in JavaScript have a `prototype` property. This property is set to an empty object—`{}`—by default.
+What is `Dog.prototype` and where does it come from? Functions are objects and all functions in JavaScript have a `prototype` property. This property is set to an empty object — `{}` — by default.
 
 ```js
 function Dog() {}
@@ -63,7 +63,7 @@ With regular functions, we generally don't use the `prototype` property. This sp
 
 You may have heard that JavaScript has something called prototypal inheritance. This is a very complicated term for a relatively simple concept.
 
-When we call a property on an object (e.g. `fido.name`), JavaScript checks the object to see if it has a `name` property. If it does, then it hands us that property. If not, then it checks the object's prototype. If the object's prototype doesn't have that property, then it check's the prototype's prototype. It continues this process until it reaches the top of the chain. If it still hasn't defined this property, then it returns `undefined`.
+When we call a property on an object (e.g. `fido.name`), JavaScript checks the object to see if it has a `name` property. If it does, then it hands us that property. If not, then it checks the object's prototype. If the object's prototype doesn't have that property, then it check's the prototype's prototype, and so on. It continues this process until it reaches the top of the chain. If it still hasn't defined this property, then it returns `undefined`.
 
 By default, all objects inherit from `Object`, which has a few methods on it. One of these methods is `toString()`.
 
@@ -79,7 +79,7 @@ fido.legs; // 4
 fido.toString(); // [object Object]
 ```
 
-When we call `fido.legs` in the example above, JavaScript checks `fido` to see if it has a `legs` property. It does, so JavaScript returns the value, `4`. In the next line, we call `toString()`. Well, `fido` doesn't have a `toString` property, so we check `fido`'s prototype, which is `Dog.prototype`. That's an empty object, so it certainly doesn't have that property. Eventually, we work our way up to `Object.prototype`, which has a to `toString` property set to a built-in function. JavaScript calls that `toString()` method that it found up the chain, which returns `[object Object]`.
+When we call `fido.legs` in the example above, JavaScript checks `fido` to see if it has a `legs` property. It does, so JavaScript returns the value, `4`. In the next line, we call `toString()`. Well, `fido` doesn't have a `toString` property, so we check `fido`'s prototype, which is `Dog.prototype`. That's an empty object, so it certainly doesn't have that property. Eventually, we work our way up to `Object.prototype`, which has a to `toString` property set to a built-in function. JavaScript calls the `toString()` method that it found up the chain, which returns `[object Object]`.
 
 We could, however, set our own `toString()` method that would return something a little more helpful.
 
@@ -99,7 +99,7 @@ fido.toString(); // [dog Fido];
 
 JavaScript finds the `toString` property immediately and doesn't have to look up the chain of prototypes. But, only `fido` has this fancy new `toString` property. It would be nice if all dogs could share this new functionality.
 
-Each dog constructed by the `Dog` has `Dog.prototype` set as it's prototype. This means that each dog has looks immediately to `Dog.prototype`, if we ask for a property that it doesn't have.
+Each dog constructed by the `Dog()` constructor has `Dog.prototype` set as its prototype. This means that each dog has looks immediately to `Dog.prototype`, if we ask for a property that it doesn't have.
 
 Consider the following:
 
