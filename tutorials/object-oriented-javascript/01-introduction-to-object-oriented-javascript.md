@@ -99,7 +99,7 @@ fido.toString(); // [dog Fido];
 
 JavaScript finds the `toString` property immediately and doesn't have to look up the chain of prototypes. But, only `fido` has this fancy new `toString` property. It would be nice if all dogs could share this new functionality.
 
-Each dog constructed by the `Dog` has `Dog.prototype` set as it's prototype. This means that each dog has looks immediately to `Dog.prototype`, if we ask for a property that it doesn't have.
+Each dog constructed by the `Dog` has `Dog.prototype` set as it's prototype. This means that each dog looks immediately to `Dog.prototype`, if we ask for a property that it doesn't have.
 
 Consider the following:
 
