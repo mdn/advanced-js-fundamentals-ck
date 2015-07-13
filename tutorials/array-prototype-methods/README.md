@@ -4,7 +4,7 @@
 
 In this segment, you'll learn the following:
 
-* How to use the `Array.prototype` `forEach`, `map`, `filter`, `reduce`, and `sort` methods.
+* How to use the `Array.prototype` `forEach()`, `map()`, `filter()`, `reduce()`, and `sort()` methods.
 * How to create DOM nodes from API data and append them to the page.
 * Read and write simple unit and DOM tests using [Mocha][].
 
