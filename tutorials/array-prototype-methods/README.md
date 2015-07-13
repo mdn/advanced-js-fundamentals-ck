@@ -4,15 +4,15 @@
 
 In this segment, you'll learn the following:
 
-* How to use `Array.prototype`'s' `forEach`, `map`, `filter`, `reduce`, and `sort` methods.
-* How to create DOM nodes from API data and append them to the page
+* How to use the `Array.prototype` `forEach`, `map`, `filter`, `reduce`, and `sort` methods.
+* How to create DOM nodes from API data and append them to the page.
 * Read and write simple unit and DOM tests using [Mocha][].
 
 [Mocha]: http://mochajs.com/
 
 ## Array.prototype.forEach
 
-One of the first methods we'll explore together is `Array.prototype.forEach`, which iterates over the array and passes each element into a callback function that you provide.
+One of the first methods we'll explore together is [`Array.prototype.forEach()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach?redirectlocale=en-US&redirectslug=JavaScript%2FReference%2FGlobal_Objects%2FArray%2FforEach), which iterates over the array and passes each element into a callback function that you provide.
 
 ```js
 const letters = ['a', 'b', 'c'];
@@ -30,7 +30,7 @@ b
 c
 ```
 
-In the example above, we'll work through each letter one-by-one and pass it into an anonymous function that—in this case—will log each letter to the console. `forEach` passes three arguments to the callback function: the current element for this iteration, the index of that element, and a full copy of the array that we're iterating through.
+In the example above, we work through each letter one by one and pass it into an anonymous function that logs each letter to the console. `forEach()` passes three arguments to the callback function: the current element for this iteration, the index of that element, and a full copy of the array that we're iterating through.
 
 ```js
 const letters = ['a', 'b', 'c'];
@@ -54,7 +54,7 @@ This will log the following output to the console:
 
 JavaScript allows you to omit arguments without raising an error. You can use this to your advantage by leaving out the index and the full array if you're not using them, which is common and what we did in the first example. However, if you do need either or both the index or the full array, you have access to them.
 
-`forEach` is not the only way to iterate through an array and you may have seen another approach using for-loops.
+`forEach()` is not the only way to iterate through an array — you may have seen another approach using for loops.
 
 ```js
 const letters = ['a', 'b', 'c'];
@@ -66,15 +66,15 @@ for (var i = 0; i < letters.length; i++) {
 
 In the example above, we set up an iterator, `i`. As long as `i` is less than the length of the array of letters, we'll keep calling the body of the loop. After we call the body of the loop, we'll increment `i`, which will eventually become greater than the length of the array and the loop will exit.
 
-`forEach` has a few advantages over using a for-loop. First, it's easier to read. Secondly, JavaScript has function scope, but not block scope. This means that `number` in our first example is scoped only to our callback function, whereas `i` is accessible outside of the loop body, which is the global scope in this case. The latter could have some unintended consequences.
+`forEach()` has a few advantages over using a for loop. First, it's quicker to write and easier to read. Secondly, JavaScript has function scope, but not block scope. This means that `number` in our first example is scoped only to our callback function, whereas `i` is accessible outside of the loop body, which is the global scope in this case. The latter could have some unintended consequences.
 
-`forEach` is the foundation for many of the other methods we'll explore today and you can accomplish much of the same functionality with `forEach` that other methods specialize in. That said, just because you _can_ use it, it doesn't mean it's the best choice and that you _should_ use it.
+`forEach()` is the foundation for many of the other methods we'll explore today and you can accomplish much of the same functionality with `forEach()` that other methods specialize in. That said, just because you _can_ use it, it doesn't mean it's the best choice and that you _should_ use it. More on this later.
 
 ### Your Turn
 
-Let's put on our imagination caps and make believe we're building a photo gallery that pulls from the Instagram API. We did the hard work and mocked it out for you.
+Let's put on our imagination caps and make believe we're building a photo gallery that pulls images from the Instagram API. We did the hard work and mocked it out for you.
 
-If you head on over to `demos/01-forEach`, we cached 16 photographs from the Instagram API and stored them in the `photographs` variable. We also created a pair of simple functions for appending them to the DOM. If you're curious, here is what they look like:
+If you head on over to `demos/array-prototype-methods/01-forEach`, you'll see that we have written code to cache 16 photographs from the Instagram API and stored them in the `photographs` array. We have also created a pair of simple functions for appending them to the DOM. If you're curious, here is what the code looks like (see `_setup.js`):
 
 ```js
 var photographsDiv = document.getElementById('photographs');
@@ -93,17 +93,17 @@ function addInstagramImageToThePage(photograph) {
 }
 ```
 
-Your job is to iterate over the array of photographs and call `addInstagramImageToThePage` on each one.
+Your job is to iterate over the array of photographs and call `addInstagramImageToThePage()` on each one: put your code in `script.js`.
 
 If you finish early, try the following:
 
-* Can you write your own function to render the photograph element as a DOM element and render it to the DOM?
+* Write your own function to render a photograph inside a DOM element and render it to the DOM. The URL of the image in each case is stored in the `photograph.images.low_resolution.url` property.
 
 ## Array.prototype.map
 
-`forEach` will iterate through each element in an array and pass that element to an anonymous function. It's not uncommon that we find ourselves in a position where we need to transform the contents of an array.
+`forEach()` will iterate through each element in an array and pass that element to an anonymous function. It's not uncommon that we find ourselves in a position where we need to transform the contents of an array.
 
-In theory, we could use `forEach` in this case:
+In theory, we could use `forEach()` like this:
 
 ```js
 const letters = ['a', 'b', 'c'];
@@ -117,7 +117,7 @@ letters.forEach(function (letter) {
 console.log(uppercaseLetters);
 ```
 
-This will work. The `console.log` at end will log `['A', 'B', 'C']`, but JavaScript's `Array` provides us with a better way to do this using `Array.prototype.map`.
+This will work. The `console.log` statement will log `['A', 'B', 'C']` — we've mapped each element in the array to its uppercase equivalent. However, JavaScript's `Array` provides us with a better way to do this — [`Array.prototype.map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map?redirectlocale=en-US&redirectslug=JavaScript%2FReference%2FGlobal_Objects%2FArray%2Fmap):
 
 ```js
 const letters = ['a', 'b', 'c'];
@@ -131,7 +131,7 @@ console.log(uppercaseLetters);
 
 The example above will give us the same result as the one before it: `['A', 'B', 'C']`. That said, it's about half the length and doesn't involve mutating an existing array.
 
-Like `forEach`, `map` accepts an anonymous function that it calls on each element of the array it's call on. `forEach` returns `undefined` when its finished. `map`, on the other hand, returns a new array made up of the values returned by the callback function on each iteration.
+Like `forEach()`, `map()` accepts an anonymous function that it calls on each element of the array it's called on. `forEach()` returns `undefined` when its finished. `map()`, on the other hand, returns a new array made up of the values returned by the callback function on each iteration.
 
 ### Your Turn
 
@@ -204,27 +204,27 @@ The Instagram API returns a lot of information about each photograph. Here is th
 }
 ```
 
-That's a lot of data and we're not using the large majority of it. In the previous example, we only needed the caption text and the URL for the low resolution version of the image.
+That's a lot of data and we're not using the vast majority of it. In the previous example, we only needed the caption text and the URL for the low resolution version of the image.
 
-As we've seen, `map` is really good at transforming data.
+As we've seen, `map()` is really good at transforming data. Try solving the following problems, writing your solutions into `demos/array-prototype-methods/02-map/script.js`:
 
 * Create an array called `simplifiedPhotographs` that takes `photographs` and transforms each one into an object with only two properties: `caption` and `url`.
-* Create an array called `simplifiedPhotographs` that takes `photographs` and transforms each one into a DOM element.
+* Create an array called `photographElements` that takes `simplifiedPhotographs` and transforms each one into a DOM element.
 
-Tests have been provided in `demos/02-map` to help guide your progress and let you know if you've gotten it right.
+Tests have been provided in `demos/array-prototype-methods/02-map/tests.js` to help guide your progress and let you know if you've got it right.
 
 As a bonus, you can try the following in `01-forEach`:
 
-* Map each photo into a DOM element and then chain `forEach` that adds an click event listener using `document.addEventListener`.
+* Map each photo into a DOM element and then chain `forEach()` that adds a click event listener using [`document.addEventListener()`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener).
 * Add each image element to the DOM manually.
 
 ## Array.prototype.filter
 
-`Array.prototype.filter`, like `map`, returns a new array based on the return value of the callback function you pass it. The mechanics, however, differ slightly.
+[`Array.prototype.filter()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter), like `map()`, returns a new array based on the return value of the callback function you pass it. The mechanics, however, differ slightly.
 
-`filter` will include an element in the new array if return value is truthy and omit it if the return value is falsy.
+`filter()` will include an element in the new array if return value is truthy and omit it if the return value is falsy.
 
-What makes a value truthy or falsy? Let's start with the easy ones: `true` is truthy and `false` is falsy. `0`, `null`, `undefined`, 'NaN', and an empty string are all falsy as well. Everything else is truthy.
+What makes a value truthy or falsy? Let's start with the easy ones: `true` is truthy and `false` is falsy. `0`, `null`, `undefined`, `NaN`, and an empty string are all falsy as well. Everything else is truthy.
 
 Let's start with a simple example:
 
@@ -238,7 +238,7 @@ const truths = booleans.filter(function (value) {
 console.log(truths); // Logs [true, true, true]
 ```
 
-As you can see in the example above, `false` is omitted from the resulting array. This works, but it's not very useful.
+As you can see in the example above, `false` is omitted from the resulting array. This works, but it's not very useful. Let's look at something slightly more interesting:
 
 ```js
 const numbers = [1, 2, 3, 4, 5, 6, 7];
@@ -273,9 +273,9 @@ const guitarPlayingBeatles = beatles.filter(function (beatle) {
 
 ### Your Turn
 
-You're welcome. For what? Well, it turns out that the Instagram API supports videos as well as images. Up until now, we've been filtering those videos out for you. But, you know how to use filter now, so you don't need us doing it for you anymore.
+You're welcome. For what? Well, it turns out that the Instagram API supports videos as well as images. Up until now, we've been filtering those videos out for you. You know how to use filter now however so you don't need us doing it for you anymore.
 
-Assuming that `instagramAPI.data` is a collection of both photographs and videos:
+Assuming that `instagramAPI.data` is a collection of both photographs and videos, write solutions to the following problems in `demos/array-prototype-methods/03-filter/script.js`:
 
 * Filter out just the photographs and store them in a variable called `photographs`.
 * Filter out just the videos and store them in a variable called `videos`.
@@ -289,11 +289,11 @@ Here are some helpful hints:
 
 As long as we're taking off the training wheels, you're on your own for adding them to the DOM as well. Take a look at the code we provided you earlier if you need some inspiration for how to create a DOM element and add it to the page.
 
-You may want to consider using one of the `Array.prototype` methods we covered earlier when adding the photogtaph to the DOM.
+You may want to consider using one (or more) of the `Array.prototype` methods we covered earlier when adding the photogtaph to the DOM.
 
 ## Array.prototype.reduce
 
-`Array.prototype.reduce` is a lot like `map` with one important distinction: it returns one single value as opposed to an array of new values.
+[`Array.prototype.reduce()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce?redirectlocale=en-US&redirectslug=JavaScript%2FReference%2FGlobal_Objects%2FArray%2FReduce) is a lot like `map()`, but with one important distinction: it returns one single value as opposed to an array of new values. Consider this example:
 
 ```js
 const numbers = [1, 2, 3];
@@ -307,7 +307,7 @@ console.log(sum); // Logs 6
 
 You might notice that we have a second argument after our anonymous function. In the example above, we passed `0`. The second argument is the starting value of the accumulator (`total` in this case). It doesn't have to be a number. You could pass in an empty array or even an object that you want to work with.
 
-If we wanted to—and we're not sure that we ever would—we could implement `map` using `reduce`:
+If we wanted to—and we're not sure that we ever would—we could implement `map()` using `reduce()`:
 
 ```js
 const letters = ['a', 'b', 'c'];
@@ -320,13 +320,15 @@ const capitalLetters = letters.reduce(function (newArray, letter) {
 console.log(capitalLetter); // Logs ["A", "B", "C"]
 ```
 
-The second argument that we pass to the `reduce` method is an empty array, which is then set as the initial value for `newArray`. Next, we push in a capital version of the current letter. `push` returns the current length of the array after the new element has been pushed in, so we have to explicitly return `newArray` to pass it along to the next iteration in our `reduce`.
+The second argument that we pass to the `reduce()` method is an empty array, which is then set as the initial value for `newArray`. Next, we push in a capital version of the current letter. [`push()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push?redirectlocale=en-US&redirectslug=JavaScript%2FReference%2FGlobal_Objects%2FArray%2Fpush) returns the current length of the array after the new element has been pushed in, so we have to explicitly return `newArray` to pass it along to the next iteration in our `reduce()`.
 
 ### Your Turn
 
+In the same fashion as before, head over to `demos/array-prototype-methods/04-reduce/script.js` and write solutions to the following problems.
+
 #### Part One
 
-We saw before that each photo/video has a count for the number of likes stored in `likes.count`. What is the total number of likes for all of the photos/videos fetch from the API?
+We saw before that each photo/video has a count for the number of likes stored in `likes.count`. What is the total number of likes for all of the photos/videos fetched from the API?
 
 #### Part Two
 
@@ -340,7 +342,7 @@ It's time to up the ante a bit. Many of the photographs have tags. It would be c
 }
 ```
 
-If you recall from the `map` exercise, each photo/video has a property called `tags`, which—coincidentally—is an array of all of the tags in the caption.
+If you recall from the `map` exercise, each photo/video has a property called `tags`, which — coincidentally — is an array of all of the tags in the caption.
 
 ```js
 {
@@ -370,7 +372,7 @@ Given an API response stored in `instagramAPI.data`, can you count up the number
 
 ## Array.prototype.sort
 
-`Array.prototype.sort` will sort all of the elements in the array. We can invoke it without a callback function.
+[`Array.prototype.sort()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort) will sort all of the elements in the array. We can invoke it without a callback function.
 
 ```js
 const numbers = [2, 1, 4, 3];
@@ -383,7 +385,7 @@ console.log(sortedNumbers); // Logs [1, 2, 3, 4]
 console.log(sortedLetters); // Logs ['a', 'b', 'c', 'd']
 ```
 
-Without a callback function, `sort` uses a default sorting algorithm. In the examples above, everything works the way we would expect, but there are some surprising peculiarities of the default sorting algorithm. Consider the following example:
+Without a callback function, `sort()` uses a default sorting algorithm that simply sorts the array items in ascending order. In the examples above, everything works the way we would expect, but there are some surprising peculiarities of the default sorting algorithm. Consider the following example:
 
 ```js
 const numbers = [1, 7, 3, 10];
@@ -393,17 +395,17 @@ const sortedNumbers = numbers.sort();
 console.log(sortedNumbers); // Logs [1, 10, 3, 7]
 ```
 
-Unless you've encountered a similar example in the past, `[1, 10, 3, 7]` is probably not what you were expecting the sort method to return. By default, JavaScript uses lexicographical sorting. You can think of it as alphabetical sorting. 7 may come before 10 numerically, but 10 comes first lexicographically.
+Unless you've encountered a similar example in the past, `[1, 10, 3, 7]` is probably not what you were expecting the `sort()` method to return. By default, JavaScript uses lexicographical sorting. You can think of it as alphabetical sorting. 7 may come before 10 numerically, but 10 comes first lexicographically.
 
-So, how do we sort numbers then? `Array.prototype.sort` also accepts a callback function that it will use to evalute the order of the elements in the new array it returns.
+So, how do we sort numbers then? `Array.prototype.sort()` also accepts a callback function that it will use to evalute the order of the elements in the new array it returns.
 
-The callback function compares two elements at a time and the `sort` method rearranges the elements based on a value returned by the callback function.
+The callback function compares two elements at a time and the `sort()` method rearranges the elements based on a value returned by the callback function.
 
 * If the value returned is `0` then sort leaves both elements in the same place.
 * If the value returned is negative, then the first element is placed before the second element.
 * If the value returned is positive, then the second element is placed before the first element.
 
-Armed with this new knowledge, let's see if we can sort an array of numbers—umm—numerically.
+Armed with this new knowledge, let's see if we can sort an array of numbers — umm — numerically.
 
 ```js
 const numbers = [1, 7, 3, 10];
@@ -448,7 +450,7 @@ We want to know what the cool kids are into. Can you sort the photos and videos 
 
 ## Array.prototype.some and Array.prototype.every
 
-`Array.prototype.some` and `Array.prototype.every` are used to determine if some or all—respectively—of the elements meet a given criteria. Like `filter`, `some` and `every` take a callback function that returns either a truthy or falsy value. While `filter` returns a new array, `some` and `every` return a boolean.
+[`Array.prototype.some()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some) and [`Array.prototype.every()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every) are used to determine if some or all — respectively — of the elements meet a given criteria. Like `filter()`, `some()` and `every()` take a callback function that returns either a truthy or falsy value. While `filter()` returns a new array, however, `some()` and `every()` return a boolean that indicates the result of the test:
 
 ```js
 function isOdd(number) {
@@ -461,14 +463,14 @@ function isOdd(number) {
 [1, 3, 5].every(isOdd); // true
 ```
 
-`some` and `every` are supported by most modern browsers. Notably, Internet Explorer 8 and earlier do no support `some` and `every`. That said, you can add support for these methods using a polyfill for [`some`][somefill] and [`every`][everyfill].
+`some()` and `every()` are supported by most modern browsers, although notably, Internet Explorer 8 and earlier do not support these methods. That said, you can add support for these methods using a polyfill — see MDN's [some polyfill][somefill] and [every polyfill][everyfill].
 
 [somefill]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some#Polyfill
 [everyfill]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every#Polyfill
 
 ## Array.prototype.concat
 
-`Array.prototype.concat` additional values and arrays and concatenates them onto the array on which it is called.
+[`Array.prototype.concat()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat) defines additional values and arrays and adds them onto the array on which it is called.
 
 ```js
 const stringedInstruments = ['guitar', 'bass', 'harp'];
@@ -482,7 +484,7 @@ console.log(instruments);
 
 ## Array.prototype.indexOf
 
-Many times we want to know if a certain element is in an array. In these cases, we can use `Array.prototype.indexOf` find the index of a given element.
+Often we will want to know if a certain element is in an array. In these cases, we can use [`Array.prototype.indexOf()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf) to find the index of a given element.
 
 ```js
 const letters = ['a', 'b', 'c'];
@@ -491,7 +493,7 @@ letters.indexOf('a'); // returns 0;
 letters.indexOf('b'); // returns 1;
 ```
 
-In the event that an element is not in the array, `indexOf` will return `-1`. It can't return `0`—a falsy value—because that's a valid index. To assert that an element is in the array, we can check to make sure its index is _not_ `-1`.
+In the event that an element is not in the array, `indexOf()` will return `-1` (it can't return `0` — a falsy value — because `0` is a valid array index, hence using -1 in this case.) To assert that an element is in the array, we can check to make sure its index is _not_ `-1`.
 
 ```js
 ['a', 'b', 'c'].indexOf('a') !== -1;
@@ -505,7 +507,7 @@ Conversely, if we want to check that an element is not in an array, we can asser
 
 ## Array.prototype.slice
 
-`Array.prototype.slice` returns a copy of a given array. It takes two optional arguments: a starting index and an ending index. If we give `slice` a starting index it will return a copy of the array from that starting index forward. If we provide it a starting and ending index, it will return an array of the elements between those two indexes. If we give `slice` a negative starting index, it will start from the end of the array and work backwards.
+[`Array.prototype.slice()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice) returns a copy of a given array. It takes two optional arguments: a starting index and an ending index. If we give `slice` a starting index it will return a copy of the array from that starting index forward. If we provide it a starting and ending index, it will return an array of the elements between those two indexes. If we give `slice()` a negative starting index, it will start from the end of the array and work backwards.
 
 ```js
 const numbers = [1, 2, 3, 4, 5, 6];
@@ -517,7 +519,7 @@ numbers.slice(-2);    // [5, 6]
 numbers.slice(2, 4); // [3, 4];
 ```
 
-In JavaScript there are some collections that are not instances of `Array` and—as a result—do not inherit any of the methods from `Array.prototype` that we've discussed so far. One solution is to borrow the `slice` method from `Array.prototype` to return an actual array.
+In JavaScript there are some collections that are not instances of `Array` and —as a result — do not inherit any of the methods from `Array.prototype` that we've discussed so far. One solution is to borrow the `slice()` method from `Array.prototype` to return an actual array.
 
 The most common use of this technique is with the `arguments` object that is available to every function in JavaScript.
 
@@ -529,7 +531,7 @@ function exampleFunction() {
 exampleFunction(1, 2, 3); // Logs [1, 2, 3]
 ```
 
-At first glance, `arguments` looks suspiciously like an array, but it isn't and—more importantly—it does not inherit from `Array.prototype`.
+At first glance, `arguments` looks suspiciously like an array, but it isn't and — more importantly — it does not inherit from `Array.prototype`.
 
 ```js
 console.log(arguments.forEach); // undefined
@@ -537,7 +539,7 @@ console.log(arguments.map); // undefined
 console.log(arguments.reduce); // undefined
 ```
 
-If we tried to use `forEach` try to iterate over each of the arguments passed to the array, it would raise an error.
+If we tried to use `forEach()` try to iterate over each of the arguments passed to the array, it would raise an error.
 
 ```js
 function exampleFunction() {
@@ -549,7 +551,7 @@ function exampleFunction() {
 exampleFunction(1, 2, 3); // TypeError: arguments.forEach is not a function.
 ```
 
-The common solution is to simply convert `arguments` into an array—which, in turn, would inherit from `Array.prototype`.
+The common solution is to simply convert `arguments` into an array — which, in turn, would inherit from `Array.prototype`.
 
 ```js
 function exampleFunction() {
@@ -560,4 +562,4 @@ function exampleFunction() {
 }
 ```
 
-We discussed earlier, that calling slice with no arguments returns a copy of the array. In the example above, we are "borrowing" the `slice` method from `Array.prototype` and using `call` to set the context to our `arguments` object. The end result is a copy of `arguments` that happens to inherit from `Array.prototype`.
+As we discussed earlier, calling slice with no arguments returns a copy of the array. In the example above, we are "borrowing" the `slice()` method from `Array.prototype` and using `call()` to set the context to our `arguments` object. The end result is a copy of `arguments` that happens to inherit from `Array.prototype`.

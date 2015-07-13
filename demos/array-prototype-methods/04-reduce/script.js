@@ -1,4 +1,4 @@
-// TODO: We saw before that each photo/video has a count for the number of likes stored in `likes.count`. What is the total number of likes for all of the photos/videos fetch from the API?
+// TODO: We saw before that each photo/video has a count for the number of likes stored in `likes.count`. What is the total number of likes for all of the photos/videos fetched from the API?
 
 var totalLikes = 0;
 
