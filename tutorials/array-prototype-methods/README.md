@@ -8,6 +8,8 @@ In this segment, you'll learn the following:
 * How to create DOM nodes from API data and append them to the page.
 * Read and write simple unit and DOM tests using [Mocha][].
 
+If you have not cloned [Advanced JS](https://github.com/stevekinney/advanced-js-fundamentals-ck.git) please do so now.  For this tutorial we'll be working with the `array-prototype-methods` demo
+
 [Mocha]: http://mochajs.com/
 
 ## Array.prototype.forEach
@@ -66,7 +68,7 @@ for (var i = 0; i < letters.length; i++) {
 
 In the example above, we set up an iterator, `i`. As long as `i` is less than the length of the array of letters, we'll keep calling the body of the loop. After we call the body of the loop, we'll increment `i`, which will eventually become greater than the length of the array and the loop will exit.
 
-`forEach()` has a few advantages over using a for loop. First, it's quicker to write and easier to read. Secondly, JavaScript has function scope, but not block scope. This means that `number` in our first example is scoped only to our callback function, whereas `i` is accessible outside of the loop body, which is the global scope in this case. The latter could have some unintended consequences.
+`forEach()` has a few advantages over using a `for` loop. First, it's quicker to write and easier to read. Secondly, JavaScript has function scope, but not block scope. This means that `number` in our first example is scoped only to our callback function, whereas `i` is accessible outside of the loop body, which is the global scope in this case. The latter could have some unintended consequences.
 
 `forEach()` is the foundation for many of the other methods we'll explore today and you can accomplish much of the same functionality with `forEach()` that other methods specialize in. That said, just because you _can_ use it, it doesn't mean it's the best choice and that you _should_ use it. More on this later.
 
@@ -74,7 +76,11 @@ In the example above, we set up an iterator, `i`. As long as `i` is less than th
 
 Let's put on our imagination caps and make believe we're building a photo gallery that pulls images from the Instagram API. We did the hard work and mocked it out for you.
 
-If you head on over to `demos/array-prototype-methods/01-forEach`, you'll see that we have written code to cache 16 photographs from the Instagram API and stored them in the `photographs` array. We have also created a pair of simple functions for appending them to the DOM. If you're curious, here is what the code looks like (see `_setup.js`):
+If you head on over to the [forEach demo][forEach] in the Advanced JS repo, you'll see that we have written code to cache 16 photographs from the Instagram API and stored them in the `photographs` array. We have also created a pair of simple functions for appending them to the DOM. If you're curious, here is what the code looks like (see [_setup.js][forEach setup]):
+
+[forEach]: https://github.com/stevekinney/advanced-js-fundamentals-ck/tree/gh-pages/demos/array-prototype-methods/01-forEach
+
+[forEach setup]: https://github.com/stevekinney/advanced-js-fundamentals-ck/blob/gh-pages/demos/array-prototype-methods/01-forEach/_setup.js
 
 ```js
 var photographsDiv = document.getElementById('photographs');
@@ -93,7 +99,7 @@ function addInstagramImageToThePage(photograph) {
 }
 ```
 
-Your job is to iterate over the array of photographs and call `addInstagramImageToThePage()` on each one: put your code in `script.js`.
+Your job is to iterate over the array of photographs and call `addInstagramImageToThePage()` on each one: put your code in `01-forEach/script.js`.
 
 If you finish early, try the following:
 

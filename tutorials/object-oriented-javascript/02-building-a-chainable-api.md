@@ -16,7 +16,7 @@ var secondCalculator = new Calculator(4);
 secondCalculator.value; // 4
 ```
 
-Each calculator stores its own value, but neither do any—umm—calculation. Ideally, simple calculations is something that should be done by all calculators. As a result, we'll probably want to share this functionality with each object constructed by `Calculator`.
+Each calculator stores its own value, but neither do any—umm—calculation. Ideally, simple calculations are something that should be done by all calculators. As a result, we'll probably want to share this functionality with each object constructed by `Calculator`.
 
 Each object constructed by `Calculator` will look to `Calculator.prototype` whenever it's asked for a property it doesn't have. So, it makes sense to put our functionality there.
 
@@ -44,7 +44,7 @@ secondCalculator.subtract(2); // 2
 
 ## Your Turn
 
-Your mission is to add two more methods to `Calculator.prototype`: `multiplyBy()` and `divideBy()`. A test suite has been set up for you in `demos/basic-calculator`.
+Your mission is to add two more methods to `Calculator.prototype`: `multiplyBy()` and `divideBy()`. A test suite has been set up for you in [demos/basic-calculator](https://github.com/stevekinney/advanced-js-fundamentals-ck/tree/gh-pages/demos/basic-calculator).
 
 # Limitations of Our Calculator
 
