@@ -313,9 +313,7 @@ blocks.push(new Block(100, 50, 10, 10));
 
 requestAnimationFrame(function gameLoop() {
   context.clearRect(0, 0, canvas.width, canvas.height);
-  blocks.forEach(function (block) {
-    block.draw().move();
-  });
+  blocks.forEach(function (block) { block.draw().move(); });
   requestAnimationFrame(gameLoop);
 });
 ```
