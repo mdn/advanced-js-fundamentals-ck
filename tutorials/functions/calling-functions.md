@@ -205,12 +205,139 @@ addThreeNumbers.apply('oogieboogie', numbers);
 `call` and `apply` invoke the function immediately. `bind` is different. It returns a copy of the function with `this` set explicitly that we can call later.
 
 ```js
-// Example
+function logFoo() {
+  console.log(this.foo);
+}
+
+var someObject = { foo: 'Hello' };
+
+logFoo(); // undefined
+logFoo.call(someObject); // Hello
+
+var boundLogFoo = logFoo.bind(someObject); // returns a new function with
+                                           //`this` explicitly set
+
+boundLogFoo(); // Hello
+```
+
+Let's take one more look at this with some objects.
+
+```js
+var fido = {
+  name: 'Fido',
+  sayHello: function () {
+    console.log('My name is ' + this.name + '.');
+  }
+}
+
+var spot = {
+  name: 'Spot',
+  sayHello: fido.sayHello,
+  boundSayHello: fido.sayHello.bind(fido),
+  anotherBoundSayHello: fido.sayHello.bind({ name: 'Taco' })
+};
+
+fido.sayHello() // My name is Fido.
+spot.sayHello() // My name is Spot.
+spot.boundSayHello() // My name is Fido.
+spot.anotherBoundSayHello() // My name is Taco.
 ```
 
 `bind` is useful when working with asynchronous JavaScript using callbacks or promises. When we make an AJAX request to a server, we typically pass a callback function that will execute when we hear back from the server. While, we're usually writing this function in context of the object we're working with. It will be executed in a totally different context.
 
-<!-- The code examples from my ES6 talk should go here. -->
+Let's take a look at an example without any asynchronous callbacks:
+
+```js
+var person = {
+  firstName: 'Steve',
+  lastName: 'Kinney',
+  updateName: function () {
+    this.firstName = 'Wes'
+  }
+};
+
+person.updateName();
+console.log(person.firstName); // Wes
+```
+
+This works as we expect. When we call `updateName()`, `this` is still in the context of `person` object.
+
+Things get a little tricker when we call an asynchronous function (like an AJAX call) and pass a callback.
+
+```js
+function somethingAsynchronous(callback) {
+  console.log('Maybe we\'re fetching the new name from the server.');
+  setTimeout(callback, 1000);
+}
+
+var person = {
+  firstName: 'Steve',
+  lastName: 'Kinney',
+  updateName: function () {
+    somethingAsynchronous(function () {
+      this.firstName = 'Wes'
+    });
+  }
+};
+
+person.updateName();
+// Wait a second…
+console.log(person.firstName); // This is still Steve.
+console.log(window.firstName); // Wes. Whoops, we made a global variable.
+```
+
+Although we're writing our code in the context of the `person` object. That's not where it's getting called. It's getting called later on and our anonymous function—callback—doesn't have any context of where it came from, so `this` is `window`. The end result is that not only did we not update the property we wanted to, but we also accidentally set a property on the global object.
+
+There are a few ways to handle this. While the callback loses it's reference to `this`, it still has access to the scope that it came from. As a result, this will work:
+
+```js
+function somethingAsynchronous(callback) {
+  console.log('Maybe we\'re fetching the new name from the server.');
+  setTimeout(callback, 1000);
+}
+
+var person = {
+  firstName: 'Steve',
+  lastName: 'Kinney',
+  updateName: function () {
+    var self = this;
+    somethingAsynchronous(function () {
+      self.firstName = 'Wes'
+    });
+  }
+};
+
+person.updateName();
+// Wait a second…
+console.log(person.firstName); // This is now Wes.
+```
+
+`self` isn't special. You may also see `_this`, `that`, and other variables in your travels.
+
+An alternate approach is to explicitly set the value of `this` on the callback function using `bind()`.
+
+```js
+function somethingAsynchronous(callback) {
+  console.log('Maybe we\'re fetching the new name from the server.');
+  setTimeout(callback, 1000);
+}
+
+var person = {
+  firstName: 'Steve',
+  lastName: 'Kinney',
+  updateName: function () {
+    somethingAsynchronous(function () {
+      this.firstName = 'Wes'
+    }.bind(this));
+  }
+};
+
+person.updateName();
+// Wait a second…
+console.log(person.firstName); // Wes.
+```
+
+The example above works because we used `bind(this)` to explicitly set the value of `this` on the anonymous function while we're still in the scope of `person`. When the callback is eventually called, it remembers what `this` is because we bound it to the function.
 
 ## Recursion
 
