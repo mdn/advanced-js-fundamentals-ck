@@ -1,27 +1,5 @@
 # Functions
 
-<!--
-
-OUTLINE
-
-* Brief introduction
-* `this`
-* Calling functions
-  * Referencing versus calling
-  * The regular way
-  * `call`
-  * `apply`
-  * `bind`
-* Arguments
-  * Optional arguments
-  * The `arguments` object
-* Recursion
-* Currying, partial application
-* Closures
-* Generators
-
--->
-
 Functions in JavaScript are little units of code that can be executed later. If you've worked with JavaScript in the past, you've probably come cross functions before.
 
 Here is a simple example of a function that takes a single argument and logs a message to the console:
@@ -408,4 +386,3 @@ fibonacci(5); // returns [1, 1, 2, 3, 5]
 fibonacci(3); // returns [1, 1, 2]
 fibonacci(10); // returns [1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
 ```
-
