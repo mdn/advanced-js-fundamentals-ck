@@ -1,15 +1,19 @@
 # Generators
 
-When we call a function in JavaScript, it typically runs until it hits the end of the function or a `return` statement. Generators, which are new to ES6/2015, are functions that can paused and restarted again. Generators are functions that can return values at multiple points in their execution.
+When we call a function in JavaScript, it typically runs until it hits the end of the function or a `return` statement. Generators, which are new to [ES6/2015][], are functions that can paused and restarted again. Generators are functions that can return values at multiple points in their execution.
 
-Consider the `countdown`, `fibonacci`, and `factorial` functions from the section on calling functions. We passed either a starting or stopping point to each function. Letting them run forever would be problematic. That said, it's a conceivable to think that we might want to keep working with new factorials or numbers in a Fibonacci sequence as time goes on. This is a great use for generators.
+[ES6/2015]:http://es6-features.org/#GeneratorFunctionIteratorProtocol
 
-**A note on browser support:** As of this writing (July 19, 2015) generator functions are supported by most of the recent versions of Chrome and Firefox as well as io.js. They are not supported by Safari, Internet Explorer, or Node.js.
+Consider the `countdown`, `fibonacci`, and `factorial` functions from the section on calling functions. We passed either a starting or stopping point to each function. Letting them run forever would be problematic. That said, it's conceivable to think that we might want to keep working with new factorials or numbers in a Fibonacci sequence as time goes on. This is a great use for generators.
 
-Generator functions look similar to regular functions, with the addition of an `*` after the `funciton` keyword.
+**A note on browser support:** As of this writing (July 19, 2015) generator functions are supported by most of the recent versions of Chrome and Firefox as well as [io.js][]. They are not supported by Safari, Internet Explorer, or Node.js.
+
+[io.js]:https://iojs.org/en/index.html
+
+Generator functions look similar to regular functions, with the addition of an `*` after the `function` keyword.
 
 ```js
-function* someGeneratorFunction() {}
+function* someGeneratorFunction() {};
 ```
 
 Calling a generator function returns a _Generator_ object. Generator objects have a `next()` method that either start or resume execution of the function until it hits the next `yield` statement.
@@ -19,7 +23,7 @@ function* addTwoThreeTimes(addend) {
   yield addend + 2;
   yield addend + 2 + 2;
   yield addend + 2 + 2 + 2;
-}
+};
 
 var generator = addTwoThreeTimes(2);
 ```
@@ -38,7 +42,7 @@ Generators return an object with two properties, the `value` emitted by the curr
 We can also iterate over all of the values in a generator:
 
 ```js
-for (x of generator) { console.log(x); } // Logs 2, 4, 6
+for (x of generator) { console.log(x); }; // Logs 2, 4, 6
 ```
 
 We can also create a generator function that yields values indefinitely. Let's create a simple counter generator that will always generate the next increment indefinitely.
@@ -48,7 +52,7 @@ function* counter(count) {
   while (true) {
     yield count++;
   }
-}
+};
 
 count.next() // { value: 0, done: false }
 count.next() // { value: 1, done: false }
@@ -71,7 +75,7 @@ Let's create a generator function that will build a Fibonacci sequence one numbe
 Let's start by creating a new generator function called `fibonacciGenerator`:
 
 ```js
-function* fibonacciGenerator() {}
+function* fibonacciGenerator() {};
 ```
 
 Fibonacci sequences are best expressed as an array of numbers. Let's instantiate an empty array. That we'll use to store our values.
@@ -79,7 +83,7 @@ Fibonacci sequences are best expressed as an array of numbers. Let's instantiate
 ```js
 function* fibonacciGenerator() {
   var sequence = [];
-}
+};
 ```
 
 We also know that we'd like to generate Fibonacci numbers indefinitely. We'll wrap our yield statement in a loop.
@@ -90,7 +94,7 @@ function* fibonacciGenerator() {
   while (true) {
     yield sequence;
   }
-}
+};
 ```
 
 We can typically generate new numbers by adding the previous two together. In order to do that, we'll have to add `1` to the sequence if we have less than two numbers.
@@ -102,7 +106,7 @@ function* fibonacciGenerator() {
     if (sequence.length < 2) { seqeunce.push(1); }
     yield sequence;
   }
-}
+};
 ```
 
 Now, it's time for the real work. If we have at least two numbers, we want to add the last two numbers together. Additionally, we're going to need the length of the sequence in multiple difference places, so we'll store it into a variable at the beginning of each loop.
@@ -120,7 +124,7 @@ function* fibonacciGenerator() {
     }
     yield sequence;
   }
-}
+};
 ```
 
 We can now take our fibonacci generator for a spin and generate numbers to our heart's content.
@@ -128,27 +132,27 @@ We can now take our fibonacci generator for a spin and generate numbers to our h
 ```js
 var fibonacci = fibonacciGenerator();
 
-fibonacci.next()
+fibonacci.next().value
 // { value: [ 1 ], done: false }
-fibonacci.next()
+fibonacci.next().value
 // { value: [ 1, 1 ], done: false }
-fibonacci.next()
+fibonacci.next().value
 // { value: [ 1, 1, 2 ], done: false }
-fibonacci.next()
+fibonacci.next().value
 // { value: [ 1, 1, 2, 3 ], done: false }
-fibonacci.next()
+fibonacci.next().value
 // { value: [ 1, 1, 2, 3, 5 ], done: false }
-fibonacci.next()
+fibonacci.next().value
 // { value: [ 1, 1, 2, 3, 5, 8 ], done: false }
-fibonacci.next()
+fibonacci.next().value
 // { value: [ 1, 1, 2, 3, 5, 8, 13 ], done: false }
-fibonacci.next()
+fibonacci.next().value
 // { value: [ 1, 1, 2, 3, 5, 8, 13, 21 ], done: false }
-fibonacci.next()
+fibonacci.next().value
 // { value: [ 1, 1, 2, 3, 5, 8, 13, 21, 34 ], done: false }
-fibonacci.next()
+fibonacci.next().value
 // { value: [ 1, 1, 2, 3, 5, 8, 13, 21, 34, 55 ], done: false }
-fibonacci.next()
+fibonacci.next().value
 // { value: [ 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89 ], done: false }
 ```
 

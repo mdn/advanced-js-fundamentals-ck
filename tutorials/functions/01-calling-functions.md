@@ -150,8 +150,8 @@ function addThreeNumbersToFoo(first, second, third) {
 var someObject = { foo: 1 };
 var numbers = [2, 3, 4];
 
-addThreeNumbersToFoo(someObject, numbers); // returns 10
-addThreeNumbersToFoo({ foo: 1 }, [1, 1, 1]); // returns 4
+addThreeNumbersToFoo.apply(someObject, numbers); // returns 10
+addThreeNumbersToFoo.apply({ foo: 1 }, [1, 1, 1]); // returns 4
 ```
 
 On top of allowing you to explicitly set `this`, `apply` makes it easy to split up an array of arguments.
@@ -168,7 +168,7 @@ addThreeNumbers.apply(null, numbers);
 
 We used `null` in the example above because it doesn't matter what `this` is since we're not using it.
 
-The following are all equivalent for the purposes of splitting up an array of values amongst the a function's arguments:
+The following are all equivalent for the purposes of splitting up an array of values amongst a function's arguments:
 
 ```js
 addThreeNumbers.apply(null, numbers);
@@ -178,7 +178,7 @@ addThreeNumbers.apply('oogieboogie', numbers);
 
 ## Explicitly Setting Context with `bind`
 
-`call` and `apply` are great ways of explicitly setting `this` when we call a function. But sometimes, we want set `this` when we define a function, not when we call it.
+`call` and `apply` are great ways of explicitly setting `this` when we call a function. But sometimes, we want to set `this` when we define a function, not when we call it.
 
 `call` and `apply` invoke the function immediately. `bind` is different. It returns a copy of the function with `this` set explicitly that we can call later.
 
@@ -206,7 +206,7 @@ var fido = {
   sayHello: function () {
     console.log('My name is ' + this.name + '.');
   }
-}
+};
 
 var spot = {
   name: 'Spot',
@@ -215,10 +215,10 @@ var spot = {
   anotherBoundSayHello: fido.sayHello.bind({ name: 'Taco' })
 };
 
-fido.sayHello() // My name is Fido.
-spot.sayHello() // My name is Spot.
-spot.boundSayHello() // My name is Fido.
-spot.anotherBoundSayHello() // My name is Taco.
+fido.sayHello(); // My name is Fido.
+spot.sayHello(); // My name is Spot.
+spot.boundSayHello(); // My name is Fido.
+spot.anotherBoundSayHello(); // My name is Taco.
 ```
 
 `bind` is useful when working with asynchronous JavaScript using callbacks or promises. When we make an AJAX request to a server, we typically pass a callback function that will execute when we hear back from the server. While, we're usually writing this function in context of the object we're working with. It will be executed in a totally different context.
@@ -246,7 +246,7 @@ Things get a little tricker when we call an asynchronous function (like an AJAX 
 function somethingAsynchronous(callback) {
   console.log('Maybe we\'re fetching the new name from the server.');
   setTimeout(callback, 1000);
-}
+};
 
 var person = {
   firstName: 'Steve',
