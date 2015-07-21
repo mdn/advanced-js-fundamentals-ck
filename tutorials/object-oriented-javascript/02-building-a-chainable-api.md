@@ -1,6 +1,6 @@
 # Building a Chainable API
 
-In this exercise, we'll build a `Calculator` constructor. We'll add some functionality to `Calculator.prototype`, which will be shared by all of the objects we create using the `Calculator` constructor.
+In this exercise, we'll build a `Calculator()` constructor, then add some functionality to `Calculator.prototype` that will be shared by all of the objects we create using the `Calculator()` constructor.
 
 Let's start with a very simple constructor:
 
@@ -16,9 +16,9 @@ var secondCalculator = new Calculator(4);
 secondCalculator.value; // 4
 ```
 
-Each calculator stores its own value, but neither do any—umm—calculation. Ideally, simple calculations are something that should be done by all calculators. As a result, we'll probably want to share this functionality with each object constructed by `Calculator`.
+Each calculator stores its own value, but neither do any — umm — calculations. Simple calculations should be available to all calculators, so as a result we'll probably want to share this functionality with each object constructed by `Calculator()`.
 
-Each object constructed by `Calculator` will look to `Calculator.prototype` whenever it's asked for a property it doesn't have. So, it makes sense to put our functionality there.
+Each constructed calculator object will look to `Calculator.prototype` whenever it's asked for a property it doesn't have. So, it makes sense to put our functionality there.
 
 ```js
 function Calculator(value) {
@@ -89,7 +89,7 @@ $('.some-class')
   .fadeIn();
 ```
 
-jQuery was designed to return the original selection of DOM elements after each method call. `slideUp()` returns the `$('.some-class')` selection—as does `text()`, `addClass()`, `on()`, and `fadeIn`. This allows us to continue working on the same object. Without chaining, the example above would look a little different.
+jQuery was designed to return the original selection of DOM elements after each method call. `slideUp()` returns the `$('.some-class')` selection — as does `text()`, `addClass()`, `on()`, and `fadeIn`. This allows us to continue working on the same object. Without chaining, the example above would look a little different.
 
 ```js
 var $selection = $('.some-class');
@@ -118,7 +118,7 @@ var numbers = [1,2,3,4,5,6,7].filter(function (n) {
 console.log(numbers); // Logs [14,10,6,2]
 ```
 
-Without the ability to chain methods, this code would look very different as we would have to create many more local variables to store our data in between each step.
+Without the ability to chain methods, this code would look very different — we would have to create many more local variables to store our data in between each step.
 
 ```js
 var numbers = [1,2,3,4,5,6,7];
@@ -165,4 +165,4 @@ calculator.add(2).add(10).add(2).value; // 18
 
 ## Your Turn
 
-Refactor `subtract`, `multiply`, and `divide` to take advantage of method chaining. There are tests in `demos/basic-calculator` to help guide your implementation.
+Refactor `subtract()`, `multiply()`, and `divide()` to take advantage of method chaining. There are tests in `demos/basic-calculator` to help guide your implementation.

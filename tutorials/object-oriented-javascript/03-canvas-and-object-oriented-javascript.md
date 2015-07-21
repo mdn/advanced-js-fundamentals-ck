@@ -1,49 +1,41 @@
 # HTML5 Canvas and Object-Oriented JavaScript
 
-Modern browsers include the [HTML5 Canvas API][canvas], which allows us to draw graphics with JavaScript.
+Modern browsers include the [HTML5 Canvas API][canvas], which allows us to draw graphics with JavaScript. This tutorial...
 
 [canvas]: https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API
 
 ## Canvas Basics
 
-If you have not already cloned [this repo][adv-js], please do that now so you can code along as you move through this tutorial.
-
-[adv-js]: https://github.com/stevekinney/advanced-js-fundamentals-ck
-
-This section is not intended to be a full tutorial on the basics of working with the Canvas API. Rather, it will be just enough to help us get by. We can easily add a `<canvas>` element to our HTML by doing the following:
+This section is not intended to be an full tutorial on the basics of working with Canvas. Rather, it will be just enough to help anyone not already familiar with the API get by. We can easily add a [`<canvas>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas) element to our HTML like so:
 
 ```html
 <canvas id="game" width="400px" height="300px"></canvas>
 ```
 
-This will create a canvas element that is 400 pixels wide and 300 pixels high. Next, we'll need to get a hold of our new canvas element. Additionally, The Canvas API supports a number of different _contexts_ for drawing on it. We'll be using the two-dimension context.
+This will create a `<canvas>` element that is 400 pixels wide and 300 pixels high. Next, we'll need to get hold of a reference to our new Canvas in JavaScript, so we can start to manipulate it using code. The Canvas API supports a number of different _contexts_ for drawing on it; we'll be using the basic two-dimensional context.
 
 ```js
 var canvas = document.getElementById('game');
 var context = canvas.getContext('2d');
 ```
 
-The `canvas` variable holds some important information like the width and the height of the canvas element, but we'll doing all of our drawing in with the `context` object.
+The `canvas` variable holds some important information like the width and the height of the canvas element, but we'll doing all of our drawing with the `context` object.
 
-The `context` gives us a number of methods for drawing on our canvas. We'll start with `fillRect`, which creates a rectangle filled by a color—black, by default.
+The `context` gives us a number of methods for drawing on our canvas. We'll start with [`fillRect()`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillRect), which creates a rectangle filled by a color — black by default.
 
-`context.fillRect` takes four arguments: `x`, `y`, `width`, and `height.`
+`context.fillRect()` takes four arguments: `x`, `y`, `width`, and `height.`
 
-Let's start by drawing a small, square "alien" to our canvas. In your terminal navigate to the [demo/canvas-blocks][canvas-demo] directory of the repo you cloned.  Once in that directory, enter `open index.html` in the command line to open the file in your default browser.
-
-[canvas-demo]: https://github.com/stevekinney/advanced-js-fundamentals-ck/tree/gh-pages/demos/canvas-blocks
-
-Once you have `index.html` open in the browser, bring up you Dev Tool console and enter the following.
+Let's start by drawing a small, square alien to our canvas. A workspace has been set up for you in `demos/canvas-aliens`. Add the following line in at the bottom of the `script.js` file:
 
 ```js
 context.fillRect(50, 50, 10, 10);
 ```
 
-That line will draw a 10 pixel by 10 pixel square located 50 pixels from the top-left corner of the canvas. Congratulations, you're an web artist now.
+This will draw a 10 pixel by 10 pixel square located 50 pixels from the top-left corner of the canvas. Congratulations, you're a web artist now.
 
 ### Animating Canvas
 
-We might be tempted to try something like `setTimeout`. The issue with `setTimeout` is that it doesn't guarantee accuracy. Let's consider the following:
+We might be tempted to try something like `setTimeout()`. The issue with `setTimeout()` is that it doesn't guarantee accuracy. Let's consider the following:
 
 ```js
 setTimeout(function () {
@@ -51,11 +43,11 @@ setTimeout(function () {
 }, 1000)
 ```
 
-Those lines schedule a callback for 1000 milliseconds (one second) in the future. Unfortunately, JavaScript can't—or won't, at least—make us any promises that this function will be called in one second. Instead, we're promised that it will be at least one second before the browser will try to call the function.
+This schedules the callback to be executed 1000 milliseconds (one second) in the future. Unfortunately, JavaScript can't — or won't, at least — make us any promises that this function will be called in one second. Instead, we're promised that it will be at least one second before the browser will try to call the function.
 
 #### requestAnimationFrame
 
-If `setTimeout` isn't the best solution, then what is? In modern browsers (most versions of Firefox and Chrome, Internet Explorer 10 and later, Safari 6.0 and later), we have `requestAnimationFrame`, which is specifically tuned for creating animations in the browser.
+If [`setTimeout()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setTimeout) isn't the best solution, then what is? In modern browsers (most versions of Firefox and Chrome, Internet Explorer 10 and later, Safari 6.0 and later), we have [`requestAnimationFrame()`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame), which is specifically tuned for creating animations in the browser.
 
 According to [MDN][MDNrAF]:
 
@@ -63,7 +55,7 @@ According to [MDN][MDNrAF]:
 
 [MDNrAF]: https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame
 
-`requestAnimationFrame` takes a function, which it calls when the browser is ready to perform the next stage of the animation. Add the following to the bottom of `canvas-blocks/script.js`, then refresh the index.html page in your browser.
+`requestAnimationFrame()` takes as an argument a function, which it calls when the browser is ready to perform the next stage of the animation.
 
 ```js
 requestAnimationFrame(function () {
@@ -82,10 +74,9 @@ requestAnimationFrame(function gameLoop() {
 });
 ```
 
-Refresh the web page while your Dev Tool's console is open.  See a few numbers?
-The last action of the function above is to make another call to `requestAnimationFrame` and pass itself to rise from the ashes and be called again when the browser is ready to render the next frame.
+So, recursion — the last line of the function above makes another call to `requestAnimationFrame()`, passing itself in as the function to be called again when the browser is ready to render the next frame.
 
-Logging a counter is a whole lot of fun, but let's use `requestAnimationFrame` to—you know—animate something. Now edit `canvas-blocks/script.js` to look like the following:
+Logging a counter is a whole lot of fun, but let's use `requestAnimationFrame()` to — you know — animate something. Paste the following code into `demos/canvas-blocks`, replacing your previous line:
 
 ```js
 var canvas = document.getElementById('game');
@@ -102,10 +93,9 @@ requestAnimationFrame(function gameLoop() {
 });
 ```
 
-Refresh index.html.
-Hmm. That's not entirely what we were expecting. The previous box isn't cleared between iterations and—as a result—it looks like we are painting a thick black line across the screen. This makes sense, we just keep telling the browser that we'd like another black box please and it obediently obliges our request. Computers are dumb and it's on us to provide an instruction to clear the canvas between each rendering.
+Hmm. That's not entirely what we were expecting. The previous box isn't cleared between iterations and—as a result—it looks like we are painting a thick black line across the screen. This makes sense — we just keep telling the browser that we'd like another black box please and it obediently fulfills our request. Computers are stupid, so it's our responsibility to provide an instruction to clear the canvas between each rendering.
 
-We do this by drawing a giant clear rectangle over the entire canvas:
+We do this by drawing a giant clear rectangle over the entire canvas — add the [`clearRect()`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/clearRect) line seen below into your code and reload it:
 
 ```js
 var canvas = document.getElementById('game');
@@ -131,20 +121,20 @@ You have been using [demos/canvas-blocks][canvas-blocks] so far, let's keep movi
 
 [canvas-blocks]: https://github.com/stevekinney/advanced-js-fundamentals-ck/tree/gh-pages/demos/canvas-blocks
 
-* Draw a small rectangle to the canvas (if you don't have one already).
-* Use `requestAnimationFrame` to move the rectangle one pixel down each time `requestAnimationFrame` is called.
+* Draw a small rectangle to the canvas.
+* Use `requestAnimationFrame()` to move the rectangle one pixel down each time it is called.
   * _Extension_: Can you make the block stop when it reaches the end of the canvas? Can you make it turn around and go the other way when it reaches the end of the canvas?
 * Can you add four more blocks that behave the same way?
 
 ## Object-Oriented Blocks
 
-Drawing one rectangle to the canvas was pretty straight-forward. But, things start to get hairy when we want to keep track of multiple little blocks. Maybe you tried to instantiate four variables for each little block. Maybe you just set up separate variables for the `x`. There are probably some other approaches you could have taken involving passing the values through to each new game loop and then setting up five game loops—but we digress.
+Drawing one rectangle to the canvas was pretty straightforward. Things start to get hairy however when we want to keep track of multiple little blocks. Maybe you tried to instantiate four variables for each little block? Maybe you just set up separate variables for the `x`? There are probably some other approaches you could have taken involving passing the values through to each new game loop and then setting up five game loops — but we digress.
 
-What if we had 1,000 blocks? This is going to get out of hand and fast.
+What if we had 1,000 blocks? This would get out of hand really quickly.
 
-What we need is a way to have each block keep track of its own state and provide some ways to modify that state. Then, we could just ask each block to draw itself and let it handle all of the implementation details. Whether we have one block or 10,000, we'll just ask each block to draw itself and leave the rest of the work to the individual block.
+What we need is a way to have each block keep track of its own state and provide some ways to modify that state. Then, we could just ask each block to draw itself and let it handle the all of the implementation details. Whether we have one block or 10,000, we'll just ask each block to draw itself and leave the rest of the work to the individual block.
 
-There might be a voice that says "What if we used object-oriented JavaScript?" Sure, it might have been inspired by the name of this section or even just the sub-heading a few lines up. Regardless, listen to that voice.
+You might hear a voice in the back of your mind somewhere saying "What if we used object-oriented JavaScript?" Sure, it might have been inspired by the name of this section or even just the sub-heading a few lines up. Regardless, listen to that voice.
 
 What would a block object look like?
 
@@ -171,9 +161,9 @@ That's great; each block can now keep track of it's own state. What else does a 
 * Blocks need to be able to draw themselves to the canvas.
 * Blocks need to be adjust their coordinates to their next position.
 
-The `x`, `y`, `width`, and `height` properties are unique and special to each individual block. But these other methods? They seem like something that every block should be able to do, but that no block needs to know about specifically.
+The `x`, `y`, `width`, and `height` properties are unique and special to each individual block. But what about these other methods? They seem like something that every block should be able to do, but that no block needs to know about specifically.
 
-These two methods are great candidates for being added to `Block.prototype`, an object that all of our individual blocks inherit from and immediately look to when they don't know how to respond to a method or a request for a property.
+These two methods are great candidates for being added to `Block.prototype`, an object that all of our individual blocks inherit from and immediately look to when they don't know how to respond to a method call or a request for a property.
 
 Let's add some placeholder methods to `Block.prototype`:
 
@@ -194,7 +184,7 @@ Block.prototype.move = function () {
 };
 ```
 
-These two methods don't do much, but they are available to every block object. Let's start by implementing `draw()` first. To do this, we'll take `context.fillRect` and use tell each object to use its own properties to fill in the details.
+These two methods don't do much, but they are available to every block object. Let's start by implementing `draw()` first. To do this, we'll take `context.fillRect()` and tell each object to use its own properties to fill in the details.
 
 ```js
 Block.prototype.draw = function () {
@@ -202,9 +192,9 @@ Block.prototype.draw = function () {
 };
 ```
 
-When we call `draw` on an individual block, it doesn't know what it is—so, it looks to `Block.prototype` for an answer. `Block.prototype` hands the individual block its `draw` method, which the individual block happily goes ahead and calls using itself as `this`.
+When we call `draw()` on an individual block, it doesn't know what the function is, so it looks to `Block.prototype` for an answer. `Block.prototype` hands the individual block its `draw()` method, which the individual block happily goes ahead and calls using itself as `this`.
 
-Recall, that if we return `this`, we can chain additional methods after we call `draw()`.
+Recall from the calculator example that if we return `this`, we can chain additional methods after we call `draw()`.
 
 ```js
 Block.prototype.draw = function () {
@@ -264,7 +254,7 @@ We'll also go ahead and add our array that will eventually hold all of our block
 var blocks = [];
 ```
 
-In each animation frame, we'll iterate through each of the blocks in the `blocks` array and ask them to both `draw` themselves as well as update their positions.
+In each animation frame, we'll iterate through each of the blocks in the `blocks` array and ask them to both `draw()` themselves as well as update their positions.
 
 ```js
 requestAnimationFrame(function gameLoop() {
@@ -330,7 +320,7 @@ canvas.addEventListener('click', function (event) {
 });
 ```
 
-The first argument specifies what kind of events we're listening for. The second argument, the anonymous function in the example above, defined what we would like to happen when we hear that event.
+The first argument specifies what kind of events we're listening for. The second argument, the anonymous function in the example above, defined what we would like to happen when the browser hears that event.
 
 There is a little bit of trickery in determining where a mouse click actually happened and we care about that information. So a little function has been provided for you in `helpers.js` called `getClickPosition()` that will give you the `x` and `y` coordinates of the mouse click on your canvas.
 
@@ -351,7 +341,7 @@ canvas.addEventListener('click', function (event) {
 
 ### Your Turn
 
-Can you add some additional functionality to our little experiment (we hesitate to call it a game just yet)? Here is some inspiration:
+Can you add some additional functionality to our little experiment? (we'll hesitate to call it a game just yet.) Here is some inspiration:
 
 * Can you move blocks back up to the top of the canvas whenever they fall off the bottom of the canvas? (Hint: you can use negative coordinates to place them above the top of the canvas so that it looks more natural.)
 * Can you tell the blocks to rest on the bottom of the canvas instead of continuing to fall into oblivion?
@@ -361,5 +351,5 @@ Can you add some additional functionality to our little experiment (we hesitate 
 [keydown]: https://developer.mozilla.org/en-US/docs/Web/Events/keydown
 [keyup]: https://developer.mozilla.org/en-US/docs/Web/Events/keyup
 [dblclick]: https://developer.mozilla.org/en-US/docs/Web/Events/dblclick
-[mouseover]: https://developer.mozilla.org/en-US/docs/Web/Events/mouseover
 [mousemove]: https://developer.mozilla.org/en-US/docs/Web/Events/mousemove
+[mouseover]: https://developer.mozilla.org/en-US/docs/Web/Events/mouseover
