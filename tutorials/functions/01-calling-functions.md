@@ -1,6 +1,6 @@
 # Functions
 
-Functions in JavaScript are little units of code that can be executed later and reused as many times asyou want. If you've worked with JavaScript in the past, you've probably come across functions before, so in this section we'll skim the basics and look at more advanced function-related concepts to level up that basic knowledge.
+Functions in JavaScript are little units of code that can be executed later and reused as many times as you want. If you've worked with JavaScript in the past, you've probably come across functions before, so in this section we'll skim the basics and look at more advanced function-related concepts to level up that basic knowledge.
 
 Here is a simple example of a function that takes a single argument and logs a message to the console, just in case you are in the dark as to what a function looks like:
 
@@ -17,7 +17,7 @@ function sayHello(name) {
 ## Invoking functions
 Let's now take a look at the intricacies of function invocation.
 
-### The differnce between calling functions and referencing functions
+### The difference between calling functions and referencing functions
 
 The easiest way to call a function is to append a pair of parentheses to the end of the name assigned to the function.
 
@@ -49,7 +49,7 @@ function doubleNumber(n) {
 [1,2,3].map(doubleNumber);
 ```
 
-If we did add the parentheses to `doubleNumber`, JavaScript would evaluate the function and place its return value as the argument being passed to `c`. It's also worth noting that if you do invoke the function without passing an argument, the function will attempt to multiply `undefined` by `2`. This will result in `NaN`, which stands for "not a number" and is also not a function that `Array.prototype.map` can call — as a result the browser will throw an error.
+If we did add the parentheses to `doubleNumber()`, JavaScript would evaluate the function and place its return value as the argument being passed to `c`. It's also worth noting that if you do invoke the function without passing an argument, the function will attempt to multiply `undefined` by `2`. This will result in `NaN`, which stands for "not a number" and is also not a function that `Array.prototype.map()` can call — as a result the browser will throw an error.
 
 Consider the following:
 
@@ -68,10 +68,10 @@ reference(2); // 2
 
 #### Your turn
 
-* Write a new function called `doubleNumber` that takes a single argument and returns that argument multiplied by two.
+* Write a new function called `doubleNumber()` that takes a single argument and returns that argument multiplied by two.
 * Pass the number two into the function and verify that it returns `4`.
-* Store a reference to the `doubleNumber` function in a variable called `timesTwo`.
-* Call the `timesTwo` function, passing in `2` as an argument
+* Store a reference to the `doubleNumber()` function in a variable called `timesTwo`.
+* Call the `timesTwo()` function, passing in `2` as an argument
 * Try `console.log(timesTwo.name)` and inspect the result
 
 ### Invoking functions
@@ -121,9 +121,9 @@ function logFoo() {
 
 It's helpful that functions will adapt to their surroundings, but sometimes we need to be explicit about what we want `this` to be when we invoke a function.
 
-Functions in JavaScript are objects and share methods on `Function.prototype`—just like all arrays share methods on `Array.prototype`.
+Functions in JavaScript are objects and share methods on `Function.prototype` — just like all arrays share methods on `Array.prototype`.
 
-One method all functions share is `call`, which uses the first argument you hand it and sets it to `this`, it then takes all subsequent arguments and passes them to the function you're calling `call` on. It basically provides a way to call any function on a specific function scope.
+One method all functions share is `call()`, which uses the first argument you hand it and sets it to `this`, it then takes all subsequent arguments and passes them to the function you're calling `call()` on. It basically provides a way to call any function on a specific function scope.
 
 ```js
 function addToFoo(n) {
@@ -137,12 +137,12 @@ addToFoo(2); // tries add 2 to `undefined` and returns `NaN`
 addToFoo.call(bar, 2); // adds 2 to the `foo` property on `bar` and returns 3
 addToFoo.call(baz, 2); // adds 2 to the `foo` property on `bar` and returns 4
 addToFoo.call({ foo: 3 }, 2); // adds 2 to the `foo` property on a new object
-                         // and returns 5
+                              // and returns 5
 ```
 
-The first argument when we use the `call` method is used to set `this`. The second argument is passed to the function we're calling as its first argument. If we had a third argument, it would be passed as the second argument to the function we're calling and so on.
+The first argument when we use the `call()` method is used to set `this`. The second argument is passed to the function we're calling as its first argument. If we had a third argument, it would be passed as the second argument to the function we're calling and so on.
 
-`apply` is another method shared by all functions and it behaves in a very similar fashion to `call`, except that it takes the arguments you'd like to pass to the function as an array.
+`apply()` is another method shared by all functions and it behaves in a very similar fashion to `call()`, except that it takes the arguments you'd like to pass to the function as an array.
 
 ```js
 function addThreeNumbersToFoo(first, second, third) {
@@ -156,7 +156,7 @@ addThreeNumbersToFoo.apply(someObject, numbers); // returns 10
 addThreeNumbersToFoo.apply({ foo: 1 }, [1, 1, 1]); // returns 4
 ```
 
-On top of allowing you to explicitly set `this`, `apply` makes it easy to split up an array of arguments.
+On top of allowing you to explicitly set `this`, `apply()` makes it easy to split up an array of arguments.
 
 ```js
 function addThreeNumbers(first, second, third) {
