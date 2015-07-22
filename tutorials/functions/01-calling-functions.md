@@ -43,7 +43,7 @@ We omit the parentheses, because we're talking about the function, not invoking.
 ```js
 function doubleNumber(n) {
   return n * 2;
-};
+}
 
 [1,2,3].map(doubleNumber);
 ```
@@ -131,7 +131,7 @@ function addToFoo(n) {
 var bar = { foo: 1 };
 var baz = { foo: 2 };
 
-addToFoo(); // tries add 2 to `undefined` and returns `NaN`
+addToFoo(2); // tries add 2 to `undefined` and returns `NaN`
 addToFoo.call(bar, 2); // adds 2 to the `foo` property on `bar` and returns 3
 addToFoo.call(baz, 2); // adds 2 to the `foo` property on `bar` and returns 4
 addToFoo.call({ foo: 3 }, 2); // adds 2 to the `foo` property on a new object
