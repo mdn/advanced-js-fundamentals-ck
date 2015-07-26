@@ -48,19 +48,21 @@ for (x of generator) { console.log(x); }; // Logs 2, 4, 6
 We can also create a generator function that yields values indefinitely. Let's create a simple counter generator that will always generate the next increment indefinitely.
 
 ```js
-function* counter(count) {
+function* counterGenerator(count) {
   while (true) {
     yield count++;
   }
 };
 
-count.next() // { value: 0, done: false }
-count.next() // { value: 1, done: false }
-count.next() // { value: 2, done: false }
-count.next() // { value: 3, done: false }
-count.next() // { value: 4, done: false }
-count.next() // { value: 5, done: false }
-count.next() // { value: 6, done: false }
+var counter = counterGenerator(0);
+
+counter.next() // { value: 0, done: false }
+counter.next() // { value: 1, done: false }
+counter.next() // { value: 2, done: false }
+counter.next() // { value: 3, done: false }
+counter.next() // { value: 4, done: false }
+counter.next() // { value: 5, done: false }
+counter.next() // { value: 6, done: false }
 // … and so on …
 ```
 
@@ -132,27 +134,27 @@ We can now take our fibonacci generator for a spin and generate numbers to our h
 ```js
 var fibonacci = fibonacciGenerator();
 
-fibonacci.next().value
+fibonacci.next();
 // { value: [ 1 ], done: false }
-fibonacci.next().value
+fibonacci.next();
 // { value: [ 1, 1 ], done: false }
-fibonacci.next().value
+fibonacci.next();
 // { value: [ 1, 1, 2 ], done: false }
-fibonacci.next().value
+fibonacci.next();
 // { value: [ 1, 1, 2, 3 ], done: false }
-fibonacci.next().value
+fibonacci.next();
 // { value: [ 1, 1, 2, 3, 5 ], done: false }
-fibonacci.next().value
+fibonacci.next();
 // { value: [ 1, 1, 2, 3, 5, 8 ], done: false }
-fibonacci.next().value
+fibonacci.next();
 // { value: [ 1, 1, 2, 3, 5, 8, 13 ], done: false }
-fibonacci.next().value
+fibonacci.next();
 // { value: [ 1, 1, 2, 3, 5, 8, 13, 21 ], done: false }
-fibonacci.next().value
+fibonacci.next();
 // { value: [ 1, 1, 2, 3, 5, 8, 13, 21, 34 ], done: false }
-fibonacci.next().value
+fibonacci.next();
 // { value: [ 1, 1, 2, 3, 5, 8, 13, 21, 34, 55 ], done: false }
-fibonacci.next().value
+fibonacci.next();
 // { value: [ 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89 ], done: false }
 ```
 

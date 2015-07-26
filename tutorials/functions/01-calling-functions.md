@@ -211,13 +211,57 @@ var numbers = [1, 2, 3];
 addThreeNumbers.apply(null, numbers);
 ```
 
-`apply()` takes the array provided and passes each element to the function. If we just passed the array to to the array, the entire array of numbers would be assigned to `first`. Alternatively, we could write something like this.
+### Using `apply()` to spread an array of arguments
+
+As we've seen `apply()`—like `call()`—is useful for explicitly setting `this`. Additionally, `apply()` is useful when we have an array that we'd like to spread out over the arguments of a function.
+
+Consider the `Math.min()` function. It takes a set of numbers as arguments and returns the smallest number. It can take any number of arguments.
 
 ```js
-addThreeNumbers(numbers[0], numbers[1], numbers[2]);
+Math.min(1, 4, 10, 2); // returns 1
+Math.min(2, 3, 10, 100, 2048, 1984, 2012, 919); // returns 2
 ```
 
-This can be a bit tedious with larger arrays and requires that we know about the array of arguments we would like to apply to the function.
+What if we had an array of numbers?
+
+```js
+var numbers = [201, 100, 2];
+Math.min(numbers); // returns NaN
+```
+
+`numbers` is an array and `Math.min` doesn't know how to deal with an array. We could try the following:
+
+```js
+var numbers = [201, 100, 2];
+Math.min(numbers[0], numbers[1], numbers[2]); // returns 2;
+```
+
+This works, but it relies us having a manageable numbers of items in the array. Worse, it relies on us knowing how many elements are in the array. What if we had built up our array of numbers from some kind of user-input? We don't have a way of knowing if there will be 1 number in the array or 1,000.
+
+`apply()` will take the items in the array and spread them out over the arguments of the array. We don't have to access each element by its index, which means we also don't have to know how many elements are in the array.
+
+```js
+var numbers = [2, 3, 10, 100, 2048, 1984, 2012, 919];
+
+Math.min.apply(null, numbers); // returns 2;
+```
+
+#### A word on the spread operator in ES6/2015
+
+ES6 introduces the spread operator (`...`), which allows us to spread the contents of an array without using `apply()`. In the future, you'll be able to do the following:
+
+```js
+var numbers = [2, 3, 10, 100, 2048, 1984, 2012, 919];
+
+Math.min(...numbers);
+```
+
+You can read more about the spread operator [here][mdn-spread].
+
+[mdn-spread]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator
+
+
+### Setting the context when the context is unimportant
 
 We used `null` in the example above because it doesn't matter what `this` is since we're not using it.
 
