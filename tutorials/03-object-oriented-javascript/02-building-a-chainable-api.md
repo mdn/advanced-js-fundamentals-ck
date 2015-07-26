@@ -42,7 +42,7 @@ secondCalculator.value; // 4
 secondCalculator.subtract(2); // 2
 ```
 
-## Your Turn
+## Your turn
 
 Your mission is to add two more methods to `Calculator.prototype`: `multiplyBy()` and `divideBy()`. A test suite has been set up for you in [demos/basic-calculator](https://github.com/stevekinney/advanced-js-fundamentals-ck/tree/gh-pages/demos/basic-calculator).
 
@@ -163,6 +163,6 @@ var calculator = new Calculator(4);
 calculator.add(2).add(10).add(2).value; // 18
 ```
 
-## Your Turn
+## Your turn
 
 Refactor `subtract()`, `multiply()`, and `divide()` to take advantage of method chaining. There are tests in `demos/basic-calculator` to help guide your implementation.

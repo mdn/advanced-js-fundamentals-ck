@@ -115,7 +115,7 @@ requestAnimationFrame(function gameLoop() {
 
 Ah, much better. Run, little block, run.
 
-### Your Turn
+### Your turn
 
 You have been using [demos/canvas-blocks][canvas-blocks] so far, let's keep moving forward. Edit the code you have in `script.js` to complete the following problems:
 
@@ -203,7 +203,7 @@ Block.prototype.draw = function () {
 };
 ```
 
-### Your Turn
+### Your turn
 
 Can you implement `Block.prototype.move`? The method should take the current `y` value and increment it by one. It should return `this`, so that we can chain it.
 
@@ -339,7 +339,7 @@ canvas.addEventListener('click', function (event) {
 });
 ```
 
-### Your Turn
+### Your turn
 
 Can you add some additional functionality to our little experiment? (we'll hesitate to call it a game just yet.) Here is some inspiration:
 

@@ -158,7 +158,7 @@ fibonacci.next();
 // { value: [ 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89 ], done: false }
 ```
 
-## Your Turn
+## Your turn
 
 Can you create a generator function that can generate factorials? Below is an example of how the code should work when you have it up and running.
 

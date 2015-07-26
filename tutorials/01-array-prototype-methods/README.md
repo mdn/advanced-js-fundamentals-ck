@@ -72,7 +72,7 @@ In the example above, we set up an iterator, `i`. As long as `i` is less than th
 
 `forEach()` is the foundation for many of the other methods we'll explore today and you can accomplish much of the same functionality with `forEach()` that other methods specialize in. That said, just because you _can_ use it, it doesn't mean it's the best choice and that you _should_ use it. More on this later.
 
-### Your Turn
+### Your turn
 
 Let's put on our imagination caps and make believe we're building a photo gallery that pulls images from the Instagram API. We did the hard work and mocked it out for you.
 
@@ -139,7 +139,7 @@ The example above will give us the same result as the one before it: `['A', 'B',
 
 Like `forEach()`, `map()` accepts an anonymous function that it calls on each element of the array it's called on. `forEach()` returns `undefined` when its finished. `map()`, on the other hand, returns a new array made up of the values returned by the callback function on each iteration.
 
-### Your Turn
+### Your turn
 
 The Instagram API returns a lot of information about each photograph. Here is the information for a single photograph:
 
@@ -277,7 +277,7 @@ const guitarPlayingBeatles = beatles.filter(function (beatle) {
 });
 ```
 
-### Your Turn
+### Your turn
 
 You're welcome. For what? Well, it turns out that the Instagram API supports videos as well as images. Up until now, we've been filtering those videos out for you. You know how to use filter now however so you don't need us doing it for you anymore.
 
@@ -328,7 +328,7 @@ console.log(capitalLetter); // Logs ["A", "B", "C"]
 
 The second argument that we pass to the `reduce()` method is an empty array, which is then set as the initial value for `newArray`. Next, we push in a capital version of the current letter. [`push()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push?redirectlocale=en-US&redirectslug=JavaScript%2FReference%2FGlobal_Objects%2FArray%2Fpush) returns the current length of the array after the new element has been pushed in, so we have to explicitly return `newArray` to pass it along to the next iteration in our `reduce()`.
 
-### Your Turn
+### Your turn
 
 In the same fashion as before, head over to `demos/array-prototype-methods/04-reduce/script.js` and write solutions to the following problems.
 
@@ -444,7 +444,7 @@ const sortedBeatles = beatles.sort(function (a, b) {
 console.log(sortedBeatles); // Logs ['Paul', 'John', 'George', 'Ringo']
 ```
 
-### Your Turn
+### Your turn
 
 As we saw earlier: not only were the fine folks at Instagram nice enough to give us a tidy array of all of the tags for a given photograph or video, they also tallied up all of "likes" it received.
 

@@ -117,7 +117,7 @@ var h2 = createCurriendWrapper('h2')('Hello world');
 
 Now, if we needed to change the basic implementation of wrapping strings in HTML tags, we could make our changes in one place, `createCurriendWrapper`, which is the foundation for all of our specialized wrapping functions.
 
-### Your Turn
+### Your turn
 
 You've been asked to create a custom logger for a major software project. The initial specifications include two functions `dangerLog` and `successLog`, but the roadmap includes no less than 42 different logger functions.
 

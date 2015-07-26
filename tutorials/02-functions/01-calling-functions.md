@@ -145,7 +145,7 @@ The second time we call `logThis()`, it's in a different context — it's now a 
 
 When functions are set as the values of object properties, they adapt to their new surroundings and set `this` to contain a reference to the object they're being called from.
 
-#### Your Turn
+#### Your turn
 
 Implement the following function:
 
@@ -484,7 +484,7 @@ console.log(logYourselfExpression.name); // ""
 
 We cannot use function expressions recursively because they do not have a reference to themselves.
 
-### Your Turn
+### Your turn
 Now it's time to try writing some recursive examples of your own.
 
 #### Countdown

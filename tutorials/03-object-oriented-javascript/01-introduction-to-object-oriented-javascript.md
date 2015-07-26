@@ -137,6 +137,6 @@ fido.sayHello(); // Hello, my name is Fido.
 spot.sayHello(); // Hello, my name is Spot.
 ```
 
-## Your Turn: Quick Exercise
+## Your turn: Quick Exercise
 
 Can you add a second method called `sayGoodbye` that enables each dog to bid farewell?
