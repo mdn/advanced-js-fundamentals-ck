@@ -12,9 +12,52 @@ function sayHello(name) {
 
 ## Defining functions
 
-(Function declaration versus expressions)
+There a two major ways of defining functions in JavaScript: _function declarations_ and _function expressions_. Both approaches are fairly similar with a few nuances.
+
+First, let's take a look at each in practice.
+
+```js
+// Function declaration
+function logSomething(something) {
+  console.log(something);
+}
+
+// Function expression
+var logSomething = function (something) {
+  console.log(something);
+};
+```
+
+In the first example, we are declaring a function with the name `logSomething`. In the second example, we are declaring a variable called `logSomething` and assigning an anonymous function as its value.
+
+Function declarations are hoisted to the top of the scope, which means that you can invoke a function on an earlier line that your declaration. Variable declarations are also hoisted, but they assignment is not. They are `undefined` until the line where they are assigned a value.
+
+Let's look at an example:
+
+```js
+logSomethingDeclaration('This works.');
+console.log(typeof logSomethingDeclaration); // "function"
+
+function logSomethingDeclaration(something) {
+  console.log(something);
+}
+
+logSomethingExpression('This will throw an error');
+// TypeError: logSomethingExpression is not a function. (In
+// 'logSomethingExpression('This will throw an error')',
+// 'logSomethingExpression' is undefined)
+
+console.log(typeof logSomethingExpression); // "undefined"
+
+var logSomethingExpression = function (something) {
+  console.log(something);
+};
+```
+
+We'll revisit some of the other differences between function declarations and later on when discuss [recursion](#Recursion).
 
 ## Invoking functions
+
 Let's now take a look at the intricacies of function invocation.
 
 ### The difference between calling functions and referencing functions
@@ -74,7 +117,7 @@ reference(2); // 2
 * Call the `timesTwo()` function, passing in `2` as an argument
 * Try `console.log(timesTwo.name)` and inspect the result
 
-### Invoking functions
+### Methods
 
 At this point we've explored one way of invoking a function — adding a pair of parentheses onto the end. In the section on Object-Oriented JavaScript, we also explored adding methods to an objects prototype. These methods — and the ones on `Array.prototype` — are just functions stored in object properties.
 
@@ -366,6 +409,28 @@ requestAnimationFrame(function gameLoop() {
   requestAnimationFrame(gameLoop); // Recursion!
 });
 ```
+
+### Function declarations, function expressions, and recursion
+
+Declared functions have a `name` property that is availably internally to the function. Function expressions stored in variables are anonymous. Instead, we use a variable to refer to them. JavaScript will look at the right side of a an assignment (anytime we use the `=` operator) before storing it into a variable. This means that the function itself has no way of knowing what variable it will be assigned to and—as a result—has to no way of referring to itself recursively.
+
+```js
+function logYourselfDeclaration() {
+  console.log(typeof logYourselfDeclaration);
+}
+
+var logYourselfExpression = function () {
+  console.log(typeof logYourselfExpression);
+}
+
+logYourselfDeclaration(); // "function"
+logYourselfExpression(); // "undefined"
+
+console.log(logYourselfDeclaration.name); // "logYourselfDeclaration"
+console.log(logYourselfExpression.name); // ""
+```
+
+We cannot use function expressions recursively because they do not have a reference to themselves.
 
 ### Your Turn
 Now it's time to try writing some recursive examples of your own.
