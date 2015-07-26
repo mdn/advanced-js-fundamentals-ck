@@ -2,7 +2,7 @@
 
 When we call a function in JavaScript, it typically runs until it hits the end of the function or a `return` statement. Generators, which are new to [ES6/2015][], are functions that can be paused and restarted again, and can return values at multiple points in their execution.
 
-[ES6/2015]:http://es6-features.org/#GeneratorFunctionIteratorProtocol
+[ES6/2015]: http://es6-features.org/#GeneratorFunctionIteratorProtocol
 
 Consider the `countdown()`, `fibonacci()`, and `factorial()` functions from the section on calling functions. We passed either a starting or stopping point to each function. Letting them run forever would be problematic. That said, it's conceivable to think that we might want to keep working with new factorials or numbers in a Fibonacci sequence as time goes on. This is a great use for generators.
 

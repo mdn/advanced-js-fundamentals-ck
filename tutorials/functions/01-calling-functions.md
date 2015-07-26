@@ -160,7 +160,7 @@ function logFoo() {
 * Set a `log` property on each object with a reference to `logFoo`.
 * Call `bar.log()` and `baz.log()` and notice the difference
 
-### The call() and apply() functions
+### The `call()` and `apply()` methods
 
 It's helpful that functions will adapt to their surroundings, but sometimes we need to be explicit about what we want `this` to be when we invoke a function.
 
@@ -210,6 +210,14 @@ var numbers = [1, 2, 3];
 
 addThreeNumbers.apply(null, numbers);
 ```
+
+`apply()` takes the array provided and passes each element to the function. If we just passed the array to to the array, the entire array of numbers would be assigned to `first`. Alternatively, we could write something like this.
+
+```js
+addThreeNumbers(numbers[0], numbers[1], numbers[2]);
+```
+
+This can be a bit tedious with larger arrays and requires that we know about the array of arguments we would like to apply to the function.
 
 We used `null` in the example above because it doesn't matter what `this` is since we're not using it.
 

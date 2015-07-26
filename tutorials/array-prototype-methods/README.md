@@ -454,7 +454,13 @@ console.log(instagramAPI.data[2].likes.count); // Logs 7
 
 We want to know what the cool kids are into. Can you sort the photos and videos by the number of times it was liked? The most liked photo or video should be first and the least liked photo or video should be last.
 
-## Array.prototype.some and Array.prototype.every
+## Addition Array.prototype methods
+
+`Array.prototype` has a number of other methods beyond what we have discussed in depth above. You can find the full list of methods [at the Mozilla Developer Network page for `Array`][mdn-array]. Below are a few additional methods that are particularly useful.
+
+[mdn-array]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array
+
+### Array.prototype.some and Array.prototype.every
 
 [`Array.prototype.some()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some) and [`Array.prototype.every()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every) are used to determine if some or all — respectively — of the elements meet a given criteria. Like `filter()`, `some()` and `every()` take a callback function that returns either a truthy or falsy value. While `filter()` returns a new array, however, `some()` and `every()` return a boolean that indicates the result of the test:
 
@@ -474,7 +480,7 @@ function isOdd(number) {
 [somefill]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some#Polyfill
 [everyfill]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every#Polyfill
 
-## Array.prototype.concat
+### Array.prototype.concat
 
 [`Array.prototype.concat()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat) defines additional values and arrays and adds them onto the array on which it is called.
 
@@ -488,7 +494,7 @@ console.log(instruments);
 // Logs ["guitar", "bass", "harp", "bongos", "snare drum", "bass drum"]
 ```
 
-## Array.prototype.indexOf
+### Array.prototype.indexOf
 
 Often we will want to know if a certain element is in an array. In these cases, we can use [`Array.prototype.indexOf()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf) to find the index of a given element.
 
@@ -511,7 +517,7 @@ Conversely, if we want to check that an element is not in an array, we can asser
 ['a', 'b', 'c'].indexOf('not in here') === -1;
 ```
 
-## Array.prototype.slice
+### Array.prototype.slice
 
 [`Array.prototype.slice()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice) returns a copy of a given array. It takes two optional arguments: a starting index and an ending index. If we give `slice` a starting index it will return a copy of the array from that starting index forward. If we provide it a starting and ending index, it will return an array of the elements between those two indexes. If we give `slice()` a negative starting index, it will start from the end of the array and work backwards.
 
