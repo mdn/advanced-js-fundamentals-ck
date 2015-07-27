@@ -30,7 +30,7 @@ var logSomething = function (something) {
 
 In the first example, we are declaring a function with the name `logSomething`. In the second example, we are declaring a variable called `logSomething` and assigning an anonymous function as its value.
 
-Function declarations are hoisted to the top of the scope, which means that you can invoke a function on an earlier line that your declaration. Variable declarations are also hoisted, but they assignment is not. They are `undefined` until the line where they are assigned a value.
+Function declarations are hoisted to the top of the scope, which means that you can invoke a function on an earlier line than your declaration appears on. Variable declarations are also hoisted, but their assignment is not. They are `undefined` until the line where they are assigned a value.
 
 Let's look at an example:
 
@@ -54,7 +54,7 @@ var logSomethingExpression = function (something) {
 };
 ```
 
-We'll revisit some of the other differences between function declarations and later on when discuss [recursion](#Recursion).
+We'll revisit some of the other differences between function declarations and expressions later on when we discuss [recursion](#Recursion).
 
 ## Invoking functions
 
@@ -74,13 +74,13 @@ sayHello();
 
 Functions are incredibly flexible in JavaScript. Not only can we call them like we did above — we can also pass them as arguments to other functions. We can also assign them to properties in objects as well as store them in variables. As a result, we need a way to talk about functions without accidentally calling them in the wrong place.
 
-We can refer to a function without calling it by omitting the parentheses (you'll sometimes see the parentheses refferred to as the "function invocation operator").
+We can refer to a function without calling it by omitting the parentheses (you'll sometimes see the parentheses referred to as the "function invocation operator").
 
 ```js
 var myFavoriteFunction = sayHello;
 ```
 
-In the first section of this content kit, we passed functions to methods on `Array.prototype`. It was the method's job to call this function on each member of the array. We _do not_ want to call it the function as we pass it to the method on `Array.prototype`.
+In the first section of this content kit, we passed functions to methods on `Array.prototype`. It was the method's job to call this function on each member of the array. We _do not_ want to call the function as we pass it to the method on `Array.prototype`.
 
 We omit the parentheses in this context because we're referencing it, but not invoking it. For example:
 
@@ -119,9 +119,9 @@ reference(2); // 2
 
 ### Methods
 
-At this point we've explored one way of invoking a function — adding a pair of parentheses onto the end. In the section on Object-Oriented JavaScript, we also explored adding methods to an objects prototype. These methods — and the ones on `Array.prototype` — are just functions stored in object properties.
+At this point we've explored one way of invoking a function — adding a pair of parentheses onto the end. In the section on Object-Oriented JavaScript, we also explored adding methods to an object's prototype. These methods — and the ones on `Array.prototype` — are just functions stored in object properties.
 
-However, something special happens when we declare a function as property on a object.
+However, something special happens when we declare a function as a property on a object.
 
 ```js
 function logThis() {
@@ -256,7 +256,7 @@ var numbers = [2, 3, 10, 100, 2048, 1984, 2012, 919];
 Math.min(...numbers);
 ```
 
-You can read more about the spread operator [here][mdn-spread].
+You can [read more about the spread operator][mdn-spread] on MDN.
 
 [mdn-spread]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator
 
@@ -275,7 +275,7 @@ addThreeNumbers.apply('oogieboogie', numbers);
 
 ## Explicitly setting context with `bind()`
 
-`call()` and `apply()` are great ways of explicitly setting `this` when we call a function. But sometimes, we want to set `this` when we define a function, not when we call it.
+`call()` and `apply()` are great ways of explicitly setting `this` when we call a function. Sometimes however we want to set `this` when we define a function, not when we call it.
 
 `call()` and `apply()` invoke the function immediately. `bind()` is different — it returns a copy of the function with `this` set explicitly that we can call later.
 
@@ -318,7 +318,7 @@ spot.boundSayHello(); // My name is Fido.
 spot.anotherBoundSayHello(); // My name is Taco.
 ```
 
-`bind` is useful when working with asynchronous JavaScript using callbacks or promises. When we make an AJAX request to a server, we typically pass a callback function that will execute when we hear back from the server. While, we're usually writing this function in context of the object we're working with. It will be executed in a totally different context.
+`bind()` is useful when working with asynchronous JavaScript using callbacks or promises. When we make an AJAX request to a server, we typically pass a callback function that will execute when we hear back from the server. We will usually write this function in context of the object we're working with, but with `bind()` it can be executed in a totally different context.
 
 Let's take a look at an example without any asynchronous callbacks:
 
@@ -363,7 +363,7 @@ console.log(window.firstName); // Wes. Whoops, we made a global variable.
 
 Although we're writing our code in the context of the `person` object, that's not where it's getting called. It's getting called later on and our anonymous function — passed into `somethingAsynchronous()` as `callback` — doesn't have any context of where it came from, so `this` ends up being equal to `window`. The end result is that not only did we not update the property we wanted to, but we also accidentally set a global variable.
 
-There are a few ways to handle this. While the callback loses its reference to `this`, it still has access to the scope that it came from. As a result, this will work:
+There are a few ways to handle this. While the callback loses its reference to `this`, it still has access to the scope that it came from. As a result, this would work:
 
 ```js
 function somethingAsynchronous(callback) {

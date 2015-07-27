@@ -1,4 +1,7 @@
 # Currying and partial application
+In this article we will discuss two additional techniques for working with functions — partial application, which allows us to use functions as templates for other functions, and currying, which allows you to use functions embedded inside one another to apply arguments one by one, so a multi-argument function can be customized when each argument is set.
+
+Read on, my friends.
 
 ## Partial application
 
@@ -34,14 +37,14 @@ function multiply(a, b) {
 
 Use partial application to create the following:
 
-* A function that adds 1 to a number
-* A function that subtracts 3 from a number
-* A function that doubles a number
-* A function that halves a number
+* A function that adds 1 to a number.
+* A function that subtracts 3 from a number.
+* A function that doubles a number.
+* A function that halves a number.
 
 ## Currying
 
-[Currying][] is a technique—similar to partial application named after the famous mathematician, [Haskell Curry][hc]—for whom the [Haskell][] programming language is also named. With partial application, we took an existing function and returned a new function with one or more of the arguments applied. With function currying we apply each argument one at a time, returning a new function in the currying chain until all the arguments have been supplied.
+[Currying][] is a technique—similar to partial application, named after the famous mathematician, [Haskell Curry][hc] — after whom the [Haskell][] programming language is also named. With partial application, we took an existing function and returned a new function with one or more of the arguments applied. With function currying we apply each argument one at a time, returning a new function in the currying chain until all the arguments have been supplied.
 
 [Currying]: https://en.wikipedia.org/wiki/Currying
 [hc]: https://en.wikipedia.org/wiki/Haskell_Curry
@@ -71,7 +74,7 @@ function curriedAddThreeNumbers(first) {
 curriedAddThreeNumbers(1)(2)(3); // returns 6
 ```
 
-Let's break that out in order to getting a better sense of what's happening.
+Let's break that out in order to get a better sense of what's happening.
 
 ```js
 var firstArgumentApplied = curriedAddThreeNumbers(1); // returns a function
@@ -97,9 +100,9 @@ function wrapInListItemTags(body) {
 }
 ```
 
-This example is deliberately simple, but it illustrates the idea of repetitive code. It's fair to assume that we continued down this path, we'd end up with more than three functions.
+This example is deliberately simple, but it illustrates the idea of repetitive code. It's fair to assume that if we continued down this path, we'd end up with more than three functions.
 
-Let's say we wanted to change this code to include a `class` attribute for each tag. We would have to update each function individually and each time we updated a function we would run the risk of making a mistake and introducing a bug into our code.
+Let's say we wanted to change this code in some way (for example to include a `class` attribute for each tag.) We would have to update each function individually and each time we updated a function we would run the risk of making a mistake and introducing a bug into our code. Instead, we could use currying to make this more efficient and error-free:
 
 ```js
 function createCurriendWrapper(tagName) {
@@ -124,4 +127,4 @@ You've been asked to create a custom logger for a major software project. The in
 * Implement a `dangerLog` function that takes a message and prefixes it with `DANGER:`.
 * Implement a `successLog` function that takes a message and prefixes it with `SUCCESS:`.
 
-Can you you implement the above twice—once using partial application and once using function currying?
+Can you you implement the above twice — once using partial application and once using function currying?
