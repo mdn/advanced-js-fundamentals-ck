@@ -50,7 +50,7 @@ Use partial application to create the following:
 [hc]: https://en.wikipedia.org/wiki/Haskell_Curry
 [haskell]: https://www.haskell.org
 
-A curried function is one that returns a new function for every argument that it takes. Consider our `addThreeNumbers` function from an earlier section:
+A curried function is one that returns a new function for every argument that it takes. Consider our `addThreeNumbers()` function from an earlier section:
 
 ```js
 function addThreeNumbers(first, second, third) {
@@ -66,7 +66,7 @@ To rewrite this function as a curried function, we need to have it return a new 
 function curriedAddThreeNumbers(first) {
   return function (second) {
     return function (third) {
-      return
+      return first + second + third;
     }
   }
 }
@@ -128,3 +128,5 @@ You've been asked to create a custom logger for a major software project. The in
 * Implement a `successLog` function that takes a message and prefixes it with `SUCCESS:`.
 
 Can you you implement the above twice — once using partial application and once using function currying?
+
+A basic setup and tests have been provided in `demos/currying` to help you validate your solution.
