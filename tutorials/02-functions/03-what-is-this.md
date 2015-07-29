@@ -25,7 +25,7 @@ someObj.log(); // logs `someObj`
 When we declare `logThis`, it's in the global scope. When we're in the global scope, `this` is set to the global object, which can be one of three things depending on our environment:
 
 * In the browser, `window` is the global object.
-* If we are in [strict mode][], `this` is `undefined` in the global scope.
+* If we are in [strict mode][], `this` is `undefined`.
 * In Node.js, `global` is the global object as we don't have a window to speak of.
 
 [strict mode]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode?redirectlocale=en-US&redirectslug=JavaScript%2FStrict_mode
@@ -36,7 +36,7 @@ We'll discuss a few cases where `this` is not the global object. But, the first 
 
 The first time we call `logThis()`, we're still in the context of the global scope. So, the first rule applies and `this` is the global object or `undefined` if we're in strict mode.
 
-But something a little different happens when we put a reference to that function inside of `someObj`. `someObj.log` points to our original `logThis` function at the top of the example. But, when we call it using `someObj.log`, we're calling it from the context of `someObj`. As a result, we get a different result. `this` is `someObj`, because that is the context it is being called from — regardless of what the context was when `logThis` was declared.
+But something a little different happens when we put a reference to that function inside of `someObj`. `someObj.log` points to our original `logThis` function at the top of the example. When we call it using `someObj.log`, we're calling it from the context of `someObj` and we get a different result. `this` is `someObj`, because that is the context it is being called from — regardless of what the context was when `logThis` was declared.
 
 ## `Function.prototype.call()` and `Function.prototype.apply()` methods
 
