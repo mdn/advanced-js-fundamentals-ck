@@ -30,12 +30,26 @@ fido.legs; // 4
 spot.name; // 'spot'
 ```
 
+## Functions and `this` revisited
+
+You may have noticed that we're using `this` in our function and that it isn't bound to the global object, like it ought to be if we were following the three rules in the section on functions. Well, that's because there is a _fourth rule_.
+
+`Dog` is just a regular function. But, we call it a little differently than we did in previous section on functions. If you recall, there are a few ways we can call a function:
+
+* Using a pair of parenthesis as the end of the functions name (e.g. `someFunction()`).
+* Using the `call()` method (e.g. `someFunciton.call()`).
+* Using the `apply()` method (e.g. `someFunciton.apply()`).
+
+When we are writing object-oriented JavaScript, we have a fourth way of invoking a function: the `new` keyword. The `new` keyword invokes the function _as a constructor_, which causes it to behave in a fundamentally different way. Additionally, the three previous rules for determining the value of `this` no longer apply.
+
 When we use the `new` keyword to call our function as a constructor, a few things happen under the scenes:
 
 1. `this` is set to a new empty object
 2. The prototype property of the constructor function (`Dog.prototype` in the example above) is set as the prototype of the new object, which was set to `this` in the first step
 3. the body of our function is run
 4. our new object, `this`, is returned from the constructor
+
+## The `prototype` property
 
 Let's take a look at this in the context of our `Dog()` constructor:
 
@@ -59,7 +73,7 @@ console.log(Dog.prototype); // Logs {}
 console.log(Cat.prototype); // Logs {}
 ```
 
-With regular functions, we generally don't use the `prototype` property. This special little object comes in to play when we use the function as a constructor.
+With regular functions, we generally don't use the `prototype` property — it's like an appendix. But, this special little object comes in to play when we use the function as a constructor.
 
 You may have heard that JavaScript has something called prototypal inheritance. This is a very complicated term for a relatively simple concept.
 
