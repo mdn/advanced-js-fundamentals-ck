@@ -63,6 +63,49 @@ document.querySelectorAll('.heading');
 
 [mdn-selectors]: https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Getting_started/Selectors
 
+### Adding an Event Listener
+
+Now that we've found an element, we can add a listener. `Node`s have methods for attaching event listeners to them as well as removing them. Let's take a look.
+
+```js
+// Imagine that we have a button with an id of "click-me"
+var clickMeButton = document.getElementById('click-me');
+
+clickMeButton.addEventListener('click', function () {
+  console.log('You clicked me!');
+});
+```
+
+`addEventListener` takes two arguments: the type of event you're listening for and a function you'd like to run when the event occurs. Here is a list of some common events:
+
+* `click`
+* `dblclick`
+* `focus` (occurs when the user enters an input element)
+* `blur` (occurs when the user leaves an input element)
+* `change` (occurs when the user leaves an input element after changing its value)
+* `keydown` (occurs when a user presses down on a key)
+* `keyup` (occurs when a user releases a key)
+* `mouseenter` (occurs when the user's mouse enters a given element)
+* `mouseleave` (occurs when the user's mouse leaves a given element)
+
+You can find a much more in depth list at [MDN](https://developer.mozilla.org/en-US/docs/Web/Events).
+
+### `this` in Event Listeners
+
+The mechanism that calls your event listener sets `this` to the `Node` where the event occured using `Function.prototype.call`. At first, this seems like an additional thing to remember, but it's useful for referencing the element where the event occured.
+
+```js
+var clickMeButton = document.getElementById('click-me');
+
+clickMeButton.addEventListener('click', function () {
+  console.log(this); // Logs the button that was clicked on.
+});
+```
+
 ## Your turn
 
 In `demos/events/01-basic-events`, you have an `index.html` file with two buttons. In `script.js` we have an event listener on the button with the `id` of `dont-click-me`.
+
+* Add an event listener to the button with the `id` of `please-click-me`.
+* Refactor the `document.getElementById()` calls for `document.querySelector()` (remember, you'll need the `#` for the CSS selector).
+* Add an event listener to both buttons (find them both using either `document.getElementyByTagName()` or `document.querySelectorAll()`) that logs the button that was clicked to the console.
