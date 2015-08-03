@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <title>Musical Data</title>
   <link rel="stylesheet" href="../_shared/style.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -11,44 +12,29 @@
   <div class="container">
     <div class="piano keyboard">
       <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-      <svg width="800px" height="300px" viewBox="0 0 1120 400" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <svg width="600px" height="300px" viewBox="0 0 560 400" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
         <title>Piano Keyboard</title>
         <defs></defs>
           <g id="piano-keyboard">
-            <g id="octave-1">
-              <rect id="piano-key-C3" class="piano-key white-key" data-piano-key="C3" stroke="#555555" fill="#FFFFF7" x="0" y="0" width="80" height="400"></rect>
-              <rect id="piano-key-D3" class="piano-key white-key" data-piano-key="D3" stroke="#555555" fill="#FFFFF7" x="80" y="0" width="80" height="400"></rect>
-              <rect id="piano-key-E3" class="piano-key white-key" data-piano-key="E3" stroke="#555555" fill="#FFFFF7" x="160" y="0" width="80" height="400"></rect>
-              <rect id="piano-key-F3" class="piano-key white-key" data-piano-key="F3" stroke="#555555" fill="#FFFFF7" x="240" y="0" width="80" height="400"></rect>
-              <rect id="piano-key-G3" class="piano-key white-key" data-piano-key="G3" stroke="#555555" fill="#FFFFF7" x="320" y="0" width="80" height="400"></rect>
-              <rect id="piano-key-A3" class="piano-key white-key" data-piano-key="A3" stroke="#555555" fill="#FFFFF7" x="400" y="0" width="80" height="400"></rect>
-              <rect id="piano-key-B3" class="piano-key white-key" data-piano-key="B3" stroke="#555555" fill="#FFFFF7" x="480" y="0" width="80" height="400"></rect>
-              <rect id="piano-key-C#3" class="piano-key black-key" data-piano-key="C#3" stroke="#979797" fill="#4B4B4B" x="60" y="0" width="40" height="280"></rect>
-              <rect id="piano-key-D#3" class="piano-key black-key" data-piano-key="D#3" stroke="#979797" fill="#4B4B4B" x="140" y="0" width="40" height="280"></rect>
-              <rect id="piano-key-F#3" class="piano-key black-key" data-piano-key="F#3" stroke="#979797" fill="#4B4B4B" x="300" y="0" width="40" height="280"></rect>
-              <rect id="piano-key-G#3" class="piano-key black-key" data-piano-key="G#3" stroke="#979797" fill="#4B4B4B" x="380" y="0" width="40" height="280"></rect>
-              <rect id="piano-key-A#3" class="piano-key black-key" data-piano-key="A#3" stroke="#979797" fill="#4B4B4B" x="460" y="0" width="40" height="280"></rect>
-            </g>
-            <g id="octave-2" transform="translate(560.000000, 0.000000)">
-              <rect id="piano-key-C4" class="piano-key white-key" data-piano-key="C4" stroke="#555555" fill="#FFFFF7" x="0" y="0" width="80" height="400"></rect>
-              <rect id="piano-key-D4" class="piano-key white-key" data-piano-key="D4" stroke="#555555" fill="#FFFFF7" x="80" y="0" width="80" height="400"></rect>
-              <rect id="piano-key-E4" class="piano-key white-key" data-piano-key="E4" stroke="#555555" fill="#FFFFF7" x="160" y="0" width="80" height="400"></rect>
-              <rect id="piano-key-F4" class="piano-key white-key" data-piano-key="F4" stroke="#555555" fill="#FFFFF7" x="240" y="0" width="80" height="400"></rect>
-              <rect id="piano-key-G4" class="piano-key white-key" data-piano-key="G4" stroke="#555555" fill="#FFFFF7" x="320" y="0" width="80" height="400"></rect>
-              <rect id="piano-key-A4" class="piano-key white-key" data-piano-key="A4" stroke="#555555" fill="#FFFFF7" x="400" y="0" width="80" height="400"></rect>
-              <rect id="piano-key-B4" class="piano-key white-key" data-piano-key="B4" stroke="#555555" fill="#FFFFF7" x="480" y="0" width="80" height="400"></rect>
-              <rect id="piano-key-C#4" class="piano-key black-key" data-piano-key="C#4" stroke="#979797" fill="#4B4B4B" x="60" y="0" width="40" height="280"></rect>
-              <rect id="piano-key-D#4" class="piano-key black-key" data-piano-key="D#4" stroke="#979797" fill="#4B4B4B" x="140" y="0" width="40" height="280"></rect>
-              <rect id="piano-key-F#4" class="piano-key black-key" data-piano-key="F#4" stroke="#979797" fill="#4B4B4B" x="300" y="0" width="40" height="280"></rect>
-              <rect id="piano-key-G#4" class="piano-key black-key" data-piano-key="G#4" stroke="#979797" fill="#4B4B4B" x="380" y="0" width="40" height="280"></rect>
-              <rect id="piano-key-A#4" class="piano-key black-key" data-piano-key="A#4" stroke="#979797" fill="#4B4B4B" x="460" y="0" width="40" height="280"></rect>
-            </g>
+            <rect class="piano-key white-key" data-piano-key="C3" stroke="#555555" fill="#FFFFF7" x="0" y="0" width="80" height="400"></rect>
+            <rect class="piano-key white-key" data-piano-key="D3" stroke="#555555" fill="#FFFFF7" x="80" y="0" width="80" height="400"></rect>
+            <rect class="piano-key white-key" data-piano-key="E3" stroke="#555555" fill="#FFFFF7" x="160" y="0" width="80" height="400"></rect>
+            <rect class="piano-key white-key" data-piano-key="F3" stroke="#555555" fill="#FFFFF7" x="240" y="0" width="80" height="400"></rect>
+            <rect class="piano-key white-key" data-piano-key="G3" stroke="#555555" fill="#FFFFF7" x="320" y="0" width="80" height="400"></rect>
+            <rect class="piano-key white-key" data-piano-key="A3" stroke="#555555" fill="#FFFFF7" x="400" y="0" width="80" height="400"></rect>
+            <rect class="piano-key white-key" data-piano-key="B3" stroke="#555555" fill="#FFFFF7" x="480" y="0" width="80" height="400"></rect>
+            <rect class="piano-key black-key" data-piano-key="C#3" stroke="#979797" fill="#4B4B4B" x="60" y="0" width="40" height="280"></rect>
+            <rect class="piano-key black-key" data-piano-key="D#3" stroke="#979797" fill="#4B4B4B" x="140" y="0" width="40" height="280"></rect>
+            <rect class="piano-key black-key" data-piano-key="F#3" stroke="#979797" fill="#4B4B4B" x="300" y="0" width="40" height="280"></rect>
+            <rect class="piano-key black-key" data-piano-key="G#3" stroke="#979797" fill="#4B4B4B" x="380" y="0" width="40" height="280"></rect>
+            <rect class="piano-key black-key" data-piano-key="A#3" stroke="#979797" fill="#4B4B4B" x="460" y="0" width="40" height="280"></rect>
           </g>
       </svg>
     </div>
   </div>
 
-  <script src="_setup.js"></script>
+  <script src="_octavian.js"></script>
+  <script src="_synthesizer.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

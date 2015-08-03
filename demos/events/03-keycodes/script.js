@@ -9,7 +9,7 @@ var block = {
 }
 
 document.addEventListener('keydown', function (event) {
-  console.log(event);
+  // Your code here…
 });
 
 requestAnimationFrame(function gameLoop() {
