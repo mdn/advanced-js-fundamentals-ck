@@ -96,7 +96,7 @@ function wrapInHeaderTags(body) {
 }
 
 function wrapInListItemTags(body) {
-  return '<h1>' + body + '</h1>';
+  return '<li>' + body + '</li>';
 }
 ```
 
@@ -105,20 +105,20 @@ This example is deliberately simple, but it illustrates the idea of repetitive c
 Let's say we wanted to change this code in some way (for example to include a `class` attribute for each tag.) We would have to update each function individually and each time we updated a function we would run the risk of making a mistake and introducing a bug into our code. Instead, we could use currying to make this more efficient and error-free:
 
 ```js
-function createCurriendWrapper(tagName) {
+function createCurriedWrapper(tagName) {
   return function (body) {
     return '<' + tagName + '>' + body + '</' + tagName + '>';
   };
 }
 
-var wrapInParagraphTags = createCurriendWrapper('p');
-var wrapInHeaderTags = createCurriendWrapper('h1');
-var wrapInListItemTags = createCurriendWrapper('li');
+var wrapInParagraphTags = createCurriedWrapper('p');
+var wrapInHeaderTags = createCurriedWrapper('h1');
+var wrapInListItemTags = createCurriedWrapper('li');
 
-var h2 = createCurriendWrapper('h2')('Hello world');
+var h2 = createCurriedWrapper('h2')('Hello world');
 ```
 
-Now, if we needed to change the basic implementation of wrapping strings in HTML tags, we could make our changes in one place, `createCurriendWrapper`, which is the foundation for all of our specialized wrapping functions.
+Now, if we needed to change the basic implementation of wrapping strings in HTML tags, we could make our changes in one place, `createCurriedWrapper`, which is the foundation for all of our specialized wrapping functions.
 
 ### Your turn
 
