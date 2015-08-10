@@ -1,5 +1,10 @@
-var AudioContext = window.AudioContext || window.webkitAudioContext;
-var context = new AudioContext();
+if (window.AudioContext) {
+  context = new window.AudioContext();
+} else if (window.webkitAudioContext) {
+  context = new window.webkitAudioContext();
+} else {
+  throw new Error('The Web Audio API is not supported in this browser.');
+}
 
 var oscillators = {};
 
@@ -28,10 +33,9 @@ Oscillator.prototype.stop = function () {
 }
 
 Oscillator.forNote = function (note) {
-  console.log(note);
   var frequency = new Octavian.Note(note).frequency;
   if (!oscillators[frequency]) {
-    notes[frequency] = new Oscillator(frequency);
+    oscillators[frequency] = new Oscillator(frequency);
   }
   return oscillators[frequency];
 }
