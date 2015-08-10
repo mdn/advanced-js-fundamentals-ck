@@ -6,12 +6,12 @@ If you recall in `demos/events/04-musical-data`, we iterated over all of the ele
 var pianoKeys = document.querySelectorAll('.piano-key');
 
 for (var i = 0; i < pianoKeys.length; i++) {
-  
+
   pianoKeys[i].addEventListener('click', function (event) {
     var note = this.getAttribute('data-piano-key');
     playNote(note);
   });
-  
+
 }
 ```
 
@@ -39,7 +39,11 @@ This code looks similar to the example above, with some important differences:
 * We won't have to add new listeners if we add additional keys to the keyboard.
 * We won't have to remove listeners if we remove keys from the keyboard to prevent memory leaks.
 
-There are some precautions that you should be mindful of:
+Event delegation does have some edge cases. There are some precautions that you should be mindful of:
 
 * Not all events bubble. `blur`, `focus`, `load` and `unload` do _not_ bubble.
-* Events that fire _too often_ (e.g. `mousemove`) might cause a performance bottleneck
+* Events that fire _too often_ (e.g. `mousemove`) might cause a performance bottleneck.
+
+## Your Turn
+
+Look at the code in `demos/events/05-delegation`. Add an event listener to the `<div>` with the id of "container". The event listener should look at the `target` property of the event to see which button was clicked. Change the text of the button that was clicked from "Click me!" to "I was clicked!".
