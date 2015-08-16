@@ -9,5 +9,3 @@
 - Two common patterns for receiving events asynchronously
   - events
   - callbacks
-- Callbacks
-  - Two styles: Node-style, coninuation passing (jQuery-style)
