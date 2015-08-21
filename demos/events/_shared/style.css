@@ -17,6 +17,7 @@ html {
 
 .button {
   padding: 1em;
+  margin: 0.3em;
   background-color: #1DB2D4;
   border: none;
   color: white;

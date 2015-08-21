@@ -1,4 +1,5 @@
 # Event Bubbling
+Now we've covered the very basics of events, let's turn our attention to event bubbling, which refers to the ability of events set on DOM nodes to "bubble up" and also apply to children of those nodes. We'll start with a quick experiment. 
 
 ## Experiment
 
@@ -22,9 +23,9 @@ Try the following:
 
 ## Discussion
 
-You may have noticed that the event listeners on a parent element is fired whenever the action occurs on one of its children.
+You may have noticed that the event listeners on a parent element are fired whenever the action occurs on one of its children.
 
-When an event occurs, the browser checks the element to see if there are any event listeners registered. After it checks the element where the event occured, the browser works its way up the DOM tree to see if any of the parents have a listener registered. It checks every element all the way up to the root. This process is known as _event bubbling_.
+When an event occurs, the browser checks the element to see if there are any event listeners registered. After it checks the element where the event occured, the browser works its way up the DOM tree to see if any of the parents have a listener registered, then grandparents, and so on. It checks every element all the way up to the root. This process is known as _event bubbling_.
 
 Try out the following code in `demos/events/02-bubbling/script.js`:
 
@@ -42,7 +43,7 @@ document.querySelector('#click-me').addEventListener('click', function (event) {
 });
 ```
 
-If you click on the button, you'll see that the event bubbles up through the `.parent` and `.grandparent` elements as well.
+If you click on the button, you'll see that the events all bubbles up through the `.parent` and `.grandparent` elements — this provides a more explicit proof than the solutions you may come up with for the previous question.
 
 ### The Event Object
 
@@ -50,7 +51,7 @@ The anonymous function passed to `document.addEventListener()` takes an optional
 
 Each type of event supports a number of different properties. `MouseEvent`s contains information about the `x` and `y` coordinates where the mouse was clicked. `KeyboardEvent` has information about which key was pressed. The `currentTarget` property on the `Event` object can be useful during the event bubbling phase.
 
-Let's make some changes to the code from earlier. Instead of logging a description of each element where an event was triggered, either by a click or through event bubbling, let's log the `target` on the event.
+Let's make some changes to the code from earlier. Instead of logging a description of each element where an event was triggered, either by a click or through event bubbling, let's log the `target` of the event.
 
 ```js
 document.querySelector('.grandparent').addEventListener('click', function (event) {

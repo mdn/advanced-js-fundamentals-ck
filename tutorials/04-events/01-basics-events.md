@@ -1,8 +1,8 @@
-# Events
+# Event basics
 
-Events are happening all the time in the browser. When the browser has finished loading the page, an event is fired. Every time the user moves their mouse, hoves over an element, clicks or taps, submits a form, presses down on a key or takes their finger off — an event is fired. Some of these events are meaningful (e.g. the user clicks on a hyperlink), but many go by completely unnoticed.
+Events are happening all the time in the browser. When the browser has finished loading the page, an event is fired. Every time the user moves their mouse, hovers over an element, clicks or taps, submits a form, presses down on a key or takes their finger off that key — an event is fired. Some of these events are very easy to spot when they occur (e.g. the user clicks on a hyperlink), but many go by completely unnoticed.
 
-It is, however, possible for us to use JavaScript to set up listeners for events that interest us. Our listeners wait patiently on a DOM node until the event their waiting for is fired. Then, they spring into action.
+It is, however, possible for us to use JavaScript to set up listeners for events that interest us. Our listeners wait patiently on a DOM node until the event they're waiting for is fired. Then, they spring into action, running an appropriate function to respond to the event as required, or whatever else you deem appropriate.
 
 ## Finding DOM Nodes
 
@@ -80,13 +80,13 @@ clickMeButton.addEventListener('click', function () {
 
 * `click`
 * `dblclick`
-* `focus` (occurs when the user enters an input element)
-* `blur` (occurs when the user leaves an input element)
+* `focus` (occurs when the user focuses an input element)
+* `blur` (occurs when the user leaves an input element; in other words, the element loses focus)
 * `change` (occurs when the user leaves an input element after changing its value)
 * `keydown` (occurs when a user presses down on a key)
 * `keyup` (occurs when a user releases a key)
-* `mouseenter` (occurs when the user's mouse enters a given element)
-* `mouseleave` (occurs when the user's mouse leaves a given element)
+* `mouseenter` (occurs when the user's mouse enters a given element, or in other words, hovers over it)
+* `mouseleave` (occurs when the user's mouse leaves a given element, or stops hovering over it)
 
 You can find a much more in depth list at [MDN](https://developer.mozilla.org/en-US/docs/Web/Events).
 

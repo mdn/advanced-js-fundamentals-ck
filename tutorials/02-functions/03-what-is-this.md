@@ -1,6 +1,6 @@
 # What is `this`?
 
-In the examples above, we used a special property in JavaScript called `this`. `this` is not only very hard to talk about in English, it's concept that can be confusing to may new JavaScript developers. We'll be dealing with `this` a lot in the next few sections, so it's probably best that we spend a little time talking about it now.
+In the examples above, we used a special property in JavaScript called `this`. `this` is not only very hard to talk about in English, it's a concept that can be confusing to many new JavaScript developers. We'll be dealing with `this` a lot in the next few sections, so it's probably best that we spend a little time talking about it now.
 
 The short and not very helpful version is that `this` refers to the _context_ in which a function was _invoked_ in JavaScript. This is different from where it was _defined_.
 
@@ -20,6 +20,12 @@ var someObj = {
 someObj.log(); // logs `someObj`
 ```
 
+This gives you a basic idea of what `this` is, but sometimes things get more complicated and it is harder to get `this` to reference the correct context for your programs to work properly — this is a common source of problems in JavaScript.
+
+## rules for `this`
+
+Below we'll look at a couple of rules we can follow to make things easier. 
+
 ### Rule 1: Unless another rule says otherwise, `this` is the global object
 
 When we declare `logThis`, it's in the global scope. When we're in the global scope, `this` is set to the global object, which can be one of three things depending on our environment:
@@ -34,11 +40,11 @@ We'll discuss a few cases where `this` is not the global object. But, the first 
 
 ### Rule 2: `this` is set implicitly when a function is called as a method
 
-The first time we call `logThis()`, we're still in the context of the global scope. So, the first rule applies and `this` is the global object or `undefined` if we're in strict mode.
+The first time we call `logThis()`, we're still in the context of the global scope. So, the first rule applies and `this` is the global object (or `undefined` if we're in strict mode.)
 
-But something a little different happens when we put a reference to that function inside of `someObj`. `someObj.log` points to our original `logThis` function at the top of the example. When we call it using `someObj.log`, we're calling it from the context of `someObj` and we get a different result. `this` is `someObj`, because that is the context it is being called from — regardless of what the context was when `logThis` was declared.
+But something a little different happens when we put a reference to that function inside of `someObj`. `someObj.log` points to our original `logThis` function at the top of the example, but when we call `someObj.log`, we're calling it from the context of `someObj` so we get a different result. `this` is `someObj`, because that is the context it is being called from — regardless of what the context was when `logThis` was declared.
 
-## `Function.prototype.call()` and `Function.prototype.apply()` methods
+### Rule 3: `this` can be explicitly set using call or apply
 
 It's helpful that functions will adapt to their surroundings, but sometimes we need to be explicit about what we want `this` to be when we invoke a function.
 
@@ -77,15 +83,14 @@ addThreeNumbersToFoo.apply(someObject, numbers); // returns 10
 addThreeNumbersToFoo.apply({ foo: 1 }, [1, 1, 1]); // returns 4
 ```
 
-### Rule 3: `this` can be explicitly set using call or apply
-
 `call()` and `apply()` allow us to have a say as to the mercurial binding of `this`. Regardless of the first and second rules, if we explicitly set the value of `this` using `call()` or `apply()`, then that's the value of `this` inside of that function.
 
 There is a fourth rule, but we'll have to wait until we discuss object-oriented JavaScript later on before we say anymore about it.
 
+
 ## Using `apply()` to spread an array of arguments
 
-On top of allowing you to explicitly set `this`, `apply()` makes it easy to split up an array of arguments.
+As we've seen `apply()` — like `call()` — is useful for explicitly setting `this`. Additionally, `apply()` is useful when we have an array that we'd like to spread out over the arguments of a function. Here's a quick example:
 
 ```js
 function addThreeNumbers(first, second, third) {
@@ -97,9 +102,9 @@ var numbers = [1, 2, 3];
 addThreeNumbers.apply(null, numbers);
 ```
 
-As we've seen `apply()`—like `call()`—is useful for explicitly setting `this`. Additionally, `apply()` is useful when we have an array that we'd like to spread out over the arguments of a function.
+Here the `numbers` array is being split up into three separate values that are  then specified as the arguments of the `addThreeNumbers` function and added together.
 
-Consider the `Math.min()` function. It takes a set of numbers as arguments and returns the smallest number. It can take any number of arguments.
+Now consider the `Math.min()` function. It takes a set of numbers as arguments and returns the smallest number. It can take any number of arguments.
 
 ```js
 Math.min(1, 4, 10, 2); // returns 1
@@ -120,7 +125,7 @@ var numbers = [201, 100, 2];
 Math.min(numbers[0], numbers[1], numbers[2]); // returns 2;
 ```
 
-This works, but it relies us having a manageable numbers of items in the array. Worse, it relies on us knowing how many elements are in the array. What if we had built up our array of numbers from some kind of user-input? We don't have a way of knowing if there will be 1 number in the array or 1,000.
+This works, but it relies us having a manageable number of items in the array. Worse, it relies on us knowing how many elements are in the array. What if we had built up our array of numbers from some kind of user input? We don't have a way of knowing if there will be 1 number in the array or 1,000.
 
 `apply()` will take the items in the array and spread them out over the arguments of the array. We don't have to access each element by its index, which means we also don't have to know how many elements are in the array.
 
@@ -206,7 +211,7 @@ haveTacoSayHello(); // My name is Taco.
 
 `bind()` seems like black magic, but it's something you can write a simple version of yourself — which might dispel some of the magic.
 
-The easiest way to stop `this` from changing under our feet, is to take it out of the picture.
+The easiest way to stop `this` from changing under our feet is to take it out of the picture.
 
 Consider the following adaptation from an earlier example:
 
@@ -225,7 +230,7 @@ function logThis() {
   console.log(this);
 }
 
-var logSandiwch = function () {
+var logSandwich = function () {
   logThis.call('sandwich');
 }
 
@@ -235,7 +240,7 @@ logSandwich(); // 'sandwich'
 
 #### Keeping Our Code DRY
 
-This works, but it's also a little tedious to have to create new variables each time we need to explicitly bind `this` and return a new function. It's also not very reusable If you recall from our section on currying, we can create a function that returns a function in order to keep our code DRY.
+This works, but it's also a little tedious to have to create new variables each time we need to explicitly bind `this` and return a new function. It's also not very reusable — if you recall from our section on currying, we can create a function that returns a function in order to keep our code DRY.
 
 ```js
 function logThis() {
@@ -303,7 +308,7 @@ logTaco('one', 'two', 'three'); // 'taco', 'one', 'two', 'three'
 logBurrito('one', 'two', 'three'); // 'burrito', 'one', 'two', 'three'
 ```
 
-All functions have accessed to an array-like collection called `arguments`. In the example above, we swap out `call()` for `apply()` and let it spread the collections of arguments passed in to our explicitly-bound function across the arguments of the original function.
+All functions have access to an array-like collection called `arguments`. In the example above, we swap out `call()` for `apply()` and let it spread the collections of arguments passed in to our explicitly-bound function across the arguments of the original function.
 
 #### A word of caution
 

@@ -1,6 +1,6 @@
 ## Storing Information in Data Attributes
 
-As we saw previously, when we respond to an event, `this` is set to the element that is currently responding to the event. This is useful for making changes to the element (or nearby elements). But sometimes, we need some extra information in addition to the element.
+As we saw previously, when we respond to an event, `this` is set to the element that the event is occuring on. This is useful for making changes to the element (or nearby elements). But sometimes, we need some extra information in addition to the element.
 
 HTML5 allows us to add data to an attribute using—wait for it—_data attributes_. Data attributes look suspiciously like regular attributres, with one thing in common: they are all prefixed with `data-`. Let's take a look at an example:
 
@@ -55,13 +55,15 @@ This will log the following:
 
 ## Your Turn
 
-In `demos/events/04-musical-data`, there is a small piano keyboard. Each key on the keyboard has a `data-piano-key` attribute.
+In `demos/events/04-musical-data`, there is a small piano keyboard. Each key on the keyboard has a `data-piano-key` attribute, for example:
 
 ```html
-
+<button class="piano-key white-key" data-piano-key="C3"></button>
+<button class="piano-key black-key" data-piano-key="C#3"></button>
+<button class="piano-key white-key" data-piano-key="D3"></button>
 ```
 
-There is also a `playNote` function that is globally available. `playNote` takes a note like "A4" plays a tone at that frequency for half a second.
+There is also a `playNote` function that is globally available. `playNote` takes a note like "A4" and plays a tone at that frequency for half a second.
 
 ```js
 playNote('A4'); // plays a tone at 440hz for 500 milliseconds
