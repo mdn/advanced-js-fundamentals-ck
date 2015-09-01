@@ -25,9 +25,9 @@ function Dog(name) {
 var fido = new Dog('Fido');
 var spot = new Dog('Spot');
 
-fido.name; // 'fido'
+fido.name; // 'Fido'
 fido.legs; // 4
-spot.name; // 'spot'
+spot.name; // 'Spot'
 ```
 
 ## Functions and `this` revisited
