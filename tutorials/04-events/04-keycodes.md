@@ -22,7 +22,7 @@ A combination of the events — depending on the users platform — above will o
 
 ### Quick Experiment
 
-Go to `demos/events/03-keycodes` and add a `keyup` listener to the `document` that logs the `event`. How do the properties of this event differ from `MouseEvent`?
+Go to `demos/events/04-keycodes` and add a `keyup` listener to the `document` that logs the `event`. How do the properties of this event differ from `MouseEvent`?
 
 ## Key Codes
 
@@ -42,7 +42,7 @@ What are the key codes for the four arrow keys? Write them down as we'll be usin
 
 ## Your Turn
 
-In `demos/events/03-keycodes`, we have a block object with some properties and a `requestAnimationFrame` loop that renders the current state of the block.
+In `demos/events/04-keycodes`, we have a block object with some properties and a `requestAnimationFrame` loop that renders the current state of the block.
 
 Modify the event listener to move adjust the `x` and `y` properties of the box on `keydown`.
 
@@ -75,7 +75,7 @@ A combination of the events — depending on the users platform — above will o
 
 ### Quick Experiment
 
-Go to `demos/events/03-keycodes` and add an `keyup` listener to the `document` that logs the `event`. What are some properties that different from what we saw earlier with `MouseEvent`?
+Go to `demos/events/04-keycodes` and add an `keyup` listener to the `document` that logs the `event`. What are some properties that different from what we saw earlier with `MouseEvent`?
 
 ## Key Codes
 
@@ -95,7 +95,7 @@ What are the key codes for the four arrow keys? Write them down as we'll be usin
 
 ## Your Turn
 
-In `demos/events/03-keycodes`, we have a block object with some properties and a `requestAnimationFrame` loop that renders the current state of the block.
+In `demos/events/04-keycodes`, we have a block object with some properties and a `requestAnimationFrame` loop that renders the current state of the block.
 
 Modify the event listener to move adjust the `x` and `y` properties of the box on `keydown`.
 
