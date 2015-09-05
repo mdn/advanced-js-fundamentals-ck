@@ -76,30 +76,3 @@ A combination of the events — depending on the users platform — above will o
 ### Quick Experiment
 
 Go to `demos/events/03-keycodes` and add an `keyup` listener to the `document` that logs the `event`. What are some properties that different from what we saw earlier with `MouseEvent`?
-
-## Key Codes
-
-The properties on `KeyboardEvent` vary from browser to browser. If you hit the down key in Firefox, you'll see that there is a `key` property with the value of `ArrowDown`. In Chrome and Safari, on the other hand, there is no `key` property. There is, however, a `keyIdentifier` property, which has a value of `Down` when he hit the down arrow.
-
-We can, however, rely on the trusty `keyCode` property, which is consistent across browsers and returns a number based on the key that was pressed.
-
-Let's modify that code from our previous experiment to log the keycode for any key.
-
-```js
-document.addEventListener('keydown', function (event) {
-  console.log(event.keyCode);
-});
-```
-
-What are the key codes for the four arrow keys? Write them down as we'll be using them shortly.
-
-## Your Turn
-
-In `demos/events/03-keycodes`, we have a block object with some properties and a `requestAnimationFrame` loop that renders the current state of the block.
-
-Modify the event listener to move adjust the `x` and `y` properties of the box on `keydown`.
-
-* When the user presses the up arrow, the event listener should decrease the `y` property of the `block` by 1.
-* When the user presses the down arrow, the event listener should increase the `y` property of the `block` by 1.
-* When the user presses the left arrow, the event listener should decrease the `x` property of the `block` by 1.
-* When the user presses the right arrow, the event listener should increase the `x` property of the `block` by 1.
