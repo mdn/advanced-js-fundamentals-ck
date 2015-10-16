@@ -88,7 +88,7 @@ describe('Calculator', function () {
 
       it.skip('can subtract from the internal value', function () {
         var calculator = new Calculator(4);
-        assert.equal(calculator.subract(2).value, 2);
+        assert.equal(calculator.subtract(2).value, 2);
       });
     });
 
