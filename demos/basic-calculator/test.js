@@ -81,7 +81,7 @@ describe('Calculator', function () {
     });
 
     describe('.subtract', function () {
-      it.skip('has an add method', function () {
+      it.skip('has a subtract method', function () {
         var calculator = new Calculator(42);
         assert(calculator.subtract);
       });
