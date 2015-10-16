@@ -81,14 +81,14 @@ describe('Calculator', function () {
     });
 
     describe('.subtract', function () {
-      it.skip('has an add method', function () {
+      it.skip('has a subtract method', function () {
         var calculator = new Calculator(42);
         assert(calculator.subtract);
       });
 
       it.skip('can subtract from the internal value', function () {
         var calculator = new Calculator(4);
-        assert.equal(calculator.subract(2).value, 2);
+        assert.equal(calculator.subtract(2).value, 2);
       });
     });
 
