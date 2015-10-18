@@ -1,5 +1,5 @@
 var expect = require('chai').expect;
-var Dog = require('../introduction.js');
+var Dog = require('../01-introduction-to-object-oriented-javascript.js');
 
 describe('01 - Introduction to OO JavaScript', function () {
   describe('sayGoodbye', function () {

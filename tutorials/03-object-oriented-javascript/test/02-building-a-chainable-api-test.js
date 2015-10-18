@@ -1,5 +1,5 @@
 var expect = require('chai').expect;
-var Calculator = require('../chainable_api.js');
+var Calculator = require('../02-building-a-chainable-api.js');
 
 describe('02 - Chainable API', function () {
   describe('Calculator', function () {

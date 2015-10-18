@@ -1,6 +1,6 @@
 var expect = require('chai').expect;
-var doubleNumber = require('../calling_functions.js');
-var timesTwo = require ('../calling_functions.js');
+var doubleNumber = require('../01-calling-functions.js');
+var timesTwo = require ('../01-calling-functions.js');
 
 describe('Calling functions', function () {
   describe('doubleNumber', function () {
