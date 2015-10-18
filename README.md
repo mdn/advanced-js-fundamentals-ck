@@ -34,17 +34,17 @@ cd tutorials/02-functions
 mocha
 ```
 
-Some of the files to write your answers have already been created, but are not
+[Some](#contributing) of the files to write your answers have already been created, but are not
 yet properly filled out to pass the tests. For example,
 
 ```sh
-tutorials/02-functions/calling_functions.js
+tutorials/02-functions/01-calling-functions.js
 ```
 
 Is where you should write your answers to the test file
 
 ```sh
-tutorials/02-functions/test/calling_functions_test.js
+tutorials/02-functions/test/01-calling-functions-test.js
 ```
 
 And includes the work to be completed from
@@ -52,3 +52,75 @@ And includes the work to be completed from
 ```sh
 tutorials/02-functions/01-calling-functions.md
 ```
+
+#### Contributing
+
+Not all of the tutorial tests have been written. All of the tutorials that are
+currently tested will have a corresponding `js` file named similarly to the `md`
+file, as noted above. If you would like to add a test and starter file of your
+own for one of the topics, please do the following:
+
+Fork the repo and create a new branch with the name of the tutorial section you
+will be contributing to.
+
+```sh
+git checkout -b calling-functions
+```
+
+Create the corresponding test and start files for that tutorial, making sure to
+use `kebab-case` rather than `snake_case` for the file names.
+
+```sh
+touch tutorials/02-functions/01-calling-functions.js
+touch tutorials/02-functions/test/01-calling-functions-test.js
+```
+
+Don't forget to also add these new files as `<script>` tags in the tutorial's
+`index.html` file, located in each tutorial folder.
+
+```html
+<script src="01-calling-functions.js"></script>
+
+<script src="test/01-calling-functions-test.js"></script>
+```
+
+Include the necessary setup variables in the starter file to at least make your
+tests fail with a message rather than producing an error.
+
+```javascript
+function doubleNumber(number) {
+}
+
+var timesTwo;
+
+if (typeof window === 'undefined') {
+  module.exports = timesTwo;
+  module.exports = doubleNumber;
+}
+```
+
+And then of course write your tests in the test file.
+
+```javascript
+if (typeof window === 'undefined') {
+  var expect = require('chai').expect;
+  var doubleNumber = require('../01-calling-functions.js');
+  var timesTwo = require ('../01-calling-functions.js');
+}
+
+describe('Calling functions', function () {
+  ...
+});
+```
+
+Please note the `if (typeof window === 'undefined')` statement in both of these
+files. The statement surrounds the `module.exports` portion of the starter file
+and the `require` statements of the test file. The reason for this `if`
+statement is to ensure that the `mocha` tests will run both from the command
+line and in the browser, depending on the user's preference.
+
+Once you have completed your tests, commit your code to your branch and create a
+[pull-request](https://github.com/mdn/advanced-js-fundamentals-ck/compare).
+
+Please [leave an issue](https://github.com/mdn/advanced-js-fundamentals-ck/issues/new)
+if you have any questions or would like help contributing to this repository.
