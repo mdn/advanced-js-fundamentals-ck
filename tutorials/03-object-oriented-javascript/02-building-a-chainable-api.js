@@ -10,4 +10,6 @@ Calculator.prototype.subtract = function (subtrahend) {
   return this.value - subtrahend;
 };
 
-module.exports = Calculator;
+if (typeof window === 'undefined') {
+  module.exports = Calculator;
+}

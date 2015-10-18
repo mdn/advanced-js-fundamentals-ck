@@ -1,5 +1,7 @@
-var expect = require('chai').expect;
-var Calculator = require('../02-building-a-chainable-api.js');
+if (typeof window === 'undefined') {
+  var expect = require('chai').expect;
+  var Calculator = require('../02-building-a-chainable-api.js');
+}
 
 describe('02 - Chainable API', function () {
   describe('Calculator', function () {

@@ -6,4 +6,6 @@ Dog.prototype.sayHello = function () {
   return 'Hello, my name is ' + this.name + '.';
 };
 
-module.exports = Dog;
+if (typeof window === 'undefined') {
+  module.exports = Dog;
+}

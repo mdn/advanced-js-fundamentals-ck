@@ -3,5 +3,7 @@ function doubleNumber(number) {
 
 var timesTwo;
 
-module.exports = timesTwo;
-module.exports = doubleNumber;
+if (typeof window === 'undefined') {
+  module.exports = timesTwo;
+  module.exports = doubleNumber;
+}
