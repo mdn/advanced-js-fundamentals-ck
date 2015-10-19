@@ -69,8 +69,8 @@ What is `Dog.prototype` and where does it come from? Functions are objects and a
 function Dog() {}
 function Cat() {}
 
-console.log(Dog.prototype); // Logs {}
-console.log(Cat.prototype); // Logs {}
+Dog.prototype; // {}
+Cat.prototype; // {}
 ```
 
 With regular functions, we generally don't use the `prototype` property — it's like an appendix. But, this special little object comes in to play when we use the function as a constructor.
@@ -105,10 +105,10 @@ function Dog(name) {
 var fido = new Dog('Fido');
 
 fido.toString = function () {
-  return '[dog ' + this.name + ']';
+  return '[Dog: ' + this.name + ']';
 };
 
-fido.toString(); // [dog Fido];
+fido.toString(); // [Dog: Fido]
 ```
 
 JavaScript finds the `toString` property immediately and doesn't have to look up the chain of prototypes. But, only `fido` has this fancy new `toString` property. It would be nice if all dogs could share this new functionality.
@@ -123,14 +123,14 @@ function Dog(name) {
 }
 
 Dog.prototype.toString = function () {
-  return '[dog ' + this.name + ']';
+  return '[Dog: ' + this.name + ']';
 };
 
 var fido = new Dog('Fido');
 var spot = new Dog('Spot');
 
-Fido.toString(); // [dog Fido];
-Spot.toString(); // [dog Spot];
+fido.toString(); // [Dog: Fido]
+spot.toString(); // [Dog: Spot]
 ```
 
 Prototypes are a great way to share functionality between related objects. We can define any properties we want on `Dog.prototype`.
