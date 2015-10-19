@@ -8,5 +8,5 @@ In this section, we'll cover:
 * [Event bubbling](02-event-bubbing.md)
 * [Adding and removing event listeners](03-adding-and-removing.md)
 * [Responding to specific key events](04-keycodes.md)
-* [Storing data in `data-` attributes](05-data-attributes.md)
-* [Event delegation](06-event-delegation.md)
+* [Event delegation](05-event-delegation.md)
+* [Storing data in `data-` attributes](06-data-attributes.md)
