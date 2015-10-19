@@ -71,11 +71,11 @@ We cannot use function expressions recursively because they do not have a refere
 ## Your turn
 Now it's time to try writing some recursive examples of your own.
 
-## Countdown
+### Countdown
 
 Write a function called `countdown()`, which takes a number and counts down from the number passed in to `0` by recursively calling itself. If you called `countdown(4)`, it should `console.log(4)`, `console.log(3)`, `console.log(2)`,  `console.log(1)`, and—finally— `console.log(0)`.
 
-## Fibonacci Sequence
+### Fibonacci Sequence
 
 A Fibonacci sequence is a series of numbers where the next number is the sum of the previous two — starting with 1, 1. Here is a short example:
 

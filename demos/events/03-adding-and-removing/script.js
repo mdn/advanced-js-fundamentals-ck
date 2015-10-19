@@ -8,7 +8,7 @@ var buttonDiv = document.querySelector('.parent');
 addNewButton.addEventListener('click', function () {
   var newButton = document.createElement('button');
   newButton.className = 'button';
-  newButton.innerText = "New click me button!";
+  newButton.textContent = "New click me button!";
   buttonDiv.appendChild(newButton);
 });
 

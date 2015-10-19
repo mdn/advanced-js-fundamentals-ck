@@ -25,9 +25,9 @@ function Dog(name) {
 var fido = new Dog('Fido');
 var spot = new Dog('Spot');
 
-fido.name; // 'fido'
+fido.name; // 'Fido'
 fido.legs; // 4
-spot.name; // 'spot'
+spot.name; // 'Spot'
 ```
 
 ## Functions and `this` revisited
@@ -113,7 +113,7 @@ fido.toString(); // [dog Fido];
 
 JavaScript finds the `toString` property immediately and doesn't have to look up the chain of prototypes. But, only `fido` has this fancy new `toString` property. It would be nice if all dogs could share this new functionality.
 
-Each dog constructed by the `Dog()` constructor has `Dog.prototype` set as its prototype. This means that each dog has looks immediately to `Dog.prototype`, if we ask for a property that it doesn't have.
+Each dog constructed by the `Dog()` constructor has `Dog.prototype` set as its prototype. This means that each dog looks immediately to `Dog.prototype` if we ask for a property that it doesn't have.
 
 Consider the following:
 
