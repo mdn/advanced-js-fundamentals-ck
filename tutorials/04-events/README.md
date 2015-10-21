@@ -4,7 +4,7 @@ In the browser, we want to be able to respond to user actions. Programmatically,
 
 In this section, we'll cover:
 
-* [The basics of events: listening for and responding to events in the browser](01-basic-events.md)
+* [The basics of events: listening for and responding to events in the browser](01-basics-events.md)
 * [Event bubbling](02-event-bubbing.md)
 * [Adding and removing event listeners](03-adding-and-removing.md)
 * [Responding to specific key events](04-keycodes.md)
