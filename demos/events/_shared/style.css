@@ -1,0 +1,32 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+* {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.container {
+  max-width: 600px;
+  margin: auto;
+}
+
+.button {
+  padding: 1em;
+  margin: 0.3em;
+  background-color: #1DB2D4;
+  border: none;
+  color: white;
+}
+
+.button:hover {
+  background-color: #20C5EB;
+}
+
+.button:active {
+  background-color: #1894B0;
+}

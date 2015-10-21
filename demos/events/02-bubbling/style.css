@@ -1,0 +1,23 @@
+.grandparent {
+  padding: 1em;
+  background-color: #99C987;
+}
+.grandparent:before {
+  content: 'Grandparent';
+  color: #74A949;
+  display: block;
+  margin-bottom: 1em;
+}
+
+.parent {
+  margin: 1em 0;
+  padding: 1em;
+  background-color: #F8D43A;
+}
+
+.parent:before {
+  content: 'Parent';
+  color: #C4A72E;
+  display: block;
+  margin-bottom: 1em;
+}

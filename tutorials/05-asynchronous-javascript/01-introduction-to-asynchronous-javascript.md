@@ -1,0 +1,11 @@
+- In JavaScript, almost all I/O is non-blocking.
+  - The run-time fires off your request and moves on
+  - If we need the result, we can pass a callback function to the non-blocking funciton
+- JavaScript runtime contains a message queue
+  - Things are put onto the queue
+  - The event loop repeatedly runs through the queue
+- Issues with scope
+- Run to completion before the tackling the next thing in the queue
+- Two common patterns for receiving events asynchronously
+  - events
+  - callbacks

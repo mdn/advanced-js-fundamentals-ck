@@ -1,0 +1,25 @@
+{
+  "name": "advanced-js-fundamentals-content-kit",
+  "version": "0.0.1",
+  "description": "This content kit provides learning material to allow intermediate web developers to level up their skills, learning real world techniques to take them past rudimentary syntax towards a solid foundation of skills than can be utilized to create modern web applications. It'll be visual; you'll have fun along the way.",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mdn/advanced-js-fundamentals-ck.git"
+  },
+  "keywords": [
+    "mozilla",
+    "javascript",
+    "curriculum",
+    "mdn"
+  ],
+  "author": "Steve Kinney",
+  "license": "MPL-2.0",
+  "bugs": {
+    "url": "https://github.com/mdn/advanced-js-fundamentals-ck/issues"
+  },
+  "homepage": "https://github.com/mdn/advanced-js-fundamentals-ck"
+}

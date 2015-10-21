@@ -1,0 +1,29 @@
+#piano-keyboard {
+  text-align: center;
+}
+
+.piano-key {
+  float: left;
+  min-height: 200px;
+  width: 40px;
+  border: 1px solid #AAA;
+  background-color: #EEE;
+}
+
+.black-key {
+  min-height: 100px;
+  background-color: #111;
+  border-color: #000;
+}
+
+.black-key:hover {
+  background-color: #333;
+}
+
+.white-key {
+  background-color: #FFF;
+}
+
+.white-key:hover {
+  background-color: #EEE;
+}
