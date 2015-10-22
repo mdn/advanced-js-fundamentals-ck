@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Test Suite</title>
+    <link rel="stylesheet" media="all" href="../_shared/mocha.css">
+  </head>
+  <body>
+    <div id="mocha"></div>
+    <div id="messages"></div>
+    <div id="fixtures"></div>
+
+    <script src="../_shared/mocha.js"></script>
+    <script src="../_shared/chai.js"></script>
+
+    <script>mocha.setup('bdd'); var expect = chai.expect;</script>
+    <script src="01-basic-events.js"></script>
+
+    <script src="test/01-basic-events-test.js"></script>
+    <script>mocha.run();</script>
+  </body>
+</html>

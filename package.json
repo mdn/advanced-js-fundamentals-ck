@@ -4,7 +4,10 @@
   "description": "This content kit provides learning material to allow intermediate web developers to level up their skills, learning real world techniques to take them past rudimentary syntax towards a solid foundation of skills than can be utilized to create modern web applications. It'll be visual; you'll have fun along the way.",
   "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha tutorials/*/test"
+  },
+  "dependencies": {
+    "chai": "^3.2.0"
   },
   "repository": {
     "type": "git",
