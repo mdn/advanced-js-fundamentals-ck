@@ -28,11 +28,11 @@ Given the following base functions:
 ```js
 function add(a, b) {
   return a + b;
-};
+}
 
 function multiply(a, b) {
   return a * b;
-};
+}
 ```
 
 Use partial application to create the following:
