@@ -15,7 +15,7 @@ In `demos/events/02-bubbling`, we have three nested HTML elements in `index.html
 
 Try the following:
 
-* Add a click event to the buttom, that logs the element that was clicked on using `this`.
+* Add a click event to the button, that logs the element that was clicked on using `this`.
 * Move the event listener to the `.parent` element. What is the result when you click on the button?
 * Move the event listener from the first step to the `.grandparent` element.
   * What is the result when you click on the button?
