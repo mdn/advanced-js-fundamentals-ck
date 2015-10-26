@@ -1,6 +1,10 @@
-var keyboard = document.getElementById('piano-keyboard');
+var pianoKeys = document.querySelectorAll('.piano-key');
 
-keyboard.addEventListener('click', function (event) {
-  var note = event.target.getAttribute('data-piano-key');
-  playNote(note);
-});
+for (var i = 0; i < pianoKeys.length; i++) {
+
+  pianoKeys[i].addEventListener('click', function (event) {
+    var note = this.getAttribute('data-piano-key');
+    playNote(note);
+  });
+
+}
