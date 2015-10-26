@@ -1,10 +1,2 @@
-var pianoKeys = document.querySelectorAll('.piano-key');
-
-for (var i = 0; i < pianoKeys.length; i++) {
-
-  pianoKeys[i].addEventListener('click', function (event) {
-    var note = this.getAttribute('data-piano-key');
-    playNote(note);
-  });
-
-}
+// Write an event listener for each key that looks at the data-piano-key of the
+// element that was clicked and passes that note to the playNote global function
