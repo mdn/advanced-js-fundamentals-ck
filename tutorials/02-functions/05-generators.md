@@ -170,7 +170,7 @@ function* factorialGenerator() {
 var factorial = factorialGenerator();
 
 factorial.next().value; // 1
-factorial.next().value; // 3
+factorial.next().value; // 2
 factorial.next().value; // 6
 factorial.next().value; // 24
 factorial.next().value; // 120
