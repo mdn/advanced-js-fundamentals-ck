@@ -1,6 +1,6 @@
 # HTML5 Canvas and Object-Oriented JavaScript
 
-Modern browsers include the [HTML5 Canvas API][canvas], which allows us to draw graphics with JavaScript. This tutorial...
+Modern browsers include the [HTML5 Canvas API][canvas], which allows us to draw graphics with JavaScript. This tutorial will show us some of the basics.
 
 [canvas]: https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API
 
