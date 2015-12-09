@@ -1,6 +1,6 @@
 # Event Delegation
 
-If you recall in `demos/events/05-musical-data`, we iterated over all of the elements with the class of `.piano-key` and added an event listener to each of them.
+If you look at `demos/events/06-musical-data`, we iterated over all of the elements with the class of `.piano-key` and added an event listener to each of them.
 
 ```js
 var pianoKeys = document.querySelectorAll('.piano-key');

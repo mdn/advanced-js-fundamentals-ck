@@ -55,7 +55,7 @@ This will log the following:
 
 ## Your Turn
 
-In `demos/events/04-musical-data`, there is a small piano keyboard. Each key on the keyboard has a `data-piano-key` attribute, for example:
+In `demos/events/06-musical-data`, there is a small piano keyboard. Each key on the keyboard has a `data-piano-key` attribute, for example:
 
 ```html
 <button class="piano-key white-key" data-piano-key="C3"></button>
