@@ -4,8 +4,8 @@ var photographs = instagramAPI.data.filter(function (asset) {
 
 function createImageElementFromPhotograph(photograph) {
   var image = document.createElement('img');
-  image.alt = photograph.caption.text;
-  image.src = photograph.images.low_resolution.url;
+  image.alt = photograph.caption;
+  image.src = photograph.url;
   image.className = "instagram-image";
   return image;
 }
