@@ -42,7 +42,7 @@ Generators return an object with two properties, the `value` emitted by the curr
 We can also iterate over all of the values in a generator:
 
 ```js
-for (x of generator) { console.log(x); }; // Logs 2, 4, 6
+for (x of generator) { console.log(x); }; // Logs 4, 6, 8
 ```
 
 We can also create a generator function that yields values indefinitely. Let's create a simple counter generator that will always generate the next increment indefinitely.
