@@ -4,9 +4,11 @@ A recursive function is a function that calls itself. Recursion is especially us
 
 The factorial `5!` is equivalent to `5 * 4 * 3 * 2 * 1` or 120.
 
-```js
+```javascript
 function factorial(n) {
-  if (n <= 1) { return 1 };
+  if (n <= 1) {
+    return 1;
+  };
   return n * factorial(n - 1);
 }
 
@@ -55,9 +57,11 @@ factorial(40000); //Still an error now, will work later
 
 Until JavaScript engines implement tail call optimization, if you have a recursive function which may make lots of nested calls you'll need to use a technique called trampolining. Trampolining basically turns a recursive function into a loop which iteratively calls a function and feeds back in the result until a function isn't returned.
 
-We used recursion in the section where we drew blocks to the canvas using `requestAnimationFrame()`. At the end of the function, we called `requestAnimationFrame()` again with a reference to the same `gameLoop()` function.
+We used recursion in the [section where we drew blocks to the canvas][requestAnimationFrame Section] using `requestAnimationFrame()`. At the end of the function, we called `requestAnimationFrame()` again with a reference to the same `gameLoop()` function.
 
-```js
+[requestAnimationFrame Section]: https://github.com/mdn/advanced-js-fundamentals-ck/blob/gh-pages/tutorials%2F03-object-oriented-javascript%2F03-canvas-and-object-oriented-javascript.md#requestanimationframe
+
+```javascript
 requestAnimationFrame(function gameLoop() {
   context.clearRect(0, 0, canvas.width, canvas.height);
   blocks.forEach(function (block) { block.draw().move(); });
@@ -82,9 +86,9 @@ A Fibonacci sequence is a series of numbers where the next number is the sum of 
 
 Can you write a function called `fibonacci()`, which takes a number as an argument and returns an array containing a Fibonacci sequence of that length?
 
-```js
-fibonacci(5); // returns [1, 1, 2, 3, 5]
-fibonacci(3); // returns [1, 1, 2]
+```javascript
+fibonacci(5);  // returns [1, 1, 2, 3, 5]
+fibonacci(3);  // returns [1, 1, 2]
 fibonacci(10); // returns [1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
 ```
 

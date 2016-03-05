@@ -4,7 +4,7 @@ Functions in JavaScript are little units of code that can be executed later and 
 
 Here is a simple example of a function that takes a single argument and logs a message to the console, just in case you are in the dark as to what a function looks like:
 
-```js
+```javascript
 function sayHello(name) {
     console.log('Hello, ' + name + '.');
 }
@@ -16,7 +16,7 @@ There a two major ways of defining functions in JavaScript: _function declaratio
 
 First, let's take a look at each in practice.
 
-```js
+```javascript
 // Function declaration
 function logSomething(something) {
   console.log(something);
@@ -34,7 +34,7 @@ Function declarations are hoisted to the top of the scope, which means that you 
 
 Let's look at an example:
 
-```js
+```javascript
 logSomethingDeclaration('This works.');
 console.log(typeof logSomethingDeclaration); // "function"
 
@@ -54,7 +54,9 @@ var logSomethingExpression = function (something) {
 };
 ```
 
-We'll revisit some of the other differences between function declarations and expressions later on when we discuss [recursion](#Recursion).
+We'll revisit some of the other differences between function declarations and expressions later on when we discuss [recursion][].
+
+[recursion]: https://github.com/mdn/advanced-js-fundamentals-ck/blob/gh-pages/tutorials/02-functions/04-recursion.md#function-declarations-function-expressions-and-recursion
 
 ## Invoking functions
 
@@ -64,7 +66,7 @@ Let's now take a look at the intricacies of function invocation.
 
 The easiest way to call a function is to append a pair of parentheses to the end of the name assigned to the function.
 
-```js
+```javascript
 function sayHello(name) {
     console.log('Hello!');
 }
@@ -76,7 +78,7 @@ Functions are incredibly flexible in JavaScript. Not only can we call them like 
 
 We can refer to a function without calling it by omitting the parentheses (you'll sometimes see the parentheses referred to as the "function invocation operator").
 
-```js
+```javascript
 var myFavoriteFunction = sayHello;
 ```
 
@@ -84,7 +86,7 @@ In the first section of this content kit, we passed functions to methods on `Arr
 
 We omit the parentheses in this context because we're referencing it, but not invoking it. For example:
 
-```js
+```javascript
 function doubleNumber(n) {
   return n * 2;
 }
@@ -92,11 +94,11 @@ function doubleNumber(n) {
 [1,2,3].map(doubleNumber);
 ```
 
-If we did add the parentheses to `doubleNumber()`, JavaScript would evaluate the function and place its return value as the argument being passed to `c`. It's also worth noting that if you do invoke the function without passing an argument, the function will attempt to multiply `undefined` by `2`. This will result in `NaN`, which stands for "not a number" and is also not a function that `Array.prototype.map()` can call — as a result the browser will throw an error.
+If we did add the parentheses to `doubleNumber()`, JavaScript would evaluate the function and place its return value as the argument being passed to `c`. It's also worth noting that if you do invoke the function without passing an argument, the function will attempt to multiply `undefined` by `2`. This will result in `NaN`, which stands for "not a number" and is also not a function that `Array.prototype.map()` can call — as a result the code will throw an error.
 
 Consider the following:
 
-```js
+```javascript
 function returnSomething(something) {
   return something;
 };
@@ -123,7 +125,7 @@ At this point we've explored one way of invoking a function — adding a pair of
 
 However, something special happens when we declare a function as a property on a object.
 
-```js
+```javascript
 function logThis() {
   console.log(this);
 }
@@ -149,7 +151,7 @@ When functions are set as the values of object properties, they adapt to their n
 
 Implement the following function:
 
-```js
+```javascript
 function logFoo() {
   console.log(this.foo);
 }

@@ -5,9 +5,11 @@ Read on, my friends.
 
 ## Partial application
 
-Partial application is a technique that allows us to pre-fill arguments to a function. Earlier, we discussed how you can use `bind()` on functions in JavaScript to explicitly set the value of `this`. Like `call()`, `bind()` takes additional arguments and will set those arguments on the function it returns.
+Partial application is a technique that allows us to pre-fill arguments to a function. [In the previous section][What is this], we discussed how you can use `bind()` on functions in JavaScript to explicitly set the value of `this`. Like `call()`, `bind()` takes additional arguments and will set those arguments on the function it returns.
 
-```js
+[What is this]: https://github.com/mdn/advanced-js-fundamentals-ck/blob/gh-pages/tutorials/02-functions/02-what-is-this.md#explicitly-setting-context-with-bind
+
+```javascript
 function add(a, b) {
   return a + b;
 }
@@ -25,7 +27,7 @@ This technique allows us to remove repetition from our code and use functions as
 
 Given the following base functions:
 
-```js
+```javascript
 function add(a, b) {
   return a + b;
 }
@@ -44,7 +46,7 @@ Use partial application to create the following:
 
 ## Currying
 
-[Currying][] is a technique—similar to partial application, named after the famous mathematician, [Haskell Curry][hc] — after whom the [Haskell][] programming language is also named. With partial application, we took an existing function and returned a new function with one or more of the arguments applied. With function currying we apply each argument one at a time, returning a new function in the currying chain until all the arguments have been supplied.
+[Currying][]—named after the famous mathematician, [Haskell Curry][hc] (after whom the [Haskell][] programming language is also named)—is a technique similar to partial application. With partial application, we took an existing function and returned a new function with one or more of the arguments applied. With currying we apply each argument one at a time, returning a new function in the currying chain until all the arguments have been supplied.
 
 [Currying]: https://en.wikipedia.org/wiki/Currying
 [hc]: https://en.wikipedia.org/wiki/Haskell_Curry
@@ -52,7 +54,7 @@ Use partial application to create the following:
 
 A curried function is one that returns a new function for every argument that it takes. Consider our `addThreeNumbers()` function from an earlier section:
 
-```js
+```javascript
 function addThreeNumbers(first, second, third) {
   return first + second + third;
 }
@@ -62,7 +64,7 @@ addThreeNumbers(1, 2, 3); // returns 6
 
 To rewrite this function as a curried function, we need to have it return a new function for each argument.
 
-```js
+```javascript
 function curriedAddThreeNumbers(first) {
   return function (second) {
     return function (third) {
@@ -76,7 +78,7 @@ curriedAddThreeNumbers(1)(2)(3); // returns 6
 
 Let's break that out in order to get a better sense of what's happening.
 
-```js
+```javascript
 var firstArgumentApplied = curriedAddThreeNumbers(1); // returns a function
 var secondArgumentApplied = firstArgumentApplied(2); // returns a function
 var thirdArgumentApplied = secondArgumentApplied(3); // returns 6
@@ -86,7 +88,7 @@ var thirdArgumentApplied = secondArgumentApplied(3); // returns 6
 
 There is a principle in programming called "Don't Repeat Yourself" (DRY). If you find yourself writing the same code over and over again, then your code isn't DRY. Consider the following.
 
-```js
+```javascript
 function wrapInParagraphTags(body) {
   return '<p>' + body + '</p>';
 }
@@ -102,9 +104,9 @@ function wrapInListItemTags(body) {
 
 This example is deliberately simple, but it illustrates the idea of repetitive code. It's fair to assume that if we continued down this path, we'd end up with more than three functions.
 
-Let's say we wanted to change this code in some way (for example to include a `class` attribute for each tag.) We would have to update each function individually and each time we updated a function we would run the risk of making a mistake and introducing a bug into our code. Instead, we could use currying to make this more efficient and error-free:
+Let's say we wanted to change this code in some way (for example to include a `class` attribute for each tag.) We would have to update each function individually and each time we updated a function we would run the risk of making a mistake and introducing a bug into our code. Instead, we could use currying to make this more efficient, DRYer, and less susceptible to errors:
 
-```js
+```javascript
 function createCurriedWrapper(tagName) {
   return function (body) {
     return '<' + tagName + '>' + body + '</' + tagName + '>';
@@ -115,7 +117,7 @@ var wrapInParagraphTags = createCurriedWrapper('p');
 var wrapInHeaderTags = createCurriedWrapper('h1');
 var wrapInListItemTags = createCurriedWrapper('li');
 
-var h2 = createCurriedWrapper('h2')('Hello world');
+var h2 = createCurriedWrapper('h2')('Hello world'); // '<h2>Hello world</h2>'
 ```
 
 Now, if we needed to change the basic implementation of wrapping strings in HTML tags, we could make our changes in one place, `createCurriedWrapper`, which is the foundation for all of our specialized wrapping functions.
