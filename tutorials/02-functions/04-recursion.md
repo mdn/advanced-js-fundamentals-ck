@@ -48,7 +48,9 @@ requestAnimationFrame(function gameLoop() {
 
 ## Function declarations, function expressions, and recursion
 
-Declared functions have a `name` property that is availably internally to the function. Function expressions stored in variables are anonymous. Instead, we use a variable to refer to them. JavaScript will look at the right side of a an assignment (anytime we use the `=` operator) before storing it into a variable. This means that the function itself has no way of knowing what variable it will be assigned to and—as a result—has to no way of referring to itself recursively.
+Declared functions have a `name` property that is availably internally to the function and to the parent scope. Function expressions stored in variables may be anonymous and have no name, or may have a name which is only available internally to the function.
+
+Function declarations are hoisted to the top of their parent scope and my be used before they're defined, though doing so is not good practice. The assignment variable for function expressions is hoisted, but the function itself may not be called until it is defined. Function expressions may be declared anywhere (like inside of an `if` statement), but function declarations are only allowed within function blocks.
 
 ```js
 function logYourselfDeclaration() {
@@ -59,14 +61,20 @@ var logYourselfExpression = function () {
   console.log(typeof logYourselfExpression);
 }
 
+var logYourselfNamedExpression = function logYourselfNamedExpression() {
+  console.log(typeof logYourselfNamedExpression);
+}
+
 logYourselfDeclaration(); // "function"
 logYourselfExpression(); // "undefined"
+logYourselfNamedExpression(); // "function"
 
 console.log(logYourselfDeclaration.name); // "logYourselfDeclaration"
 console.log(logYourselfExpression.name); // ""
+console.log(logYourselfNamedExpression.name); // "logYourselfNamedExpression"
 ```
 
-We cannot use function expressions recursively because they do not have a reference to themselves.
+We cannot use anonymous function expressions recursively because they do not have a reference to themselves.
 
 ## Your turn
 Now it's time to try writing some recursive examples of your own.
