@@ -34,7 +34,7 @@ The function above goes through the following steps:
   * `factorial(3)` just returned `6`; return `4 * 6` or `24`
 * `factorial(4)` just returned `24`; return `5 * 24` or `120`
 
-It's important to have an escape hatch for your recursive function, otherwise it will go on forever — actually, you'll exceed the maximum size of the call stack and be cut off by the JavaScript runtime. Unfortunately with a simple recursive function like the one above you may exceed the maximum size of the call stack even if you have an escape hatch. If you try `factorial(40000)` in many environments you'll get "RangeError: Maximum call stack size exceeded".
+It's important to have an escape hatch for your recursive function, otherwise it will go on forever — actually, you'll exceed the maximum size of the call stack and be cut off by the JavaScript runtime. Unfortunately with a recursive function like the one above you may exceed the maximum size of the call stack even if you have an escape hatch. If you try `factorial(40000)` in many environments you'll get "RangeError: Maximum call stack size exceeded".
 
 The good news is that JavaScript is getting an upgrade to deal with this problem. EcmaScript 6 will have "tail call optimization", which means that as long as the last thing a function does before returning isn't calling itself, it can be automatically optimized by the interpreter. To make use of this feature we'd rewrite the previous example as follows:
 
@@ -53,7 +53,7 @@ function factorial(n) {
 factorial(40000); //Still an error now, will work later
 ```
 
-Until JavaScript engines implement tail call optimization if you have a recursive function which may make lots of nested calls you'll need to use a technique called trampolining. Trampolining basically turns a recursive function into a loop which iteratively calls a function and feeds back in the result until a function isn't returned.
+Until JavaScript engines implement tail call optimization, if you have a recursive function which may make lots of nested calls you'll need to use a technique called trampolining. Trampolining basically turns a recursive function into a loop which iteratively calls a function and feeds back in the result until a function isn't returned.
 
 We used recursion in the section where we drew blocks to the canvas using `requestAnimationFrame()`. At the end of the function, we called `requestAnimationFrame()` again with a reference to the same `gameLoop()` function.
 
