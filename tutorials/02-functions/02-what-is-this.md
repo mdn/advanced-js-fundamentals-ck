@@ -291,7 +291,7 @@ Our new method mostly works, but there is one small problem: our implementation 
 Function.prototype.bindTo = function (context) {
   var fn = this;
   return function () {
-    fn.apply(context, arguments);
+    fn.call(context, arguments);
   }
 }
 
