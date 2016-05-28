@@ -37,8 +37,8 @@ You may have noticed that we're using `this` in our function and that it isn't b
 `Dog` is just a regular function. But, we call it a little differently than we did in previous section on functions. If you recall, there are a few ways we can call a function:
 
 * Using a pair of parenthesis as the end of the functions name (e.g. `someFunction()`).
-* Using the `call()` method (e.g. `someFunciton.call()`).
-* Using the `apply()` method (e.g. `someFunciton.apply()`).
+* Using the `call()` method (e.g. `someFunction.call()`).
+* Using the `apply()` method (e.g. `someFunction.apply()`).
 
 When we are writing object-oriented JavaScript, we have a fourth way of invoking a function: the `new` keyword. The `new` keyword invokes the function _as a constructor_, which causes it to behave in a fundamentally different way. Additionally, the three previous rules for determining the value of `this` no longer apply.
 
