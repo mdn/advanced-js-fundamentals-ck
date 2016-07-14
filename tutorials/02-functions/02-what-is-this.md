@@ -1,12 +1,13 @@
 # What is `this`?
 
-In the examples above, we used a special property in JavaScript called `this`. `this` is not only very hard to talk about in English, it's a concept that can be confusing to many new JavaScript developers. We'll be dealing with `this` a lot in the next few sections, so it's probably best that we spend a little time talking about it now.
-
+In the [last tutorial][calling-functions], we used a special property in JavaScript called `this`. `this` is not only very hard to talk about in English, it's a concept that can be confusing to many new JavaScript developers. We'll be dealing with `this` a lot in the next few sections, so it's probably best that we spend a little time talking about it now.
 The short and not very helpful version is that `this` refers to the _context_ in which a function was _invoked_ in JavaScript. This is different from where it was _defined_.
+
+[calling-functions]: https://github.com/mdn/advanced-js-fundamentals-ck/blob/gh-pages/tutorials/02-functions/01-calling-functions.md#methods
 
 Let's look at an example:
 
-```js
+```javascript
 function logThis() {
   console.log(this);
 }
@@ -14,8 +15,8 @@ function logThis() {
 logThis(); // logs `window` in the browser or `global` in Node
 
 var someObj = {
-  log: logThis;
-}
+  log: logThis
+};
 
 someObj.log(); // logs `someObj`
 ```
@@ -24,7 +25,7 @@ This gives you a basic idea of what `this` is, but sometimes things get more com
 
 ## rules for `this`
 
-Below we'll look at a couple of rules we can follow to make things easier. 
+Below we'll look at a couple of rules we can follow to make things easier.
 
 ### Rule 1: Unless another rule says otherwise, `this` is the global object
 
@@ -52,7 +53,7 @@ Functions in JavaScript are objects and share methods on `Function.prototype` �
 
 One method all functions share is `call()`, which uses the first argument you hand it and sets it to `this`, it then takes all subsequent arguments and passes them to the function you're calling `call()` on. It basically provides a way to call any function on a specific function scope.
 
-```js
+```javascript
 function addToFoo(n) {
   return this.foo + n;
 }
@@ -69,9 +70,17 @@ addToFoo.call({ foo: 3 }, 2); // adds 2 to the `foo` property on a new object
 
 The first argument when we use the `call()` method is used to set `this`. The second argument is passed to the function we're calling as its first argument. If we had a third argument, it would be passed as the second argument to the function we're calling and so on.
 
+Remember that in JavaScript you can pass an arbitrary number of arguments to a function and it will simply ignore the ones it doesn't need. Thus, the following would also be a valid use of `call()`
+
+```javascript
+addToFoo.call(bar, 2, 'extra arg'); // adds 2 to the `foo` property on `bar` and
+                                    // returns 3; ignores the third argument
+                                    // since `addToFoo` takes only one
+```
+
 `apply()` is another method shared by all functions and it behaves in a very similar fashion to `call()`, except that it takes the arguments you'd like to pass to the function as an array.
 
-```js
+```javascript
 function addThreeNumbersToFoo(first, second, third) {
   return this.foo + first + second + third;
 }
@@ -85,14 +94,18 @@ addThreeNumbersToFoo.apply({ foo: 1 }, [1, 1, 1]); // returns 4
 
 `call()` and `apply()` allow us to have a say as to the mercurial binding of `this`. Regardless of the first and second rules, if we explicitly set the value of `this` using `call()` or `apply()`, then that's the value of `this` inside of that function.
 
-There is a fourth rule, but we'll have to wait until we discuss object-oriented JavaScript later on before we say anymore about it.
+There is a [fourth rule][], but we'll have to wait until we discuss [object-oriented JavaScript][] later on before we say anymore about it.
+
+[fourth rule]: https://github.com/mdn/advanced-js-fundamentals-ck/blob/gh-pages/tutorials/03-object-oriented-javascript/01-introduction-to-object-oriented-javascript.md#functions-and-this-revisited
+
+[object-oriented JavaScript]: https://github.com/mdn/advanced-js-fundamentals-ck/tree/gh-pages/tutorials/03-object-oriented-javascript
 
 
 ## Using `apply()` to spread an array of arguments
 
 As we've seen `apply()` — like `call()` — is useful for explicitly setting `this`. Additionally, `apply()` is useful when we have an array that we'd like to spread out over the arguments of a function. Here's a quick example:
 
-```js
+```javascript
 function addThreeNumbers(first, second, third) {
   return first + second + third;
 }
@@ -106,21 +119,21 @@ Here the `numbers` array is being split up into three separate values that are  
 
 Now consider the `Math.min()` function. It takes a set of numbers as arguments and returns the smallest number. It can take any number of arguments.
 
-```js
+```javascript
 Math.min(1, 4, 10, 2); // returns 1
 Math.min(2, 3, 10, 100, 2048, 1984, 2012, 919); // returns 2
 ```
 
 What if we had an array of numbers?
 
-```js
+```javascript
 var numbers = [201, 100, 2];
 Math.min(numbers); // returns NaN
 ```
 
 `numbers` is an array and `Math.min` doesn't know how to deal with an array. We could try the following:
 
-```js
+```javascript
 var numbers = [201, 100, 2];
 Math.min(numbers[0], numbers[1], numbers[2]); // returns 2;
 ```
@@ -129,7 +142,7 @@ This works, but it relies us having a manageable number of items in the array. W
 
 `apply()` will take the items in the array and spread them out over the arguments of the array. We don't have to access each element by its index, which means we also don't have to know how many elements are in the array.
 
-```js
+```javascript
 var numbers = [2, 3, 10, 100, 2048, 1984, 2012, 919];
 
 Math.min.apply(null, numbers); // returns 2;
@@ -137,9 +150,9 @@ Math.min.apply(null, numbers); // returns 2;
 
 ### A word on the spread operator in ES6/2015
 
-ES6 introduces the spread operator (`...`), which allows us to spread the contents of an array without using `apply()`. In the future, you'll be able to do the following:
+ES6 introduces the spread operator (`...`), which allows us to spread the contents of an array without using `apply()`. With ES6, you're able to do the following:
 
-```js
+```javascript
 var numbers = [2, 3, 10, 100, 2048, 1984, 2012, 919];
 
 Math.min(...numbers);
@@ -156,7 +169,7 @@ We used `null` in the example above because it doesn't matter what `this` is sin
 
 The following are all equivalent for the purposes of splitting up an array of values amongst a function's arguments:
 
-```js
+```javascript
 addThreeNumbers.apply(null, numbers);
 addThreeNumbers.apply(this, numbers);
 addThreeNumbers.apply('oogieboogie', numbers);
@@ -166,9 +179,9 @@ addThreeNumbers.apply('oogieboogie', numbers);
 
 `call()` and `apply()` are great ways of explicitly setting `this` when we call a function. Sometimes, however, we want to set `this` when we define a function, not when we call it.
 
-`call()` and `apply()` invoke the function immediately. `bind()` is different — it returns a copy of the function that takes the sometimes slippery `this` and replaces it with a hard set value that is above the three rules we set above.
+`call()` and `apply()` invoke the function immediately. `bind()` is different — it returns a copy of the function that takes the sometimes slippery `this` and replaces it with a hard set value that we give it.
 
-```js
+```javascript
 function logFoo() {
   console.log(this.foo);
 }
@@ -179,14 +192,14 @@ logFoo(); // undefined
 logFoo.call(someObject); // Hello
 
 var boundLogFoo = logFoo.bind(someObject); // returns a new function with
-                                           //`this` explicitly set
+                                           // `this` explicitly set
 
 boundLogFoo(); // Hello
 ```
 
 Let's take one more look at this with some objects.
 
-```js
+```javascript
 var fido = {
   name: 'Fido',
   sayHello: function () {
@@ -204,6 +217,7 @@ var haveTacoSayHello = fido.sayHello.bind({ name: 'Taco' });
 
 fido.sayHello(); // My name is Fido.
 spot.sayHello(); // My name is Spot.
+spot.boundSayHello(); // My name is Fido.
 haveTacoSayHello(); // My name is Taco.
 ```
 
@@ -215,7 +229,7 @@ The easiest way to stop `this` from changing under our feet is to take it out of
 
 Consider the following adaptation from an earlier example:
 
-```js
+```javascript
 function logThis() {
   console.log(this);
 }
@@ -225,7 +239,7 @@ Let's say that we wanted a version of this function where the value of `this` wa
 
 We could wrap our function in another function that would eventually use `call()` to explicitly set the value of `this`:
 
-```js
+```javascript
 function logThis() {
   console.log(this);
 }
@@ -240,9 +254,10 @@ logSandwich(); // 'sandwich'
 
 #### Keeping Our Code DRY
 
-This works, but it's also a little tedious to have to create new variables each time we need to explicitly bind `this` and return a new function. It's also not very reusable — if you recall from our section on currying, we can create a function that returns a function in order to keep our code DRY.
+This works, but it's also a little tedious to have to create new variables each time we need to explicitly bind `this` and return a new function. It's also not very reusable — if you recall from our [section on currying][currying], we can create a function that returns a function in order to keep our code DRY.
 
-```js
+[currying]: https://github.com/mdn/advanced-js-fundamentals-ck/blob/gh-pages/tutorials/02-functions/03-currying-and-partial-application.md
+```javascript
 function logThis() {
   console.log(this);
 }
@@ -264,7 +279,7 @@ logBurrito(); // 'burrito'
 
 We now have a reusable function that we can use to create new functions with the context explicitly bound. We're close to approximating the version that ships in [ECMAScript 5][ES5]. We don't want to override the method that comes built-in, so we'll call ours `Function.prototype.bindTo()`;
 
-```js
+```javascript
 Function.prototype.bindTo = function (context) {
   var fn = this;
   return function () {
@@ -287,7 +302,7 @@ logBurrito(); // 'burrito'
 
 Our new method mostly works, but there is one small problem: our implementation ignores any arguments that our function takes. This hasn't hurt us so far because `logThis()` didn't take any arguments. Let's do one final refactoring that will allow our explicitly-bound function to take the same arguments as the original function.
 
-```js
+```javascript
 Function.prototype.bindTo = function (context) {
   var fn = this;
   return function () {
@@ -322,7 +337,7 @@ Our custom `bind()` method isn't perfect. Most modern browsers ship with a `bind
 
 Let's take a look at an example without any asynchronous callbacks:
 
-```js
+```javascript
 var person = {
   firstName: 'Steve',
   lastName: 'Kinney',
@@ -339,7 +354,7 @@ This works as we expect. When we call `updateName()`, `this` is still in the con
 
 Things get a little tricker when we call an asynchronous function (like an AJAX call) and pass a callback.
 
-```js
+```javascript
 function somethingAsynchronous(callback) {
   console.log('Maybe we\'re fetching the new name from the server.');
   setTimeout(callback, 1000);
@@ -371,7 +386,7 @@ The end result is that not only did we not update the property we wanted to, but
 
 There are a few ways to handle this. While the callback loses its reference to `this`, it still has access to the scope that it came from. As a result, this would work:
 
-```js
+```javascript
 function somethingAsynchronous(callback) {
   console.log('Maybe we\'re fetching the new name from the server.');
   setTimeout(callback, 1000);
@@ -397,7 +412,7 @@ console.log(person.firstName); // This is now Wes.
 
 An alternate approach is to explicitly set the value of `this` on the callback function using `bind()`.
 
-```js
+```javascript
 function somethingAsynchronous(callback) {
   console.log('Maybe we\'re fetching the new name from the server.');
   setTimeout(callback, 1000);
@@ -419,3 +434,34 @@ console.log(person.firstName); // Wes.
 ```
 
 The example above works because we used `bind(this)` to explicitly set the value of `this` on the anonymous function while we're still in the scope of `person`. When the callback is eventually called, it remembers what `this` is because we bound it to the function.
+
+### A word on arrow functions in ES6/2015
+
+ES6 introduces (fat) arrow functions, which allow us to write functions with shorter syntax (among other things). ES6 arrow functions deserve a tutorial of their own, but the relevance to this example is that arrow functions also lexically bind the `this` value implicitly. With ES6, we could write:
+
+```javascript
+function somethingAsynchronous(callback) {
+  console.log('Maybe we\'re fetching the new name from the server.');
+  setTimeout(callback, 1000);
+}
+
+var person = {
+  firstName: 'Steve',
+  lastName: 'Kinney',
+  updateName: function () {
+    somethingAsynchronous(() => {
+      this.firstName = 'Wes'
+    });
+  }
+};
+
+person.updateName();
+// Wait a second…
+console.log(person.firstName); // Wes.
+```
+
+Notice that we used a fat arrow function (`() => {}`) as our callback inside of `somethingAsynchronous`. This syntax negates the need to set a variable equal to `this` or explicitly use `bind()`, as was done in the first and second solutions, respectively.
+
+You can [read more about arrow functions][mdn-arrow-functions] on MDN.
+
+[mdn-arrow-functions]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions
