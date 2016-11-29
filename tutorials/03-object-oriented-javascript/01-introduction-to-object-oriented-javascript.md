@@ -42,7 +42,7 @@ You may have noticed that we're using `this` in our function and that it isn't b
 
 When we are writing object-oriented JavaScript, we have a fourth way of invoking a function: the `new` keyword. The `new` keyword invokes the function _as a constructor_, which causes it to behave in a fundamentally different way. Additionally, the three previous rules for determining the value of `this` no longer apply.
 
-When we use the `new` keyword to call our function as a constructor, a few things happen under the scenes:
+When we use the `new` keyword to call our function as a constructor, a few things happen behind the scenes:
 
 1. `this` is set to a new empty object
 2. The prototype property of the constructor function (`Dog.prototype` in the example above) is set as the prototype of the new object, which was set to `this` in the first step
